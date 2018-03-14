@@ -20,6 +20,7 @@
 		FE3EBFF22059AE9D004842DF /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFF12059AE9D004842DF /* FavouritesTableViewController.swift */; };
 		FE3EBFF42059B36A004842DF /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFF32059B36A004842DF /* PlayerViewController.swift */; };
 		FE3EBFF62059C460004842DF /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFF52059C460004842DF /* MiniPlayerViewController.swift */; };
+		FE3EBFF82059CE86004842DF /* MiniPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3EBFF72059CE86004842DF /* MiniPlayer.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		FE3EBFF12059AE9D004842DF /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewController.swift; sourceTree = "<group>"; };
 		FE3EBFF32059B36A004842DF /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		FE3EBFF52059C460004842DF /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
+		FE3EBFF72059CE86004842DF /* MiniPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MiniPlayer.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				FE3EBFE72059A80E004842DF /* Podcasts.storyboard */,
 				FE3EBFE92059A815004842DF /* Favourites.storyboard */,
 				FE3EBFEB2059A81A004842DF /* Player.storyboard */,
+				FE3EBFF72059CE86004842DF /* MiniPlayer.storyboard */,
 				FE3EBFD420599E77004842DF /* Main.storyboard */,
 				FE3EBFDC20599E77004842DF /* LaunchScreen.storyboard */,
 			);
@@ -169,6 +172,7 @@
 				FE3EBFEA2059A815004842DF /* Favourites.storyboard in Resources */,
 				FE3EBFDB20599E77004842DF /* Assets.xcassets in Resources */,
 				FE3EBFE62059A808004842DF /* Episodes.storyboard in Resources */,
+				FE3EBFF82059CE86004842DF /* MiniPlayer.storyboard in Resources */,
 				FE3EBFD620599E77004842DF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

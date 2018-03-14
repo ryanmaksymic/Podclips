@@ -134,10 +134,10 @@
             </objects>
             <point key="canvasLocation" x="-130.40000000000001" y="-583.3583208395803"/>
         </scene>
-        <!--Player-->
+        <!--MiniPlayer-->
         <scene sceneID="WtJ-Hu-vIi">
             <objects>
-                <viewControllerPlaceholder storyboardName="Player" id="9Al-5J-zs0" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="MiniPlayer" id="9Al-5J-zs0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Nq1-S8-pHD"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n8Y-wc-Tih" userLabel="First Responder" sceneMemberID="firstResponder"/>
