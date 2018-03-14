@@ -13,6 +13,10 @@
 		FE3EBFD920599E77004842DF /* Podclips.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFD720599E77004842DF /* Podclips.xcdatamodeld */; };
 		FE3EBFDB20599E77004842DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE3EBFDA20599E77004842DF /* Assets.xcassets */; };
 		FE3EBFDE20599E77004842DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3EBFDC20599E77004842DF /* LaunchScreen.storyboard */; };
+		FE3EBFE62059A808004842DF /* Episodes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3EBFE52059A808004842DF /* Episodes.storyboard */; };
+		FE3EBFE82059A80E004842DF /* Podcasts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3EBFE72059A80E004842DF /* Podcasts.storyboard */; };
+		FE3EBFEA2059A815004842DF /* Favourites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3EBFE92059A815004842DF /* Favourites.storyboard */; };
+		FE3EBFEC2059A81A004842DF /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3EBFEB2059A81A004842DF /* Player.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		FE3EBFDA20599E77004842DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE3EBFDD20599E77004842DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE3EBFDF20599E77004842DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE3EBFE52059A808004842DF /* Episodes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Episodes.storyboard; sourceTree = "<group>"; };
+		FE3EBFE72059A80E004842DF /* Podcasts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Podcasts.storyboard; sourceTree = "<group>"; };
+		FE3EBFE92059A815004842DF /* Favourites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favourites.storyboard; sourceTree = "<group>"; };
+		FE3EBFEB2059A81A004842DF /* Player.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Player.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +65,34 @@
 			isa = PBXGroup;
 			children = (
 				FE3EBFD020599E77004842DF /* AppDelegate.swift */,
-				FE3EBFD220599E77004842DF /* ViewController.swift */,
-				FE3EBFD420599E77004842DF /* Main.storyboard */,
+				FE3EBFEE2059A8C6004842DF /* View Controllers */,
+				FE3EBFED2059A8AD004842DF /* Storyboards */,
 				FE3EBFDA20599E77004842DF /* Assets.xcassets */,
-				FE3EBFDC20599E77004842DF /* LaunchScreen.storyboard */,
 				FE3EBFDF20599E77004842DF /* Info.plist */,
 				FE3EBFD720599E77004842DF /* Podclips.xcdatamodeld */,
 			);
 			path = Podclips;
+			sourceTree = "<group>";
+		};
+		FE3EBFED2059A8AD004842DF /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FE3EBFE52059A808004842DF /* Episodes.storyboard */,
+				FE3EBFE72059A80E004842DF /* Podcasts.storyboard */,
+				FE3EBFE92059A815004842DF /* Favourites.storyboard */,
+				FE3EBFEB2059A81A004842DF /* Player.storyboard */,
+				FE3EBFD420599E77004842DF /* Main.storyboard */,
+				FE3EBFDC20599E77004842DF /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FE3EBFEE2059A8C6004842DF /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FE3EBFD220599E77004842DF /* ViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,8 +154,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE3EBFE82059A80E004842DF /* Podcasts.storyboard in Resources */,
+				FE3EBFEC2059A81A004842DF /* Player.storyboard in Resources */,
 				FE3EBFDE20599E77004842DF /* LaunchScreen.storyboard in Resources */,
+				FE3EBFEA2059A815004842DF /* Favourites.storyboard in Resources */,
 				FE3EBFDB20599E77004842DF /* Assets.xcassets in Resources */,
+				FE3EBFE62059A808004842DF /* Episodes.storyboard in Resources */,
 				FE3EBFD620599E77004842DF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
