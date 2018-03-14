@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import CoreData
 
 class PlayerViewController: UIViewController {
   
@@ -20,15 +22,35 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var currentTimeLabel: UILabel!
   @IBOutlet weak var totalTimeLabel: UILabel!
   @IBOutlet weak var playPauseButton: UIButton!
+  @IBOutlet weak var clipButton: UIButton!
+  @IBOutlet weak var bookmarkButton: UIButton!
   
   
   // MARK: - Properties
+  
+  //var track: NSManagedObject?
+  //var trackURL: URL?
+  var updateTimeProgressTimer: Timer!
+  var bookmark: Bookmark?
   
   
   // MARK: - Setup
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupInterface()
+  }
+  
+  private func setupInterface() {
+    artworkImageView.image = AudioManager.shared.artwork ?? UIImage(named: "artwork")
+    episodeNameLabel.text = AudioManager.shared.episodeName ?? ""
+    podcastNameLabel.text = AudioManager.shared.podcastName ?? "No media selected"
+    detailsLabel.text = AudioManager.shared.details ?? ""
+    totalTimeLabel.text = AudioManager.shared.durationString
+    clipButton.isHidden = !AudioManager.shared.trackIsEpisode
+    bookmarkButton.isHidden = !AudioManager.shared.trackIsEpisode
+    artworkImageView.layer.cornerRadius = 4.0
+    artworkImageView.clipsToBounds = true
   }
   
   

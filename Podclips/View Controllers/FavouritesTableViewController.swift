@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class FavouritesTableViewController: UITableViewController {
+  
+  // MARK: - Properties
+  
+  private var tracks = [NSManagedObject]()
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,6 +38,10 @@ class FavouritesTableViewController: UITableViewController {
     cell.textLabel?.text = "Item #\(indexPath.row + 1)"
     
     return cell
+  }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    // TODO: Load selected track into AudioManager
   }
   
   /*

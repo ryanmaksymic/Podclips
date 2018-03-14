@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import CoreData
 
 class MiniPlayerViewController: UIViewController {
   
@@ -19,10 +21,25 @@ class MiniPlayerViewController: UIViewController {
   @IBOutlet weak var playPauseButton: UIButton!
   
   
+  // MARK: - Properties
+  
+  //var track: NSManagedObject?
+  
+  
   // MARK: - Setup
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupInterface()
+  }
+  
+  private func setupInterface() {
+    artworkImageView.image = AudioManager.shared.artwork ?? UIImage(named: "artwork")
+    episodeNameLabel.text = AudioManager.shared.episodeName ?? ""
+    podcastNameLabel.text = AudioManager.shared.podcastName ?? "No media selected"
+    detailsLabel.text = AudioManager.shared.details ?? ""
+    artworkImageView.layer.cornerRadius = 4.0
+    artworkImageView.clipsToBounds = true
   }
   
   

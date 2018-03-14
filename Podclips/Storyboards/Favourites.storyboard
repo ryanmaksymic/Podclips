@@ -25,9 +25,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="CdO-LH-N3d" kind="presentation" id="ebf-Ne-l1o"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -37,7 +34,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Qye-t8-qqr">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="u77-AS-rSI">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="2" id="u77-AS-rSI">
                             <rect key="frame" x="63.5" y="7" width="248" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
@@ -51,14 +48,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZ5-K9-fHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="711.20000000000005" y="265.81709145427288"/>
-        </scene>
-        <!--Player-->
-        <scene sceneID="xy2-rK-tR2">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Player" id="CdO-LH-N3d" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WqO-JR-DUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1302" y="265"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lmU-hv-YW9">

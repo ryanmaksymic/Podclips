@@ -108,6 +108,9 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="artworkImageView" destination="9kJ-0a-Dzf" id="wtG-8A-UyW"/>
+                        <outlet property="bookmarkButton" destination="D6f-K7-kPd" id="5dl-ue-ae9"/>
+                        <outlet property="clipButton" destination="agk-fT-NPd" id="vmd-gP-gwO"/>
                         <outlet property="currentTimeLabel" destination="cyb-MS-h8p" id="3kF-mI-Qmn"/>
                         <outlet property="detailsLabel" destination="eVz-Ut-byM" id="F7V-rd-22S"/>
                         <outlet property="episodeNameLabel" destination="OaV-IG-f4p" id="w3S-BE-AMd"/>
@@ -128,7 +131,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="artwork" width="402" height="402"/>
+        <image name="artwork" width="398" height="398"/>
         <image name="backward" width="30" height="20"/>
         <image name="bookmark" width="30" height="30"/>
         <image name="chevron" width="36" height="12"/>

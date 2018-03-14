@@ -21,6 +21,7 @@
 		FE3EBFF42059B36A004842DF /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFF32059B36A004842DF /* PlayerViewController.swift */; };
 		FE3EBFF62059C460004842DF /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFF52059C460004842DF /* MiniPlayerViewController.swift */; };
 		FE3EBFF82059CE86004842DF /* MiniPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3EBFF72059CE86004842DF /* MiniPlayer.storyboard */; };
+		FE3EBFFB2059D425004842DF /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFFA2059D425004842DF /* AudioManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		FE3EBFF32059B36A004842DF /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		FE3EBFF52059C460004842DF /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		FE3EBFF72059CE86004842DF /* MiniPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MiniPlayer.storyboard; sourceTree = "<group>"; };
+		FE3EBFFA2059D425004842DF /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,11 +75,11 @@
 			isa = PBXGroup;
 			children = (
 				FE3EBFD020599E77004842DF /* AppDelegate.swift */,
+				FE3EBFF92059D410004842DF /* Model */,
 				FE3EBFEE2059A8C6004842DF /* View Controllers */,
 				FE3EBFED2059A8AD004842DF /* Storyboards */,
 				FE3EBFDA20599E77004842DF /* Assets.xcassets */,
 				FE3EBFDF20599E77004842DF /* Info.plist */,
-				FE3EBFD720599E77004842DF /* Podclips.xcdatamodeld */,
 			);
 			path = Podclips;
 			sourceTree = "<group>";
@@ -105,6 +107,15 @@
 				FE3EBFD220599E77004842DF /* ViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FE3EBFF92059D410004842DF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FE3EBFFA2059D425004842DF /* AudioManager.swift */,
+				FE3EBFD720599E77004842DF /* Podclips.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE3EBFD920599E77004842DF /* Podclips.xcdatamodeld in Sources */,
+				FE3EBFFB2059D425004842DF /* AudioManager.swift in Sources */,
 				FE3EBFF22059AE9D004842DF /* FavouritesTableViewController.swift in Sources */,
 				FE3EBFF62059C460004842DF /* MiniPlayerViewController.swift in Sources */,
 				FE3EBFD320599E77004842DF /* ViewController.swift in Sources */,
