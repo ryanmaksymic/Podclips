@@ -22,6 +22,7 @@
 		FE3EBFF62059C460004842DF /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFF52059C460004842DF /* MiniPlayerViewController.swift */; };
 		FE3EBFF82059CE86004842DF /* MiniPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3EBFF72059CE86004842DF /* MiniPlayer.storyboard */; };
 		FE3EBFFB2059D425004842DF /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFFA2059D425004842DF /* AudioManager.swift */; };
+		FE3EC0012059EDA8004842DF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EC0002059EDA7004842DF /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		FE3EBFF52059C460004842DF /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		FE3EBFF72059CE86004842DF /* MiniPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MiniPlayer.storyboard; sourceTree = "<group>"; };
 		FE3EBFFA2059D425004842DF /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		FE3EC0002059EDA7004842DF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		FE3EBFF92059D410004842DF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FE3EC0002059EDA7004842DF /* DataManager.swift */,
 				FE3EBFFA2059D425004842DF /* AudioManager.swift */,
 				FE3EBFD720599E77004842DF /* Podclips.xcdatamodeld */,
 			);
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE3EBFD920599E77004842DF /* Podclips.xcdatamodeld in Sources */,
+				FE3EC0012059EDA8004842DF /* DataManager.swift in Sources */,
 				FE3EBFFB2059D425004842DF /* AudioManager.swift in Sources */,
 				FE3EBFF22059AE9D004842DF /* FavouritesTableViewController.swift in Sources */,
 				FE3EBFF62059C460004842DF /* MiniPlayerViewController.swift in Sources */,

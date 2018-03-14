@@ -44,7 +44,7 @@ class AudioManager {
   
   var details: String? {
     if let episode = track as? Episode {
-      return "Release date: MM/dd/yyyy"
+      return "Release date: MM/dd/yyyy"  // TODO: Fill this in
     } else if let clip = track as? Clip {
       return clip.episode!.episodeName
     } else if let bookmark = track as? Bookmark {
@@ -65,7 +65,7 @@ class AudioManager {
   }
   
   var trackIsEpisode: Bool {
-    if let episode = track as? Episode {
+    if let _ = track as? Episode {
       return true
     }
     return false
@@ -131,7 +131,7 @@ class AudioManager {
   // MARK: - Public methods
   
   func load(track: NSManagedObject) {
-    
+    // TODO: This
   }
   
   func startPlaying(url: URL, atTime time: Double) {
@@ -177,7 +177,7 @@ class AudioManager {
 }
 
 
-// MARK: - TimeInterval
+// MARK: - TimeInterval extension
 
 extension TimeInterval {
   func string(ms: Bool = false) -> String {
