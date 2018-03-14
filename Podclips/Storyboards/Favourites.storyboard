@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favourites-->
+        <!--Favourites Table View Controller-->
         <scene sceneID="yT7-3n-PW2">
             <objects>
                 <tableViewController id="3cU-Ad-s7Q" customClass="FavouritesTableViewController" customModule="Podclips" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,7 +35,18 @@
                             <outlet property="delegate" destination="3cU-Ad-s7Q" id="YrY-Wg-Ffd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favourites" id="IGz-LF-UWU"/>
+                    <navigationItem key="navigationItem" id="Qye-t8-qqr">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="u77-AS-rSI">
+                            <rect key="frame" x="63.5" y="7" width="248" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Bookmarks"/>
+                                <segment title="Clips"/>
+                                <segment title="Episodes"/>
+                            </segments>
+                        </segmentedControl>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZ5-K9-fHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

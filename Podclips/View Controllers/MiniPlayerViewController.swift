@@ -29,7 +29,6 @@ class MiniPlayerViewController: UIViewController {
   // MARK: - Touches
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    print("Mini Player touch!")
     performSegue(withIdentifier: "PresentPlayer", sender: nil)
   }
   
