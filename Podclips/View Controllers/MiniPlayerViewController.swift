@@ -17,9 +17,8 @@ class MiniPlayerViewController: UIViewController {
   @IBOutlet weak var artworkImageView: UIImageView!
   @IBOutlet weak var episodeNameLabel: UILabel!
   @IBOutlet weak var podcastNameLabel: UILabel!
-  @IBOutlet weak var detailsLabel: UILabel!
   @IBOutlet weak var playPauseButton: UIButton!
-
+  
   
   // MARK: - Setup
   
@@ -42,8 +41,7 @@ class MiniPlayerViewController: UIViewController {
   @objc private func updateTrackInfo() {
     self.artworkImageView.image = AudioManager.shared.artwork ?? UIImage(named: "artwork")
     self.episodeNameLabel.text = AudioManager.shared.episodeName ?? ""
-    self.podcastNameLabel.text = AudioManager.shared.podcastName ?? "No media selected"
-    self.detailsLabel.text = AudioManager.shared.details ?? ""
+    self.podcastNameLabel.text = AudioManager.shared.podcastName ?? ""
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
   }
   
@@ -51,7 +49,9 @@ class MiniPlayerViewController: UIViewController {
   // MARK: - Player controls
   
   @IBAction func playPause(_ sender: UIButton) {
-    if AudioManager.shared.isPlaying { pausePlayer() } else { resumePlayer() }
+    if AudioManager.shared.url != nil {
+      if AudioManager.shared.isPlaying { pausePlayer() } else { resumePlayer() }
+    }
   }
   
   private func pausePlayer() {
