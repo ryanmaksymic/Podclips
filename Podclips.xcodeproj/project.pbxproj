@@ -31,6 +31,7 @@
 		FE3EC0102059EFC8004842DF /* utu2tm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FE3EC0082059EFC5004842DF /* utu2tm.jpg */; };
 		FE3EC0112059EFC8004842DF /* CBB.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE3EC0092059EFC8004842DF /* CBB.mp3 */; };
 		FE3EC0122059EFC8004842DF /* ra.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FE3EC00A2059EFC8004842DF /* ra.jpg */; };
+		FE44F84E205AD1EA00D988FD /* UIAlertController+CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE44F84D205AD1EA00D988FD /* UIAlertController+CustomAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		FE3EC0082059EFC5004842DF /* utu2tm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = utu2tm.jpg; sourceTree = "<group>"; };
 		FE3EC0092059EFC8004842DF /* CBB.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CBB.mp3; sourceTree = "<group>"; };
 		FE3EC00A2059EFC8004842DF /* ra.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ra.jpg; sourceTree = "<group>"; };
+		FE44F84D205AD1EA00D988FD /* UIAlertController+CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+CustomAlert.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 		FE3EBFEE2059A8C6004842DF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE44F84D205AD1EA00D988FD /* UIAlertController+CustomAlert.swift */,
 				FE3EBFF12059AE9D004842DF /* FavouritesTableViewController.swift */,
 				FE3EBFF32059B36A004842DF /* PlayerViewController.swift */,
 				FE3EBFF52059C460004842DF /* MiniPlayerViewController.swift */,
@@ -245,6 +248,7 @@
 				FE3EBFF62059C460004842DF /* MiniPlayerViewController.swift in Sources */,
 				FE3EBFD320599E77004842DF /* ViewController.swift in Sources */,
 				FE3EBFD120599E77004842DF /* AppDelegate.swift in Sources */,
+				FE44F84E205AD1EA00D988FD /* UIAlertController+CustomAlert.swift in Sources */,
 				FE3EBFF42059B36A004842DF /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

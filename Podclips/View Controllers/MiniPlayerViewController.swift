@@ -19,12 +19,7 @@ class MiniPlayerViewController: UIViewController {
   @IBOutlet weak var podcastNameLabel: UILabel!
   @IBOutlet weak var detailsLabel: UILabel!
   @IBOutlet weak var playPauseButton: UIButton!
-  
-  
-  // MARK: - Properties
-  
-  //var track: NSManagedObject?
-  
+
   
   // MARK: - Setup
   
@@ -36,7 +31,7 @@ class MiniPlayerViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     setupInterface()
     
-    NotificationCenter.default.addObserver(self, selector: #selector(updateTrackInfo), name: Notification.Name("Test"), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(updateTrackInfo), name: Notification.Name(R.AudioManagerUpdated), object: nil)
   }
   
   private func setupInterface() {
@@ -56,7 +51,9 @@ class MiniPlayerViewController: UIViewController {
   // MARK: - Touches
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    performSegue(withIdentifier: "PresentPlayer", sender: nil)
+    if AudioManager.shared.url != nil {
+      performSegue(withIdentifier: "PresentPlayer", sender: nil)
+    }
   }
   
   

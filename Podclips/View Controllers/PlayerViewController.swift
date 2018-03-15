@@ -28,8 +28,6 @@ class PlayerViewController: UIViewController {
   
   // MARK: - Properties
   
-  //var track: NSManagedObject?
-  //var trackURL: URL?
   var updateTimeProgressTimer: Timer!
   var bookmark: Bookmark?
   
@@ -39,7 +37,11 @@ class PlayerViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupInterface()
+    startProgressTimer()
   }
+  
+  
+  // MARK: - Interface
   
   private func setupInterface() {
     artworkImageView.image = AudioManager.shared.artwork ?? UIImage(named: "artwork")
@@ -49,19 +51,68 @@ class PlayerViewController: UIViewController {
     totalTimeLabel.text = AudioManager.shared.durationString
     clipButton.isHidden = !AudioManager.shared.trackIsEpisode
     bookmarkButton.isHidden = !AudioManager.shared.trackIsEpisode
+    playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
+    updateTimeProgress()
     artworkImageView.layer.cornerRadius = 4.0
     artworkImageView.clipsToBounds = true
   }
   
+  private func updateTimeProgress() {
+    currentTimeLabel.text = AudioManager.shared.currentTimeString
+    timeSlider.value = AudioManager.shared.progress
+  }
   
-  // MARK: - Actions
+  private func startProgressTimer() {
+    updateTimeProgressTimer = Timer.scheduledTimer(withTimeInterval: 1.0,
+                                                   repeats: true,
+                                                   block: { (timer) in
+                                                    self.updateTimeProgress()})
+  }
+  
+  
+  // MARK: - Player controls
+  
+  @IBAction func playPause(_ sender: UIButton) {
+    if AudioManager.shared.isPlaying { pausePlayer() } else { resumePlayer() }
+  }
+  
+  private func pausePlayer() {
+    AudioManager.shared.pause()
+    updateTimeProgressTimer.invalidate()
+    playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
+  }
+  
+  private func resumePlayer() {
+    AudioManager.shared.resume()
+    startProgressTimer()
+    playPauseButton.setBackgroundImage(UIImage(named: "pause"), for: .normal)
+  }
+  
+  @IBAction func backward(_ sender: UIButton) {
+    AudioManager.shared.backward(5)
+    updateTimeProgress()
+  }
+  
+  @IBAction func forward(_ sender: UIButton) {
+    AudioManager.shared.forward(5)
+    updateTimeProgress()
+  }
+  
+  @IBAction func timeSliderTouchDown(_ sender: UISlider) {
+    //pausePlayer()
+  }
+  
+  @IBAction func timeSliderValueChanged(_ sender: UISlider) {
+    AudioManager.shared.setProgress(timeSlider.value)
+    updateTimeProgress()
+  }
+  
+  
+  // MARK: - Dismiss
   
   @IBAction func dismiss(_ sender: UIButton) {
     self.dismiss(animated: true, completion: nil)
   }
-  
-  
-  // MARK: - Gestures
   
   @IBAction func swipeDown(_ sender: UISwipeGestureRecognizer) {
     self.dismiss(animated: true, completion: nil)

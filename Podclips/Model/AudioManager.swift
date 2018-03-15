@@ -140,7 +140,7 @@ class AudioManager {
     } else if let bookmark = track as? Bookmark {
       print("Trying to play a bookmark!")
     }
-    NotificationCenter.default.post(name: Notification.Name("Test"), object: nil)
+    NotificationCenter.default.post(name: Notification.Name(R.AudioManagerUpdated), object: nil)
   }
   
   func startPlaying(url: URL, atTime time: Double) {

@@ -24,13 +24,16 @@ enum R {
   static let durationString = "durationString"
   static let url = "url"
   
+  static let episode = "episode"
+  static let comment = "comment"
+  
   // Bookmarks:
   static let Bookmark = "Bookmark"
   static let timestamp = "timestamp"
   static let timestampString = "timestampString"
   
-  static let episode = "episode"
-  static let comment = "comment"
+  // Notification Center:
+  static let AudioManagerUpdated = "AudioManagerUpdated"
 }
 
 class DataManager {

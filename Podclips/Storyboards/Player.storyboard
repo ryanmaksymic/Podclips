@@ -59,6 +59,10 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qKf-tH-ByM">
                                 <rect key="frame" x="14" y="502" width="347" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="timeSliderTouchDown:" destination="J7y-nT-Cir" eventType="valueChanged" id="p2M-q0-2yd"/>
+                                    <action selector="timeSliderValueChanged:" destination="J7y-nT-Cir" eventType="valueChanged" id="HKn-od-g8O"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyb-MS-h8p">
                                 <rect key="frame" x="16" y="539" width="170" height="18"/>
@@ -78,16 +82,25 @@
                                 <rect key="frame" x="165" y="565" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="play"/>
+                                <connections>
+                                    <action selector="playPause:" destination="J7y-nT-Cir" eventType="touchUpInside" id="4yb-HR-ulO"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c63-se-VCC">
                                 <rect key="frame" x="233" y="570" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="forward"/>
+                                <connections>
+                                    <action selector="forward:" destination="J7y-nT-Cir" eventType="touchUpInside" id="yI5-uN-eVF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgG-00-QK3">
                                 <rect key="frame" x="107" y="570" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="backward"/>
+                                <connections>
+                                    <action selector="backward:" destination="J7y-nT-Cir" eventType="touchUpInside" id="YP5-S6-BNg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agk-fT-NPd">
                                 <rect key="frame" x="18" y="570" width="25" height="30"/>
