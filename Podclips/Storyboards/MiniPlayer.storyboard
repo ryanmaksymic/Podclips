@@ -45,6 +45,9 @@
                                 <rect key="frame" x="319" y="20" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="play"/>
+                                <connections>
+                                    <action selector="playPause:" destination="zqb-bY-UOH" eventType="touchUpInside" id="wej-gr-SVY"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nl0-iJ-Cyb">
                                 <rect key="frame" x="80" y="54" width="231" height="18"/>
@@ -82,7 +85,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="artwork" width="402" height="402"/>
+        <image name="artwork" width="398" height="398"/>
         <image name="play" width="30" height="30"/>
     </resources>
 </document>

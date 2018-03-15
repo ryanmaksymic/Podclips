@@ -98,10 +98,6 @@ class PlayerViewController: UIViewController {
     updateTimeProgress()
   }
   
-  @IBAction func timeSliderTouchDown(_ sender: UISlider) {
-    //pausePlayer()
-  }
-  
   @IBAction func timeSliderValueChanged(_ sender: UISlider) {
     AudioManager.shared.setProgress(timeSlider.value)
     updateTimeProgress()

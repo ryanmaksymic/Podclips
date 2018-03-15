@@ -60,7 +60,6 @@
                                 <rect key="frame" x="14" y="502" width="347" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="timeSliderTouchDown:" destination="J7y-nT-Cir" eventType="valueChanged" id="p2M-q0-2yd"/>
                                     <action selector="timeSliderValueChanged:" destination="J7y-nT-Cir" eventType="valueChanged" id="HKn-od-g8O"/>
                                 </connections>
                             </slider>

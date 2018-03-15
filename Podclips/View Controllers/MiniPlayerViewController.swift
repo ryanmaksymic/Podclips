@@ -25,16 +25,15 @@ class MiniPlayerViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupInterface()
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    setupInterface()
-    
+    updateInterface()
     NotificationCenter.default.addObserver(self, selector: #selector(updateTrackInfo), name: Notification.Name(R.AudioManagerUpdated), object: nil)
   }
   
-  private func setupInterface() {
+  override func viewDidAppear(_ animated: Bool) {
+    updateInterface()
+  }
+  
+  private func updateInterface() {
     updateTrackInfo()
     artworkImageView.layer.cornerRadius = 4.0
     artworkImageView.clipsToBounds = true
@@ -45,6 +44,24 @@ class MiniPlayerViewController: UIViewController {
     self.episodeNameLabel.text = AudioManager.shared.episodeName ?? ""
     self.podcastNameLabel.text = AudioManager.shared.podcastName ?? "No media selected"
     self.detailsLabel.text = AudioManager.shared.details ?? ""
+    playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
+  }
+  
+  
+  // MARK: - Player controls
+  
+  @IBAction func playPause(_ sender: UIButton) {
+    if AudioManager.shared.isPlaying { pausePlayer() } else { resumePlayer() }
+  }
+  
+  private func pausePlayer() {
+    AudioManager.shared.pause()
+    playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
+  }
+  
+  private func resumePlayer() {
+    AudioManager.shared.resume()
+    playPauseButton.setBackgroundImage(UIImage(named: "pause"), for: .normal)
   }
   
   
