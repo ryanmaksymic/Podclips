@@ -18,30 +18,80 @@ class FavouritesTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    loadTracks()
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
   }
   
   
-  // MARK: - Table view data source
+  // MARK: - Private methods
+  
+  private func loadTracks() {
+    guard let tracks = DataManager.load(entities: R.Episode) as? [Episode], tracks != [] else {
+      print("No episodes found. Creating dummy data.")
+      generateDummyData()
+      loadTracks()
+      return
+    }
+    self.tracks = tracks
+  }
+  
+  private func generateDummyData() {
+    let episode1Data: [String:Any] = [
+      R.artwork:UIImageJPEGRepresentation(UIImage(named: "ra.jpg")!, 1)!,
+      R.episodeName:"#102 Long Distance",
+      R.podcastName:"Reply All",
+      R.progress:0,
+      R.fileName: "RA"]
+    _ = DataManager.create(entity: R.Episode, withData: episode1Data)
+    let episode2Data: [String:Any] = [
+      R.artwork:UIImageJPEGRepresentation(UIImage(named: "hh.jpg")!, 1)!,
+      R.episodeName:"Episode #456",
+      R.podcastName:"Hollywood Handbook",
+      R.progress:0,
+      R.fileName: "HH"]
+    _ = DataManager.create(entity: R.Episode, withData: episode2Data)
+    let episode3Data: [String:Any] = [
+      R.artwork:UIImageJPEGRepresentation(UIImage(named: "utu2tm.jpg")!, 1)!,
+      R.episodeName:"Episode #789",
+      R.podcastName:"U Talkin' U2 To Me?",
+      R.progress:0,
+      R.fileName:"UTU2TM"]
+    _ = DataManager.create(entity: R.Episode, withData: episode3Data)
+    let episode4Data: [String:Any] = [
+      R.artwork:UIImageJPEGRepresentation(UIImage(named: "cbb.jpg")!, 1)!,
+      R.episodeName:"Episode #123",
+      R.podcastName:"Comedy Bang! Bang!",
+      R.progress:0,
+      R.fileName: "CBB"]
+    _ = DataManager.create(entity: R.Episode, withData: episode4Data)
+  }
+  
+  
+  // MARK: - UITableViewDataSource
   
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10
+    return tracks.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-    
-    cell.textLabel?.text = "Item #\(indexPath.row + 1)"
-    
+    let track = tracks[indexPath.row]
+    if let episode = track as? Episode {
+      cell.textLabel?.text = episode.podcastName
+    } else {
+      cell.textLabel?.text = "Track #\(indexPath.row)"
+    }
+    // TODO: Make an NSManagedObject extension that outputs a primary string for displaying in tables
     return cell
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    // TODO: Load selected track into AudioManager
+    let track = tracks[indexPath.row]
+    AudioManager.shared.load(track: track)
   }
   
   /*

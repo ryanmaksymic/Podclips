@@ -33,6 +33,11 @@ class MiniPlayerViewController: UIViewController {
     setupInterface()
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    setupInterface()
+  }
+  
+  // TODO: Set up some communication pattern where this is called whenever AudioManager starts or stops
   private func setupInterface() {
     artworkImageView.image = AudioManager.shared.artwork ?? UIImage(named: "artwork")
     episodeNameLabel.text = AudioManager.shared.episodeName ?? ""

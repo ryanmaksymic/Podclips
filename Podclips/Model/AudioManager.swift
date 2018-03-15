@@ -44,7 +44,7 @@ class AudioManager {
   
   var details: String? {
     if let episode = track as? Episode {
-      return "Release date: MM/dd/yyyy"  // TODO: Fill this in
+      return "Release Date: MM/dd/yyyy"  // TODO: Fill this in
     } else if let clip = track as? Clip {
       return clip.episode!.episodeName
     } else if let bookmark = track as? Bookmark {
@@ -131,7 +131,15 @@ class AudioManager {
   // MARK: - Public methods
   
   func load(track: NSManagedObject) {
-    // TODO: This
+    self.track = track
+    if let episode = track as? Episode {
+      let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: episode.fileName, ofType: "mp3")!)
+      startPlaying(url: episodeURL, atTime: 0)
+    } else if let clip = track as? Clip {
+      print("Trying to play a clip!")
+    } else if let bookmark = track as? Bookmark {
+      print("Trying to play a bookmark!")
+    }
   }
   
   func startPlaying(url: URL, atTime time: Double) {
