@@ -11,6 +11,11 @@ import CoreData
 
 class FavouritesTableViewController: UITableViewController {
   
+  // MARK: - Outlets
+  
+  @IBOutlet weak var segmentedControl: UISegmentedControl!
+  
+  
   // MARK: - Properties
   
   private var tracks = [NSManagedObject]()
@@ -26,13 +31,26 @@ class FavouritesTableViewController: UITableViewController {
   // MARK: - Private methods
   
   private func loadTracks() {
-    guard let tracks = DataManager.load(entities: R.Episode) as? [Episode], tracks != [] else {
-      print("No episodes found. Creating dummy data.")
-      generateDummyData()
-      loadTracks()
-      return
+    switch segmentedControl.selectedSegmentIndex {
+    case 0:
+      if let bookmarks = DataManager.load(entities: R.Bookmark) as? [Bookmark] {
+        self.tracks = bookmarks
+      }
+    case 1:
+      if let clips = DataManager.load(entities: R.Clip) as? [Clip] {
+        self.tracks = clips
+      }
+    case 2:
+      guard let episodes = DataManager.load(entities: R.Episode) as? [Episode], episodes != [] else {
+        print("No episodes found. Creating dummy data.")
+        generateDummyData()
+        loadTracks()
+        return
+      }
+      self.tracks = episodes
+    default:
+      self.tracks = []
     }
-    self.tracks = tracks
   }
   
   private func generateDummyData() {
@@ -111,6 +129,14 @@ class FavouritesTableViewController: UITableViewController {
    }
    }
    */
+  
+  
+  // MARK: - Segmented control
+  
+  @IBAction func segmentedControl(_ sender: UISegmentedControl) {
+    loadTracks()
+    tableView.reloadData()
+  }
   
   
   /*

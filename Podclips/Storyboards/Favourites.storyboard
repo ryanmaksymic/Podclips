@@ -42,8 +42,14 @@
                                 <segment title="Clips"/>
                                 <segment title="Episodes"/>
                             </segments>
+                            <connections>
+                                <action selector="segmentedControl:" destination="3cU-Ad-s7Q" eventType="valueChanged" id="5h3-bx-waQ"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="u77-AS-rSI" id="p8e-xX-IYj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZ5-K9-fHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
