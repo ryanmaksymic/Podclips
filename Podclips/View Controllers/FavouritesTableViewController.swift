@@ -59,28 +59,32 @@ class FavouritesTableViewController: UITableViewController {
       R.episodeName:"#102 Long Distance",
       R.podcastName:"Reply All",
       R.progress:0,
-      R.fileName: "RA"]
+      R.fileName: "RA",
+      R.durationString: "01:23:45"]
     _ = DataManager.create(entity: R.Episode, withData: episode1Data)
     let episode2Data: [String:Any] = [
       R.artwork:UIImageJPEGRepresentation(UIImage(named: "hh.jpg")!, 1)!,
       R.episodeName:"Episode #456",
       R.podcastName:"Hollywood Handbook",
       R.progress:0,
-      R.fileName: "HH"]
+      R.fileName: "HH",
+      R.durationString: "01:23:45"]
     _ = DataManager.create(entity: R.Episode, withData: episode2Data)
     let episode3Data: [String:Any] = [
       R.artwork:UIImageJPEGRepresentation(UIImage(named: "utu2tm.jpg")!, 1)!,
       R.episodeName:"Episode #789",
       R.podcastName:"U Talkin' U2 To Me?",
       R.progress:0,
-      R.fileName:"UTU2TM"]
+      R.fileName:"UTU2TM",
+      R.durationString: "01:23:45"]
     _ = DataManager.create(entity: R.Episode, withData: episode3Data)
     let episode4Data: [String:Any] = [
       R.artwork:UIImageJPEGRepresentation(UIImage(named: "cbb.jpg")!, 1)!,
       R.episodeName:"Episode #123",
       R.podcastName:"Comedy Bang! Bang!",
       R.progress:0,
-      R.fileName: "CBB"]
+      R.fileName: "CBB",
+      R.durationString: "01:23:45"]
     _ = DataManager.create(entity: R.Episode, withData: episode4Data)
   }
   
@@ -96,20 +100,22 @@ class FavouritesTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FavouritesTableViewCell
+    
     let track = tracks[indexPath.row]
-    if let episode = track as? Episode {
-      cell.textLabel?.text = episode.podcastName
-    } else {
-      cell.textLabel?.text = "Track #\(indexPath.row)"
-    }
-    // TODO: Make an NSManagedObject extension that outputs a primary string for displaying in tables
+    
+    cell.episodeNameLabel.text = track.episodeName()
+    cell.podcastNameLabel.text = track.podcastName()
+    cell.detailsLabel.text = track.details()
+    cell.timeLabel.text = track.timeInfo()
+    
     return cell
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let track = tracks[indexPath.row]
     AudioManager.shared.load(track: track)
+    tableView.deselectRow(at: indexPath, animated: true)
   }
   
   /*

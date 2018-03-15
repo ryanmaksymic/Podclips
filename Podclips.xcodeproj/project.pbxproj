@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE00524B205AF07800F223BD /* FavouritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE00524A205AF07800F223BD /* FavouritesTableViewCell.swift */; };
 		FE3EBFD120599E77004842DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFD020599E77004842DF /* AppDelegate.swift */; };
 		FE3EBFD320599E77004842DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFD220599E77004842DF /* ViewController.swift */; };
 		FE3EBFD620599E77004842DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3EBFD420599E77004842DF /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE00524A205AF07800F223BD /* FavouritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewCell.swift; sourceTree = "<group>"; };
 		FE3EBFCD20599E77004842DF /* Podclips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podclips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE3EBFD020599E77004842DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE3EBFD220599E77004842DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				FE44F84F205ADB1F00D988FD /* UIAlertController+CustomAlert.swift */,
+				FE00524A205AF07800F223BD /* FavouritesTableViewCell.swift */,
 				FE3EBFF12059AE9D004842DF /* FavouritesTableViewController.swift */,
 				FE3EBFF32059B36A004842DF /* PlayerViewController.swift */,
 				FE3EBFF52059C460004842DF /* MiniPlayerViewController.swift */,
@@ -246,6 +249,7 @@
 				FE3EBFFB2059D425004842DF /* AudioManager.swift in Sources */,
 				FE3EBFF22059AE9D004842DF /* FavouritesTableViewController.swift in Sources */,
 				FE3EBFF62059C460004842DF /* MiniPlayerViewController.swift in Sources */,
+				FE00524B205AF07800F223BD /* FavouritesTableViewCell.swift in Sources */,
 				FE3EBFD320599E77004842DF /* ViewController.swift in Sources */,
 				FE3EBFD120599E77004842DF /* AppDelegate.swift in Sources */,
 				FE44F850205ADB1F00D988FD /* UIAlertController+CustomAlert.swift in Sources */,

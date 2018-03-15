@@ -21,47 +21,19 @@ class AudioManager {
   var track: NSManagedObject?
   
   var episodeName: String? {
-    if let episode = track as? Episode {
-      return episode.episodeName
-    } else if let clip = track as? Clip {
-      return clip.episode!.episodeName
-    } else if let bookmark = track as? Bookmark {
-      return bookmark.episode!.episodeName
-    }
-    return nil
+    return track?.episodeName()
   }
   
   var podcastName: String? {
-    if let episode = track as? Episode {
-      return episode.podcastName
-    } else if let clip = track as? Clip {
-      return clip.episode!.podcastName
-    } else if let bookmark = track as? Bookmark {
-      return bookmark.episode!.podcastName
-    }
-    return nil
+    return track?.podcastName()
   }
   
   var details: String? {
-    if let episode = track as? Episode {
-      return "Release Date: MM/dd/yyyy"  // TODO: Fill this in
-    } else if let clip = track as? Clip {
-      return clip.episode!.episodeName
-    } else if let bookmark = track as? Bookmark {
-      return bookmark.episode!.episodeName
-    }
-    return nil
+    return track?.details()
   }
   
   var artwork: UIImage? {
-    if let episode = track as? Episode {
-      return UIImage(data: episode.artwork!)
-    } else if let clip = track as? Clip {
-      return UIImage(data: clip.episode!.artwork!)
-    } else if let bookmark = track as? Bookmark {
-      return UIImage(data: bookmark.episode!.artwork!)
-    }
-    return nil
+    return track?.artwork()
   }
   
   var trackIsEpisode: Bool {
@@ -143,17 +115,6 @@ class AudioManager {
     NotificationCenter.default.post(name: Notification.Name(R.AudioManagerUpdated), object: nil)
   }
   
-  func startPlaying(url: URL, atTime time: Double) {
-    do {
-      player = try AVAudioPlayer(contentsOf: url)
-    } catch {
-      print(error)
-      return
-    }
-    player?.currentTime = time
-    player!.play()
-  }
-  
   func pause() {
     if let player = player {
       player.pause()
@@ -183,6 +144,20 @@ class AudioManager {
       player.currentTime = player.duration * Double(newValue)
     }
   }
+  
+  
+  // MARK: - Private methods
+  
+  private func startPlaying(url: URL, atTime time: Double) {
+    do {
+      player = try AVAudioPlayer(contentsOf: url)
+    } catch {
+      print(error)
+      return
+    }
+    player?.currentTime = time
+    player!.play()
+  }
 }
 
 
@@ -200,5 +175,66 @@ extension TimeInterval {
     result.append(seconds < 10 ? ":0\(seconds)" : ":\(seconds)")
     if ms { result.append(":\(milliseconds)0") }
     return result
+  }
+}
+
+
+// MARK: - NSManagedObject extension
+
+extension NSManagedObject {
+  
+  func episodeName() -> String? {
+    if let episode = self as? Episode {
+      return episode.episodeName
+    } else if let clip = self as? Clip {
+      return clip.episode!.episodeName
+    } else if let bookmark = self as? Bookmark {
+      return bookmark.episode!.episodeName
+    }
+    return nil
+  }
+  
+  func podcastName() -> String? {
+    if let episode = self as? Episode {
+      return episode.podcastName
+    } else if let clip = self as? Clip {
+      return clip.episode!.podcastName
+    } else if let bookmark = self as? Bookmark {
+      return bookmark.episode!.podcastName
+    }
+    return nil
+  }
+  
+  func details() -> String? {
+    if let episode = self as? Episode {
+      return "Release Date: MM/dd/yyyy"  // TODO: Fill this in
+    } else if let clip = self as? Clip {
+      return clip.episode!.episodeName
+    } else if let bookmark = self as? Bookmark {
+      return bookmark.episode!.episodeName
+    }
+    return nil
+  }
+  
+  func artwork() -> UIImage? {
+    if let episode = self as? Episode {
+      return UIImage(data: episode.artwork!)
+    } else if let clip = self as? Clip {
+      return UIImage(data: clip.episode!.artwork!)
+    } else if let bookmark = self as? Bookmark {
+      return UIImage(data: bookmark.episode!.artwork!)
+    }
+    return nil
+  }
+  
+  func timeInfo() -> String? {
+    if let episode = self as? Episode {
+      return episode.durationString
+    } else if let clip = self as? Clip {
+      return clip.durationString
+    } else if let bookmark = self as? Bookmark {
+      return bookmark.timestampString
+    }
+    return nil
   }
 }

@@ -19,9 +19,10 @@ enum R {
   static let podcastName = "podcastName"
   static let progress = "progress"
   
+  static let durationString = "durationString"
+  
   // Clips:
   static let Clip = "Clip"
-  static let durationString = "durationString"
   static let url = "url"
   
   static let episode = "episode"
