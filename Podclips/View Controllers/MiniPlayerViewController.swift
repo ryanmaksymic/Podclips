@@ -35,16 +35,21 @@ class MiniPlayerViewController: UIViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     setupInterface()
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(updateTrackInfo), name: Notification.Name("Test"), object: nil)
   }
   
-  // TODO: Set up some communication pattern where this is called whenever AudioManager starts or stops
   private func setupInterface() {
-    artworkImageView.image = AudioManager.shared.artwork ?? UIImage(named: "artwork")
-    episodeNameLabel.text = AudioManager.shared.episodeName ?? ""
-    podcastNameLabel.text = AudioManager.shared.podcastName ?? "No media selected"
-    detailsLabel.text = AudioManager.shared.details ?? ""
+    updateTrackInfo()
     artworkImageView.layer.cornerRadius = 4.0
     artworkImageView.clipsToBounds = true
+  }
+  
+  @objc private func updateTrackInfo() {
+    self.artworkImageView.image = AudioManager.shared.artwork ?? UIImage(named: "artwork")
+    self.episodeNameLabel.text = AudioManager.shared.episodeName ?? ""
+    self.podcastNameLabel.text = AudioManager.shared.podcastName ?? "No media selected"
+    self.detailsLabel.text = AudioManager.shared.details ?? ""
   }
   
   
