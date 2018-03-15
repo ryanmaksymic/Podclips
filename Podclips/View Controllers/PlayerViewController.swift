@@ -13,7 +13,7 @@ import CoreData
 class PlayerViewController: UIViewController {
   
   // MARK: - Outlets
-  
+
   @IBOutlet weak var artworkImageView: UIImageView!
   @IBOutlet weak var episodeNameLabel: UILabel!
   @IBOutlet weak var podcastNameLabel: UILabel!
@@ -29,6 +29,7 @@ class PlayerViewController: UIViewController {
   // MARK: - Properties
   
   var updateTimeProgressTimer: Timer!
+  var isCreatingClip = false
   
   
   // MARK: - Setup
@@ -156,6 +157,13 @@ class PlayerViewController: UIViewController {
   }
   
   
+  // MARK: - Clips
+  
+  @IBAction func newClip(_ sender: UIButton) {
+    
+  }
+  
+  
   // MARK: - Dismiss
   
   @IBAction func dismiss(_ sender: UIButton) {
@@ -163,7 +171,9 @@ class PlayerViewController: UIViewController {
   }
   
   @IBAction func swipeDown(_ sender: UISwipeGestureRecognizer) {
-    self.dismiss(animated: true, completion: nil)
+    if !isCreatingClip{
+      self.dismiss(animated: true, completion: nil)
+    }
   }
   
   

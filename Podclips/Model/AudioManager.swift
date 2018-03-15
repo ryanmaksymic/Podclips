@@ -209,9 +209,9 @@ extension NSManagedObject {
     if let episode = self as? Episode {
       return "Release Date: MM/dd/yyyy"  // TODO: Fill this in
     } else if let clip = self as? Clip {
-      return clip.episode!.episodeName
+      return clip.comment
     } else if let bookmark = self as? Bookmark {
-      return bookmark.episode!.episodeName
+      return bookmark.comment
     }
     return nil
   }
