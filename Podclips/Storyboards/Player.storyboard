@@ -27,14 +27,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <button opaque="NO" alpha="0.25" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEt-e1-epn">
-                                <rect key="frame" x="164" y="28" width="46" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="chevron"/>
-                                <connections>
-                                    <action selector="dismiss:" destination="J7y-nT-Cir" eventType="touchUpInside" id="wVZ-8t-DHV"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Episode Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaV-IG-f4p">
                                 <rect key="frame" x="16" y="407" width="343" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -112,6 +104,14 @@
                                 <state key="normal" backgroundImage="bookmark"/>
                                 <connections>
                                     <action selector="newBookmark:" destination="J7y-nT-Cir" eventType="touchUpInside" id="dx2-yK-GRV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.25" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEt-e1-epn">
+                                <rect key="frame" x="170" y="30" width="34" height="10"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="chevron"/>
+                                <connections>
+                                    <action selector="dismiss:" destination="J7y-nT-Cir" eventType="touchUpInside" id="wVZ-8t-DHV"/>
                                 </connections>
                             </button>
                         </subviews>

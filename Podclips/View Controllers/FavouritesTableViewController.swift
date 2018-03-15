@@ -118,6 +118,7 @@ class FavouritesTableViewController: UITableViewController {
     tableView.deselectRow(at: indexPath, animated: true)
   }
   
+  // TODO: Tracks can be deleted
   /*
    // Override to support conditional editing of the table view.
    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
