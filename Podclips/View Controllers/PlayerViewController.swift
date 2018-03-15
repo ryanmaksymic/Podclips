@@ -29,7 +29,6 @@ class PlayerViewController: UIViewController {
   // MARK: - Properties
   
   var updateTimeProgressTimer: Timer!
-  var bookmark: Bookmark?
   
   
   // MARK: - Setup
@@ -101,6 +100,59 @@ class PlayerViewController: UIViewController {
   @IBAction func timeSliderValueChanged(_ sender: UISlider) {
     AudioManager.shared.setProgress(timeSlider.value)
     updateTimeProgress()
+  }
+  
+  
+  // MARK: - Bookmarks
+  
+  @IBAction func newBookmark(_ sender: UIButton) {
+    var wasPlaying = false
+    if AudioManager.shared.isPlaying {
+      pausePlayer()
+      wasPlaying = true
+    }
+    let newBookmarkAlert = UIAlertController.createNewItemAlert(title: "New Bookmark", message: "\(AudioManager.shared.podcastName!)\n\(AudioManager.shared.episodeName!)\n\(AudioManager.shared.currentTimeString!)", cancelBlock: {
+      if wasPlaying { self.resumePlayer() }
+    }) { (comment) in
+      if self.saveBookmark(episode: AudioManager.shared.track as! Episode, timestamp: AudioManager.shared.currentTime!, timestampString: AudioManager.shared.currentTimeString!, comment: comment) {
+        self.showSavedBookmarkAlert()
+      }
+      if wasPlaying { self.resumePlayer() }
+    }
+    self.present(newBookmarkAlert, animated: true, completion: nil)
+  }
+  
+  private func saveBookmark(episode: Episode, timestamp: TimeInterval, timestampString: String, comment: String) -> Bool {
+    let data: [String:Any] = [R.episode:episode, R.timestamp:timestamp, R.timestampString:timestampString, R.comment:comment]
+    guard DataManager.create(entity: R.Bookmark, withData: data) else {
+      print("Error saving bookmark")
+      return false
+    }
+    return true
+  }
+  
+  private func showSavedBookmarkAlert() {
+    
+    let popupFrame = CGRect(x: self.view.center.x - 100, y: self.view.center.y - 50, width: 200, height: 100)
+    let popup = UIView(frame: popupFrame)
+    popup.backgroundColor = UIColor.darkGray
+    popup.alpha = 0.98
+    
+    let popupLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+    popupLabel.center = CGPoint(x: 100, y: 50)
+    popupLabel.textColor = .white
+    popupLabel.textAlignment = .center
+    popupLabel.font = UIFont.boldSystemFont(ofSize: 17)
+    popupLabel.text = "Bookmarked saved!"
+    popup.addSubview(popupLabel)
+    
+    self.view.addSubview(popup)
+    
+    UIView.animate(withDuration: 0.5, delay: 2, options: [], animations: {
+      popup.alpha = 0
+    }) { (completed) in
+      popup.removeFromSuperview()
+    }
   }
   
   

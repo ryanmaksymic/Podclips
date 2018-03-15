@@ -18,7 +18,7 @@ class AudioManager {
   
   private var player: AVAudioPlayer?
   
-  private var track: NSManagedObject?
+  var track: NSManagedObject?
   
   var episodeName: String? {
     if let episode = track as? Episode {
