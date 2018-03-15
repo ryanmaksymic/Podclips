@@ -15,7 +15,7 @@
             <objects>
                 <viewController id="J7y-nT-Cir" customClass="PlayerViewController" customModule="Podclips" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pHP-1v-Y2s">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Podcast Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPW-1c-vGQ">
@@ -49,7 +49,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agk-fT-NPd">
-                                <rect key="frame" x="18" y="566" width="25" height="30"/>
+                                <rect key="frame" x="16" y="566" width="25" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="scissors"/>
                                 <connections>
@@ -117,6 +117,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0v-20-WdZ">
+                                <rect key="frame" x="16" y="604" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelClip:" destination="J7y-nT-Cir" eventType="touchUpInside" id="geo-GN-tLO"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKp-iE-bqG">
+                                <rect key="frame" x="325" y="604" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveClip:" destination="J7y-nT-Cir" eventType="touchUpInside" id="TLu-fD-V8V"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <gestureRecognizers/>
@@ -125,13 +141,15 @@
                             <outletCollection property="gestureRecognizers" destination="f8z-sH-JnK" appends="YES" id="GjX-GU-1DU"/>
                         </connections>
                     </view>
-                    <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="artworkImageView" destination="9kJ-0a-Dzf" id="wtG-8A-UyW"/>
                         <outlet property="bookmarkButton" destination="D6f-K7-kPd" id="5dl-ue-ae9"/>
                         <outlet property="clipButton" destination="agk-fT-NPd" id="vmd-gP-gwO"/>
+                        <outlet property="clipCancelButton" destination="f0v-20-WdZ" id="E2S-ha-VdG"/>
+                        <outlet property="clipSaveButton" destination="tKp-iE-bqG" id="TZj-bx-zKJ"/>
                         <outlet property="currentTimeLabel" destination="cyb-MS-h8p" id="3kF-mI-Qmn"/>
                         <outlet property="detailsLabel" destination="eVz-Ut-byM" id="F7V-rd-22S"/>
+                        <outlet property="dismissButton" destination="PEt-e1-epn" id="7xK-JF-sfP"/>
                         <outlet property="episodeNameLabel" destination="OaV-IG-f4p" id="w3S-BE-AMd"/>
                         <outlet property="playPauseButton" destination="8lf-gC-Pw2" id="8OJ-Nd-nc4"/>
                         <outlet property="podcastNameLabel" destination="WPW-1c-vGQ" id="lpd-XF-Dlh"/>

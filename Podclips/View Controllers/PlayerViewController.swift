@@ -14,6 +14,7 @@ class PlayerViewController: UIViewController {
   
   // MARK: - Outlets
 
+  @IBOutlet weak var dismissButton: UIButton!
   @IBOutlet weak var artworkImageView: UIImageView!
   @IBOutlet weak var episodeNameLabel: UILabel!
   @IBOutlet weak var podcastNameLabel: UILabel!
@@ -22,8 +23,10 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var currentTimeLabel: UILabel!
   @IBOutlet weak var totalTimeLabel: UILabel!
   @IBOutlet weak var playPauseButton: UIButton!
-  @IBOutlet weak var clipButton: UIButton!
   @IBOutlet weak var bookmarkButton: UIButton!
+  @IBOutlet weak var clipButton: UIButton!
+  @IBOutlet weak var clipCancelButton: UIButton!
+  @IBOutlet weak var clipSaveButton: UIButton!
   
   
   // MARK: - Properties
@@ -160,7 +163,33 @@ class PlayerViewController: UIViewController {
   // MARK: - Clips
   
   @IBAction func newClip(_ sender: UIButton) {
-    
+    if !isCreatingClip {
+      pausePlayer()
+      clipCancelButton.center.y += 100
+      clipSaveButton.center.y += 100
+      clipCancelButton.isHidden = false
+      clipSaveButton.isHidden = false
+    }
+    UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseOut], animations: {
+      self.clipCancelButton.center.y += self.isCreatingClip ? 100 : -100
+      self.clipSaveButton.center.y += self.isCreatingClip ? 100 : -100
+      self.dismissButton.isHidden = !self.isCreatingClip
+      self.bookmarkButton.isEnabled = self.isCreatingClip
+    }) { (completed) in
+      if !self.isCreatingClip {
+        self.clipCancelButton.isHidden = true
+        self.clipSaveButton.isHidden = true
+        self.clipCancelButton.center.y -= 100
+        self.clipSaveButton.center.y -= 100
+      }
+    }
+    isCreatingClip = !isCreatingClip
+  }
+  
+  @IBAction func cancelClip(_ sender: UIButton) {
+  }
+  
+  @IBAction func saveClip(_ sender: UIButton) {
   }
   
   
