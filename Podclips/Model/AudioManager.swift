@@ -20,6 +20,20 @@ class AudioManager {
   
   var track: NSManagedObject?
   
+  weak var delegate: AVAudioPlayerDelegate? {
+    set {
+      if let player = player {
+        player.delegate = newValue
+      }
+    }
+    get {
+      if let player = player {
+        return player.delegate
+      }
+      return nil
+    }
+  }
+  
   var episodeName: String? {
     return track?.episodeName()
   }

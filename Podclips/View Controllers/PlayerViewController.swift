@@ -13,7 +13,7 @@ import CoreData
 class PlayerViewController: UIViewController {
   
   // MARK: - Outlets
-
+  
   @IBOutlet weak var dismissButton: UIButton!
   
   @IBOutlet weak var artworkImageView: UIImageView!
@@ -21,11 +21,9 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var podcastNameLabel: UILabel!
   @IBOutlet weak var detailsLabel: UILabel!
   
-  @IBOutlet weak var timeSlider: UISlider!
+  @IBOutlet weak var progressSlider: ProgressSlider!
   @IBOutlet weak var currentTimeLabel: UILabel!
   @IBOutlet weak var totalTimeLabel: UILabel!
-  
-  @IBOutlet weak var progressSlider: ProgressSlider!
   
   @IBOutlet weak var playPauseButton: UIButton!
   @IBOutlet weak var bookmarkButton: UIButton!
@@ -46,6 +44,8 @@ class PlayerViewController: UIViewController {
     super.viewDidLoad()
     setupInterface()
     startProgressTimer()
+    
+    AudioManager.shared.delegate = self
   }
   
   
@@ -67,7 +67,6 @@ class PlayerViewController: UIViewController {
   
   private func updateTimeProgress() {
     currentTimeLabel.text = AudioManager.shared.currentTimeString
-    timeSlider.value = AudioManager.shared.progress
     progressSlider.progress = AudioManager.shared.progress
   }
   
@@ -104,11 +103,6 @@ class PlayerViewController: UIViewController {
   
   @IBAction func forward(_ sender: UIButton) {
     AudioManager.shared.forward(5)
-    updateTimeProgress()
-  }
-  
-  @IBAction func timeSliderValueChanged(_ sender: UISlider) {
-    AudioManager.shared.setProgress(timeSlider.value)
     updateTimeProgress()
   }
   
@@ -195,6 +189,7 @@ class PlayerViewController: UIViewController {
       }
     }
     isCreatingClip = !isCreatingClip
+    progressSlider.isInEditingMode = !progressSlider.isInEditingMode
   }
   
   @IBAction func cancelClip(_ sender: UIButton) {
@@ -215,19 +210,14 @@ class PlayerViewController: UIViewController {
       self.dismiss(animated: true, completion: nil)
     }
   }
-  
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
 }
 
 
 // MARK: - AVAudioPlayerDelegate
-// TODO: This
+
+extension PlayerViewController: AVAudioPlayerDelegate {
+  
+  func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
+  }
+}

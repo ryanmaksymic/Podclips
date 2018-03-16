@@ -8,8 +8,7 @@
 
 import UIKit
 
-//class ProgressSlider: UIView {
-class ProgressSlider: UIControl {
+@IBDesignable class ProgressSlider: UIControl {
   
   // MARK: - Properties
   
@@ -17,20 +16,46 @@ class ProgressSlider: UIControl {
   private var knob: UIImageView!
   
   private var _progress: Float = 0.0
-  
   public var progress: Float {
     get {
       return _progress
     }
     set {
-      setProgress(value: newValue)
+      setProgress(newValue)
       knob.center.x = CGFloat(newValue) * self.frame.width
     }
   }
+  public var minimumProgress: Float = 0.0
+  public var maximumProgress: Float = 1.0
   
-  public var minimumValue: Float = 0.0
-  public var maximumValue: Float = 1.0
-
+  
+  private var _isInEditingMode = false
+  public var isInEditingMode: Bool! {
+    get {
+      return _isInEditingMode
+    }
+    set {
+      setIsInEditingMode(newValue)
+      knob.isHidden = newValue
+    }
+  }
+  
+  
+  // MARK: - Private methods
+  
+  private func setProgress(_ value: Float) {
+    if value != _progress {
+      _progress = min(maximumProgress, max(minimumProgress, value))
+      progressView.progress = _progress
+    }
+  }
+  
+  private func setIsInEditingMode(_ value: Bool) {
+    if value != _isInEditingMode {
+      _isInEditingMode = value
+    }
+  }
+  
   
   // MARK: - Initialization
   
@@ -50,13 +75,9 @@ class ProgressSlider: UIControl {
   private func setupView() {
     setupProgressView()
     setupKnob()
-    
-    
   }
   
   func setupProgressView() {
-    let margins = self.layoutMarginsGuide
-    
     progressView = UIProgressView()
     addSubview(progressView)
     progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -83,34 +104,14 @@ class ProgressSlider: UIControl {
   }
   
   
-  // MARK: - Actions
-  
-  public func setProgress(value: Float) {
-    if value != _progress {
-      _progress = min(maximumValue, max(minimumValue, value))
-      progressView.progress = _progress
-    }
-  }
-  
-  
   // MARK: - Gestures
   
   @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
     let touchLocation = recognizer.location(in: self)
     if touchLocation.x > 0 && touchLocation.x < self.frame.width {
       recognizer.view!.center.x = touchLocation.x
-      setProgress(value: Float(touchLocation.x/self.frame.width))
+      setProgress(Float(touchLocation.x/self.frame.width))
     }
-    
     sendActions(for: .valueChanged)
-    
-    //    switch recognizer.state {
-    //    case .began:
-    //      //
-    //    case .ended:
-    //      //
-    //    default:
-    //      //
-    //    }
   }
 }
