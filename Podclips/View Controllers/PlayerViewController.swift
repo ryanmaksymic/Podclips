@@ -111,7 +111,14 @@ class PlayerViewController: UIViewController {
   @IBAction func progressSliderValueChanged(sender: ProgressSlider) {
     AudioManager.shared.setProgress(progressSlider.progress)
     updateTimeProgress()
+    
+    let fromTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editFrom))
+    editFromTimeLabel.text = fromTime.string(ms: true)
+    let toTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editTo))
+    editToTimeLabel.text = toTime.string(ms: true)
   }
+  
+  // TODO: Action for when progressSlider's edit handles are moved; update edit time labels
   
   
   // MARK: - Bookmarks
@@ -170,8 +177,14 @@ class PlayerViewController: UIViewController {
   // MARK: - Clips
   
   @IBAction func newClip(_ sender: UIButton) {
+    pausePlayer()
+    updateClipEditorInterface()
+  }
+  
+  // TODO: Zoom in on progress slider
+  // TODO: Left handle jumps to knob's position
+  func updateClipEditorInterface() {
     if !isCreatingClip {
-      pausePlayer()
       clipCancelButton.center.y += 100
       clipSaveButton.center.y += 100
       clipCancelButton.isHidden = false
@@ -184,14 +197,14 @@ class PlayerViewController: UIViewController {
       self.clipSaveButton.center.y += self.isCreatingClip ? 100 : -100
       self.dismissButton.isHidden = !self.isCreatingClip
       self.bookmarkButton.isEnabled = self.isCreatingClip
+      self.editFromTimeLabel.isHidden = self.isCreatingClip
+      self.editToTimeLabel.isHidden = self.isCreatingClip
     }) { (completed) in
       if !self.isCreatingClip {
         self.clipCancelButton.center.y -= 100
         self.clipSaveButton.center.y -= 100
         self.clipCancelButton.isHidden = true
         self.clipSaveButton.isHidden = true
-        self.editFromTimeLabel.isHidden = true
-        self.editToTimeLabel.isHidden = true
       }
     }
     isCreatingClip = !isCreatingClip
@@ -202,6 +215,62 @@ class PlayerViewController: UIViewController {
   }
   
   @IBAction func saveClip(_ sender: UIButton) {
+    let newClipAlert = UIAlertController.createNewItemAlert(title: "New Clip", message: "\(AudioManager.shared.podcastName!)\n\(AudioManager.shared.episodeName!)\nDURATION", cancelBlock: {
+    }) { (comment) in
+      self.saveClip(comment: comment)
+      self.dismiss(animated: true, completion: nil)
+      // TODO: Show saved clip alert if successful
+    }
+    self.present(newClipAlert, animated: true, completion: nil)
+  }
+  
+  // TODO: Make this more like saveBookmark
+  private func saveClip(comment: String) {
+    let fromTime = AudioManager.shared.duration! * Double(progressSlider.editFrom)
+    let toTime = AudioManager.shared.duration! * Double(progressSlider.editTo)
+    
+    let asset = AVAsset(url: AudioManager.shared.url!)
+    
+    // Generate unique file name:
+    var fileName = AudioManager.shared.podcastName!.replacingOccurrences(of: " ", with: "")
+    let uuid = UUID().uuidString
+    fileName.append("-clip-\(uuid).m4a")
+    
+    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    let trimmedSoundFileURL = documentsDirectory.appendingPathComponent(fileName)
+    let filemanager = FileManager.default
+    if filemanager.fileExists(atPath: trimmedSoundFileURL.absoluteString) {
+      print("Error: Clip already exists!")
+    }
+    
+    let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)!
+    exporter.outputFileType = AVFileType.m4a
+    exporter.outputURL = trimmedSoundFileURL
+    // Times expressed in seconds/10 for precision:
+    let startTime = CMTimeMake(Int64(fromTime*10), 10)
+    let stopTime = CMTimeMake(Int64(toTime*10), 10)
+    let exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime)
+    exporter.timeRange = exportTimeRange
+    
+    exporter.exportAsynchronously(completionHandler: {
+      switch exporter.status {
+      case  AVAssetExportSessionStatus.failed:
+        print("Error: Export failed!")
+      case AVAssetExportSessionStatus.cancelled:
+        print("Error: Export cancelled!")
+      default:
+        print("Export complete!")
+        DispatchQueue.main.async {
+          let data: [String:Any] = [R.episode:AudioManager.shared.track as! Episode, R.comment:comment, R.durationString:TimeInterval(toTime - fromTime).string(), R.url:trimmedSoundFileURL]
+          guard DataManager.create(entity: R.Clip, withData: data) else {
+            print("Error: Clip could not be saved!")
+            return
+          }
+          print("Clip saved!")
+        }
+      }
+    })
+    // TODO: Return success boolean to view controller
   }
   
   
