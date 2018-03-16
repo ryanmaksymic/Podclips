@@ -33,6 +33,7 @@
 		FE3EC0112059EFC8004842DF /* CBB.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE3EC0092059EFC8004842DF /* CBB.mp3 */; };
 		FE3EC0122059EFC8004842DF /* ra.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FE3EC00A2059EFC8004842DF /* ra.jpg */; };
 		FE44F850205ADB1F00D988FD /* UIAlertController+CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE44F84F205ADB1F00D988FD /* UIAlertController+CustomAlert.swift */; };
+		FEE79A2D205C150900B79F63 /* ProgressSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE79A2C205C150900B79F63 /* ProgressSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		FE3EC0092059EFC8004842DF /* CBB.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CBB.mp3; sourceTree = "<group>"; };
 		FE3EC00A2059EFC8004842DF /* ra.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ra.jpg; sourceTree = "<group>"; };
 		FE44F84F205ADB1F00D988FD /* UIAlertController+CustomAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+CustomAlert.swift"; sourceTree = "<group>"; };
+		FEE79A2C205C150900B79F63 /* ProgressSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 		FE3EBFEE2059A8C6004842DF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FEE79A2C205C150900B79F63 /* ProgressSlider.swift */,
 				FE44F84F205ADB1F00D988FD /* UIAlertController+CustomAlert.swift */,
 				FE00524A205AF07800F223BD /* FavouritesTableViewCell.swift */,
 				FE3EBFF12059AE9D004842DF /* FavouritesTableViewController.swift */,
@@ -244,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEE79A2D205C150900B79F63 /* ProgressSlider.swift in Sources */,
 				FE3EBFD920599E77004842DF /* Podclips.xcdatamodeld in Sources */,
 				FE3EC0012059EDA8004842DF /* DataManager.swift in Sources */,
 				FE3EBFFB2059D425004842DF /* AudioManager.swift in Sources */,

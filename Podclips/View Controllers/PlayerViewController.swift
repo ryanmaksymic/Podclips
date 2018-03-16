@@ -15,13 +15,18 @@ class PlayerViewController: UIViewController {
   // MARK: - Outlets
 
   @IBOutlet weak var dismissButton: UIButton!
+  
   @IBOutlet weak var artworkImageView: UIImageView!
   @IBOutlet weak var episodeNameLabel: UILabel!
   @IBOutlet weak var podcastNameLabel: UILabel!
   @IBOutlet weak var detailsLabel: UILabel!
+  
   @IBOutlet weak var timeSlider: UISlider!
   @IBOutlet weak var currentTimeLabel: UILabel!
   @IBOutlet weak var totalTimeLabel: UILabel!
+  
+  @IBOutlet weak var progressSlider: ProgressSlider!
+  
   @IBOutlet weak var playPauseButton: UIButton!
   @IBOutlet weak var bookmarkButton: UIButton!
   @IBOutlet weak var clipButton: UIButton!
@@ -63,6 +68,7 @@ class PlayerViewController: UIViewController {
   private func updateTimeProgress() {
     currentTimeLabel.text = AudioManager.shared.currentTimeString
     timeSlider.value = AudioManager.shared.progress
+    progressSlider.progress = AudioManager.shared.progress
   }
   
   private func startProgressTimer() {
@@ -103,6 +109,11 @@ class PlayerViewController: UIViewController {
   
   @IBAction func timeSliderValueChanged(_ sender: UISlider) {
     AudioManager.shared.setProgress(timeSlider.value)
+    updateTimeProgress()
+  }
+  
+  @IBAction func progressSliderValueChanged(sender: ProgressSlider) {
+    AudioManager.shared.setProgress(progressSlider.progress)
     updateTimeProgress()
   }
   
