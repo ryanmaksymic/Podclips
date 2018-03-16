@@ -44,9 +44,11 @@ import UIKit
     set {
       setIsInEditingMode(newValue)
       knob.isHidden = newValue
-      leftHandle.isHidden = !newValue
-      rightHandle.isHidden = !newValue
-      editZone.isHidden = !newValue
+      UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseOut], animations: {
+        self.leftHandle.alpha = newValue ? 1 : 0
+        self.rightHandle.alpha = newValue ? 1 : 0
+        self.editZone.alpha = newValue ? 1 : 0
+      })
     }
   }
   
@@ -159,9 +161,9 @@ import UIKit
     editZone.leftAnchor.constraint(equalTo: leftHandle.centerXAnchor, constant: handleWidth/2).isActive = true
     editZone.rightAnchor.constraint(equalTo: rightHandle.centerXAnchor, constant: -handleWidth/2).isActive = true
     
-    leftHandle.isHidden = true
-    rightHandle.isHidden = true
-    editZone.isHidden = true
+    leftHandle.alpha = 0
+    rightHandle.alpha = 0
+    editZone.alpha = 0
   }
   
   

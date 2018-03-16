@@ -26,6 +26,9 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var totalTimeLabel: UILabel!
   @IBOutlet weak var editFromTimeLabel: UILabel!
   @IBOutlet weak var editToTimeLabel: UILabel!
+  @IBOutlet weak var editFromTimeStepper: UIStepper!
+  @IBOutlet weak var editToTimeStepper: UIStepper!
+  
   
   // TODO: Add steppers to adjust edit times by 1/10 seconds
   
@@ -34,6 +37,7 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var clipButton: UIButton!
   @IBOutlet weak var clipCancelButton: UIButton!
   @IBOutlet weak var clipSaveButton: UIButton!
+  @IBOutlet weak var controlButtonsView: UIView!
   
   
   // MARK: - Properties
@@ -120,7 +124,7 @@ class PlayerViewController: UIViewController {
     editToTimeLabel.text = toTime.string(ms: true)
   }
   
-  // TODO: Action for when progressSlider's edit handles are moved; update edit time labels
+  // TODO: While editing, play only between handles
   
   
   // MARK: - Bookmarks
@@ -180,33 +184,42 @@ class PlayerViewController: UIViewController {
   
   @IBAction func newClip(_ sender: UIButton) {
     pausePlayer()
-    updateClipEditorInterface()
+    toggleClipEditorInterface()
   }
   
-  // TODO: Zoom in on progress slider (?)
   // TODO: Left handle jumps to knob's position
-  func updateClipEditorInterface() {
+  func toggleClipEditorInterface() {
     if !isCreatingClip {
-      clipCancelButton.center.y += 100
-      clipSaveButton.center.y += 100
+      clipCancelButton.center.x -= 200
+      editFromTimeStepper.center.x -= 200
+      clipSaveButton.center.x += 200
+      editToTimeStepper.center.x += 200
       clipCancelButton.isHidden = false
       clipSaveButton.isHidden = false
-      editFromTimeLabel.isHidden = false
-      editToTimeLabel.isHidden = false
+      editFromTimeStepper.isHidden = false
+      editToTimeStepper.isHidden = false
     }
     UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseOut], animations: {
-      self.clipCancelButton.center.y += self.isCreatingClip ? 100 : -100
-      self.clipSaveButton.center.y += self.isCreatingClip ? 100 : -100
+      self.clipCancelButton.center.x += self.isCreatingClip ? -200 : 200
+      self.editFromTimeStepper.center.x += self.isCreatingClip ? -200 : 200
+      self.clipSaveButton.center.x += self.isCreatingClip ? 200 : -200
+      self.editToTimeStepper.center.x += self.isCreatingClip ? 200 : -200
+      self.controlButtonsView.center.y += self.isCreatingClip ? -50 : 50
       self.dismissButton.isHidden = !self.isCreatingClip
-      self.bookmarkButton.isEnabled = self.isCreatingClip
-      self.editFromTimeLabel.isHidden = self.isCreatingClip
-      self.editToTimeLabel.isHidden = self.isCreatingClip
+      self.clipButton.alpha = self.isCreatingClip ? 1 : 0
+      self.bookmarkButton.alpha = self.isCreatingClip ? 1 : 0
+      self.editFromTimeLabel.alpha = self.isCreatingClip ? 0 : 1
+      self.editToTimeLabel.alpha = self.isCreatingClip ? 0 : 1
     }) { (completed) in
       if !self.isCreatingClip {
-        self.clipCancelButton.center.y -= 100
-        self.clipSaveButton.center.y -= 100
+        self.clipCancelButton.center.x += 200
+        self.editFromTimeStepper.center.x += 200
+        self.clipSaveButton.center.x -= 200
+        self.editToTimeStepper.center.x -= 200
         self.clipCancelButton.isHidden = true
         self.clipSaveButton.isHidden = true
+        self.editFromTimeStepper.isHidden = true
+        self.editToTimeStepper.isHidden = true
       }
     }
     isCreatingClip = !isCreatingClip
@@ -214,19 +227,20 @@ class PlayerViewController: UIViewController {
   }
   
   @IBAction func cancelClip(_ sender: UIButton) {
+    toggleClipEditorInterface()
   }
   
   @IBAction func saveClip(_ sender: UIButton) {
     let newClipAlert = UIAlertController.createNewItemAlert(title: "New Clip", message: "\(AudioManager.shared.podcastName!)\n\(AudioManager.shared.episodeName!)\nDURATION", cancelBlock: {
     }) { (comment) in
       self.saveClip(comment: comment)
-      self.dismiss(animated: true, completion: nil)
+      self.toggleClipEditorInterface()
       // TODO: Show saved clip alert if successful
     }
     self.present(newClipAlert, animated: true, completion: nil)
   }
   
-  // TODO: Make this more like saveBookmark
+  // TODO: Make this method more like saveBookmark
   private func saveClip(comment: String) {
     let fromTime = AudioManager.shared.duration! * Double(progressSlider.editFrom)
     let toTime = AudioManager.shared.duration! * Double(progressSlider.editTo)
