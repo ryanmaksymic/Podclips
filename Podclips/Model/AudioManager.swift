@@ -50,8 +50,8 @@ class AudioManager {
     return track?.artwork()
   }
   
-  var trackIsEpisode: Bool {
-    if let _ = track as? Episode {
+  var trackIsClip: Bool {
+    if let _ = track as? Clip {
       return true
     }
     return false
@@ -122,9 +122,10 @@ class AudioManager {
       let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: episode.fileName, ofType: "mp3")!)
       startPlaying(url: episodeURL, atTime: 0)
     } else if let clip = track as? Clip {
-      print("Trying to play a clip!")
+      startPlaying(url: clip.url!, atTime: 0)
     } else if let bookmark = track as? Bookmark {
-      print("Trying to play a bookmark!")
+      let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: bookmark.episode!.fileName, ofType: "mp3")!)
+      startPlaying(url: episodeURL, atTime: bookmark.timestamp)
     }
     NotificationCenter.default.post(name: Notification.Name(R.AudioManagerUpdated), object: nil)
   }

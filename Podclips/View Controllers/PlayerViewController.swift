@@ -27,6 +27,8 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var editFromTimeLabel: UILabel!
   @IBOutlet weak var editToTimeLabel: UILabel!
   
+  // TODO: Add steppers to adjust edit times by 1/10 seconds
+  
   @IBOutlet weak var playPauseButton: UIButton!
   @IBOutlet weak var bookmarkButton: UIButton!
   @IBOutlet weak var clipButton: UIButton!
@@ -59,8 +61,8 @@ class PlayerViewController: UIViewController {
     podcastNameLabel.text = AudioManager.shared.podcastName ?? "No media selected"
     detailsLabel.text = AudioManager.shared.details ?? ""
     totalTimeLabel.text = AudioManager.shared.durationString
-    clipButton.isHidden = !AudioManager.shared.trackIsEpisode
-    bookmarkButton.isHidden = !AudioManager.shared.trackIsEpisode
+    clipButton.isHidden = AudioManager.shared.trackIsClip
+    bookmarkButton.isHidden = AudioManager.shared.trackIsClip
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
     updateTimeProgress()
     artworkImageView.layer.cornerRadius = 4.0
@@ -73,7 +75,7 @@ class PlayerViewController: UIViewController {
   }
   
   private func startProgressTimer() {
-    updateTimeProgressTimer = Timer.scheduledTimer(withTimeInterval: 1.0,
+    updateTimeProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.1,
                                                    repeats: true,
                                                    block: { (timer) in
                                                     self.updateTimeProgress()})
@@ -181,7 +183,7 @@ class PlayerViewController: UIViewController {
     updateClipEditorInterface()
   }
   
-  // TODO: Zoom in on progress slider
+  // TODO: Zoom in on progress slider (?)
   // TODO: Left handle jumps to knob's position
   func updateClipEditorInterface() {
     if !isCreatingClip {
@@ -261,7 +263,14 @@ class PlayerViewController: UIViewController {
       default:
         print("Export complete!")
         DispatchQueue.main.async {
-          let data: [String:Any] = [R.episode:AudioManager.shared.track as! Episode, R.comment:comment, R.durationString:TimeInterval(toTime - fromTime).string(), R.url:trimmedSoundFileURL]
+          // TODO: Try to deal with this episode/bookmark distinction more elegantly
+          let episode: Episode!
+          if let bookmark = AudioManager.shared.track as? Bookmark {
+            episode = bookmark.episode
+          } else {
+            episode = AudioManager.shared.track as? Episode
+          }
+          let data: [String:Any] = [R.episode:episode, R.comment:comment, R.durationString:TimeInterval(toTime - fromTime).string(), R.url:trimmedSoundFileURL]
           guard DataManager.create(entity: R.Clip, withData: data) else {
             print("Error: Clip could not be saved!")
             return
