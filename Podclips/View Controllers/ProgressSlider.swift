@@ -50,7 +50,13 @@ import UIKit
     }
   }
   
-  public var editingRange: (Float, Float)?  // TODO: Return distance between handles
+  public var editFrom: Float {
+    return Float((editZone.frame.minX - progressView.frame.minX)/progressView.frame.width)
+  }
+  
+  public var editTo: Float {
+    return Float((editZone.frame.maxX - progressView.frame.minX)/progressView.frame.width)
+  }
   
   
   // MARK: - Setter methods
@@ -124,7 +130,7 @@ import UIKit
     leftHandle.widthAnchor.constraint(equalToConstant: handleWidth).isActive = true
     leftHandle.heightAnchor.constraint(equalToConstant: 35).isActive = true
     leftHandle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
-    leftHandleCenterXConstraint = leftHandle.centerXAnchor.constraint(equalTo: progressView.leftAnchor, constant: 0)
+    leftHandleCenterXConstraint = leftHandle.centerXAnchor.constraint(equalTo: progressView.leftAnchor, constant: -handleWidth/2)
     leftHandleCenterXConstraint.isActive = true
     
     let leftHandlePanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
@@ -137,7 +143,7 @@ import UIKit
     rightHandle.widthAnchor.constraint(equalToConstant: handleWidth).isActive = true
     rightHandle.heightAnchor.constraint(equalToConstant: 35).isActive = true
     rightHandle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
-    rightHandleCenterXConstraint = rightHandle.centerXAnchor.constraint(equalTo: progressView.leftAnchor, constant: 200)
+    rightHandleCenterXConstraint = rightHandle.centerXAnchor.constraint(equalTo: progressView.leftAnchor, constant: 100)
     rightHandleCenterXConstraint.isActive = true
     
     let rightHandlePanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
@@ -172,13 +178,15 @@ import UIKit
       sendActions(for: .valueChanged)
     }
     else if recognizer.view == leftHandle {
-      if touchLocation.x > 0 + handleWidth/2 && touchLocation.x < rightHandle.center.x - handleWidth {
+      if touchLocation.x >= handleWidth/2 && touchLocation.x < rightHandle.center.x - handleWidth {
         leftHandleCenterXConstraint.constant = touchLocation.x - handleWidth
+        print("editFrom = \(editFrom)")
       }
     }
     else if recognizer.view == rightHandle {
-      if touchLocation.x < self.frame.width - handleWidth/2 && touchLocation.x > leftHandle.center.x + handleWidth {
+      if touchLocation.x <= self.frame.width - handleWidth/2 && touchLocation.x > leftHandle.center.x + handleWidth {
         rightHandleCenterXConstraint.constant = touchLocation.x - handleWidth
+        print("editTo = \(editTo)")
       }
     }
   }

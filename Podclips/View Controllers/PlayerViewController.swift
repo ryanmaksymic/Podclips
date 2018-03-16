@@ -24,6 +24,8 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var progressSlider: ProgressSlider!
   @IBOutlet weak var currentTimeLabel: UILabel!
   @IBOutlet weak var totalTimeLabel: UILabel!
+  @IBOutlet weak var editFromTimeLabel: UILabel!
+  @IBOutlet weak var editToTimeLabel: UILabel!
   
   @IBOutlet weak var playPauseButton: UIButton!
   @IBOutlet weak var bookmarkButton: UIButton!
@@ -174,6 +176,8 @@ class PlayerViewController: UIViewController {
       clipSaveButton.center.y += 100
       clipCancelButton.isHidden = false
       clipSaveButton.isHidden = false
+      editFromTimeLabel.isHidden = false
+      editToTimeLabel.isHidden = false
     }
     UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseOut], animations: {
       self.clipCancelButton.center.y += self.isCreatingClip ? 100 : -100
@@ -182,10 +186,12 @@ class PlayerViewController: UIViewController {
       self.bookmarkButton.isEnabled = self.isCreatingClip
     }) { (completed) in
       if !self.isCreatingClip {
-        self.clipCancelButton.isHidden = true
-        self.clipSaveButton.isHidden = true
         self.clipCancelButton.center.y -= 100
         self.clipSaveButton.center.y -= 100
+        self.clipCancelButton.isHidden = true
+        self.clipSaveButton.isHidden = true
+        self.editFromTimeLabel.isHidden = true
+        self.editToTimeLabel.isHidden = true
       }
     }
     isCreatingClip = !isCreatingClip
