@@ -305,7 +305,8 @@ class PlayerViewController: UIViewController {
 extension PlayerViewController: AVAudioPlayerDelegate {
   
   func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    AudioManager.shared.track = nil
     playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
-    // TODO: Do the same for MiniPlayerVC
+    NotificationCenter.default.post(name: Notification.Name(R.AudioManagerUpdated), object: nil)
   }
 }

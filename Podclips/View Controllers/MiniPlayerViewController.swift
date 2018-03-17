@@ -28,7 +28,7 @@ class MiniPlayerViewController: UIViewController {
     NotificationCenter.default.addObserver(self, selector: #selector(updateTrackInfo), name: Notification.Name(R.AudioManagerUpdated), object: nil)
   }
   
-  override func viewDidAppear(_ animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     updateInterface()
   }
   
@@ -43,6 +43,7 @@ class MiniPlayerViewController: UIViewController {
     self.episodeNameLabel.text = AudioManager.shared.episodeName ?? ""
     self.podcastNameLabel.text = AudioManager.shared.podcastName ?? ""
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
+    playPauseButton.isEnabled = (AudioManager.shared.track != nil)
   }
   
   
@@ -68,7 +69,7 @@ class MiniPlayerViewController: UIViewController {
   // MARK: - Touches
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    if AudioManager.shared.url != nil {
+    if AudioManager.shared.track != nil {
       performSegue(withIdentifier: "PresentPlayer", sender: nil)
     }
   }
