@@ -158,10 +158,11 @@ class PlayerViewController: UIViewController {
   
   @IBAction func newClip(_ sender: UIButton) {
     pausePlayer()
+    progressSlider.editFrom = progressSlider.progress
     toggleClipEditorInterface()
   }
   
-  // TODO: Left handle jumps to knob's position
+  
   func toggleClipEditorInterface() {
     if !isCreatingClip {
       clipCancelButton.center.x -= 200

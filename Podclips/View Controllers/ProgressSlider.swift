@@ -30,6 +30,7 @@ import UIKit
     }
     set {
       setProgress(newValue)
+      progressView.progress = newValue
       knob.center.x = handleWidth + CGFloat(newValue) * progressView.frame.width
     }
   }
@@ -53,11 +54,23 @@ import UIKit
   }
   
   public var editFrom: Float {
-    return Float((editZone.frame.minX - progressView.frame.minX)/progressView.frame.width)
+    get {
+      return Float((editZone.frame.minX - progressView.frame.minX)/progressView.frame.width)
+    }
+    set {
+      leftHandleCenterXConstraint.constant = progressView.frame.width * CGFloat(newValue) - handleWidth/2
+      if newValue < 0.9 {
+        rightHandleCenterXConstraint.constant = progressView.frame.width * CGFloat(newValue + 0.1) + handleWidth/2
+      } else {
+        rightHandleCenterXConstraint.constant = progressView.frame.width + handleWidth/2
+      }
+    }
   }
   
   public var editTo: Float {
-    return Float((editZone.frame.maxX - progressView.frame.minX)/progressView.frame.width)
+    get {
+      return Float((editZone.frame.maxX - progressView.frame.minX)/progressView.frame.width)
+    }
   }
   
   
@@ -66,7 +79,6 @@ import UIKit
   private func setProgress(_ value: Float) {
     if value != _progress {
       _progress = min(maximumProgress, max(minimumProgress, value))
-      progressView.progress = _progress
     }
   }
   
