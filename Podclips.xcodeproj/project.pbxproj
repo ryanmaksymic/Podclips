@@ -126,8 +126,8 @@
 		FE3EBFEE2059A8C6004842DF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FEE79A2C205C150900B79F63 /* ProgressSlider.swift */,
 				FE44F84F205ADB1F00D988FD /* UIAlertController+CustomAlert.swift */,
+				FEE79A2C205C150900B79F63 /* ProgressSlider.swift */,
 				FE00524A205AF07800F223BD /* FavouritesTableViewCell.swift */,
 				FE3EBFF12059AE9D004842DF /* FavouritesTableViewController.swift */,
 				FE3EBFF32059B36A004842DF /* PlayerViewController.swift */,

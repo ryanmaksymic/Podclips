@@ -19,7 +19,6 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var artworkImageView: UIImageView!
   @IBOutlet weak var episodeNameLabel: UILabel!
   @IBOutlet weak var podcastNameLabel: UILabel!
-  @IBOutlet weak var detailsLabel: UILabel!
   
   @IBOutlet weak var progressSlider: ProgressSlider!
   @IBOutlet weak var currentTimeLabel: UILabel!
@@ -44,6 +43,7 @@ class PlayerViewController: UIViewController {
   
   var updateTimeProgressTimer: Timer!
   var isCreatingClip = false
+  var saveAlert = UIAlertController.init(title: "", message: "", preferredStyle: .alert)
   
   
   // MARK: - Setup
@@ -63,7 +63,6 @@ class PlayerViewController: UIViewController {
     artworkImageView.image = AudioManager.shared.artwork ?? UIImage(named: "artwork")
     episodeNameLabel.text = AudioManager.shared.episodeName ?? ""
     podcastNameLabel.text = AudioManager.shared.podcastName ?? "No media selected"
-    detailsLabel.text = AudioManager.shared.details ?? ""
     totalTimeLabel.text = AudioManager.shared.durationString
     clipButton.isHidden = AudioManager.shared.trackIsClip
     bookmarkButton.isHidden = AudioManager.shared.trackIsClip
@@ -135,12 +134,12 @@ class PlayerViewController: UIViewController {
       pausePlayer()
       wasPlaying = true
     }
-    let newBookmarkAlert = UIAlertController.createNewItemAlert(title: "New Bookmark", message: "\(AudioManager.shared.podcastName!)\n\(AudioManager.shared.episodeName!)\n\(AudioManager.shared.currentTimeString!)", cancelBlock: {
+    let newBookmarkAlert = UIAlertController.createNewItemAlert(title: "New Bookmark", message: "\(AudioManager.shared.episodeName!)\n\(AudioManager.shared.podcastName!)\n\(AudioManager.shared.currentTimeString!)", cancelBlock: {
       if wasPlaying { self.resumePlayer() }
     }) { (comment) in
       if self.saveBookmark(episode: AudioManager.shared.track as! Episode, timestamp: AudioManager.shared.currentTime!, timestampString: AudioManager.shared.currentTimeString!, comment: comment) {
-        self.showSavedBookmarkAlert()
-      }
+        self.showSaveAlert(message: "Bookmark saved!", dismiss: true)
+      } else { self.showSaveAlert(message: "Error saving bookmark") }
       if wasPlaying { self.resumePlayer() }
     }
     self.present(newBookmarkAlert, animated: true, completion: nil)
@@ -149,34 +148,9 @@ class PlayerViewController: UIViewController {
   private func saveBookmark(episode: Episode, timestamp: TimeInterval, timestampString: String, comment: String) -> Bool {
     let data: [String:Any] = [R.episode:episode, R.timestamp:timestamp, R.timestampString:timestampString, R.comment:comment]
     guard DataManager.create(entity: R.Bookmark, withData: data) else {
-      print("Error saving bookmark")
       return false
     }
     return true
-  }
-  
-  private func showSavedBookmarkAlert() {
-    
-    let popupFrame = CGRect(x: self.view.center.x - 100, y: self.view.center.y - 50, width: 200, height: 100)
-    let popup = UIView(frame: popupFrame)
-    popup.backgroundColor = UIColor.darkGray
-    popup.alpha = 0.98
-    
-    let popupLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
-    popupLabel.center = CGPoint(x: 100, y: 50)
-    popupLabel.textColor = .white
-    popupLabel.textAlignment = .center
-    popupLabel.font = UIFont.boldSystemFont(ofSize: 17)
-    popupLabel.text = "Bookmarked saved!"
-    popup.addSubview(popupLabel)
-    
-    self.view.addSubview(popup)
-    
-    UIView.animate(withDuration: 0.5, delay: 2, options: [], animations: {
-      popup.alpha = 0
-    }) { (completed) in
-      popup.removeFromSuperview()
-    }
   }
   
   
@@ -231,17 +205,17 @@ class PlayerViewController: UIViewController {
   }
   
   @IBAction func saveClip(_ sender: UIButton) {
-    let newClipAlert = UIAlertController.createNewItemAlert(title: "New Clip", message: "\(AudioManager.shared.podcastName!)\n\(AudioManager.shared.episodeName!)\nDURATION", cancelBlock: {
+    let newClipAlert = UIAlertController.createNewItemAlert(title: "New Clip", message: "\(AudioManager.shared.episodeName!)\n\(AudioManager.shared.podcastName!)\nDURATION", cancelBlock: {
     }) { (comment) in
       self.saveClip(comment: comment)
-      self.toggleClipEditorInterface()
-      // TODO: Show saved clip alert if successful
     }
     self.present(newClipAlert, animated: true, completion: nil)
   }
   
   // TODO: Make this method more like saveBookmark
   private func saveClip(comment: String) {
+    showSaveAlert(message: "Saving clip...")
+    
     let fromTime = AudioManager.shared.duration! * Double(progressSlider.editFrom)
     let toTime = AudioManager.shared.duration! * Double(progressSlider.editTo)
     
@@ -271,12 +245,12 @@ class PlayerViewController: UIViewController {
     exporter.exportAsynchronously(completionHandler: {
       switch exporter.status {
       case  AVAssetExportSessionStatus.failed:
-        print("Error: Export failed!")
+        self.showSaveAlert(message: "Error saving clip", dismiss: true)
       case AVAssetExportSessionStatus.cancelled:
-        print("Error: Export cancelled!")
+        self.showSaveAlert(message: "Error saving clip", dismiss: true)
       default:
-        print("Export complete!")
         DispatchQueue.main.async {
+          self.toggleClipEditorInterface()
           // TODO: Try to deal with this episode/bookmark distinction more elegantly
           let episode: Episode!
           if let bookmark = AudioManager.shared.track as? Bookmark {
@@ -289,11 +263,26 @@ class PlayerViewController: UIViewController {
             print("Error: Clip could not be saved!")
             return
           }
-          print("Clip saved!")
+          self.showSaveAlert(message: "Clip saved!", dismiss: true)
         }
       }
     })
     // TODO: Return success boolean to view controller
+  }
+  
+  
+  // MARK: - Alerts
+  
+  func showSaveAlert(message: String, dismiss: Bool = false) {
+    saveAlert.title = message
+    if self.presentedViewController == nil {
+      present(saveAlert, animated: true, completion: nil)
+    }
+    if dismiss {
+      Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (timer) in
+        self.saveAlert.dismiss(animated: true, completion: nil)
+      })
+    }
   }
   
   
@@ -317,5 +306,6 @@ extension PlayerViewController: AVAudioPlayerDelegate {
   
   func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
     playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
+    // TODO: Do the same for MiniPlayerVC
   }
 }

@@ -42,10 +42,6 @@ class AudioManager {
     return track?.podcastName()
   }
   
-  var details: String? {
-    return track?.details()
-  }
-  
   var artwork: UIImage? {
     return track?.artwork()
   }
