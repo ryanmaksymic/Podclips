@@ -205,7 +205,7 @@ class PlayerViewController: UIViewController {
   }
   
   @IBAction func saveClip(_ sender: UIButton) {
-    let newClipAlert = UIAlertController.createNewItemAlert(title: "New Clip", message: "\(AudioManager.shared.episodeName!)\n\(AudioManager.shared.podcastName!)\nDURATION", cancelBlock: {
+    let newClipAlert = UIAlertController.createNewItemAlert(title: "New Clip", message: "\(AudioManager.shared.episodeName!)\n\(AudioManager.shared.podcastName!)\n\(editFromTimeLabel.text!) - \(editToTimeLabel.text!)", cancelBlock: {
     }) { (comment) in
       self.saveClip(comment: comment)
     }
