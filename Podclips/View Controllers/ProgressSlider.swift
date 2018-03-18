@@ -53,23 +53,38 @@ import UIKit
     }
   }
   
-  public var editFrom: Float {
+  private var _isPlayingInEditingMode: Bool = false
+  public var isPlayingInEditingMode: Bool! {
     get {
-      return Float((editZone.frame.minX - progressView.frame.minX)/progressView.frame.width)
+      return _isPlayingInEditingMode
     }
     set {
-      leftHandleCenterXConstraint.constant = progressView.frame.width * CGFloat(newValue) - handleWidth/2
-      if newValue < 0.9 {
-        rightHandleCenterXConstraint.constant = progressView.frame.width * CGFloat(newValue + 0.1) + handleWidth/2
-      } else {
-        rightHandleCenterXConstraint.constant = progressView.frame.width + handleWidth/2
-      }
+      setIsPlayingInEditingMode(newValue)
+      knob.isHidden = !newValue
+      leftHandle.isHidden = newValue
+      rightHandle.isHidden = newValue
     }
   }
   
+  private var _editFrom: Float = 0
+  public var editFrom: Float {
+    get {
+      return _editFrom
+    }
+    set {
+      setEditFrom(newValue)
+      leftHandleCenterXConstraint.constant = CGFloat(newValue) * progressView.frame.width - handleWidth/2
+    }
+  }
+  
+  private var _editTo: Float = 0.1
   public var editTo: Float {
     get {
-      return Float((editZone.frame.maxX - progressView.frame.minX)/progressView.frame.width)
+      return _editTo
+    }
+    set {
+      setEditTo(newValue)
+      rightHandleCenterXConstraint.constant = CGFloat(newValue) * progressView.frame.width + handleWidth/2
     }
   }
   
@@ -85,6 +100,24 @@ import UIKit
   private func setIsInEditingMode(_ value: Bool) {
     if value != _isInEditingMode {
       _isInEditingMode = value
+    }
+  }
+  
+  private func setEditFrom(_ value: Float) {
+    if value != _editFrom {
+      _editFrom = value
+    }
+  }
+  
+  private func setEditTo(_ value: Float) {
+    if value != _editTo {
+      _editTo = value
+    }
+  }
+  
+  private func setIsPlayingInEditingMode(_ value: Bool) {
+    if value != _isPlayingInEditingMode {
+      _isPlayingInEditingMode = value
     }
   }
   
@@ -192,11 +225,13 @@ import UIKit
     }
     else if recognizer.view == leftHandle {
       if touchLocation.x >= handleWidth/2 && touchLocation.x < rightHandle.center.x - handleWidth {
+        setEditFrom(Float((touchLocation.x - handleWidth/2)/progressView.frame.width))
         leftHandleCenterXConstraint.constant = touchLocation.x - handleWidth
       }
     }
     else if recognizer.view == rightHandle {
       if touchLocation.x <= self.frame.width - handleWidth/2 && touchLocation.x > leftHandle.center.x + handleWidth {
+        setEditTo(Float((touchLocation.x - 1.5*handleWidth)/progressView.frame.width))
         rightHandleCenterXConstraint.constant = touchLocation.x - handleWidth
       }
     }

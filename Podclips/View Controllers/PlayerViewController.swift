@@ -84,6 +84,18 @@ class PlayerViewController: UIViewController {
                                                     self.updateTimeProgress()})
   }
   
+  private func updateEditInterface() {
+    let fromTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editFrom))
+    editFromTimeLabel.text = fromTime.string(ms: true)
+    //editFromTimeStepper.value =
+    //editFromTimeStepper.maximumValue =
+    
+    let toTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editTo))
+    editToTimeLabel.text = toTime.string(ms: true)
+    //editToTimeStepper.value =
+    //editToTimeStepper.minimumValue =
+  }
+  
   
   // MARK: - Player controls
   
@@ -95,12 +107,14 @@ class PlayerViewController: UIViewController {
     AudioManager.shared.pause()
     updateTimeProgressTimer.invalidate()
     playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
+    if isCreatingClip { progressSlider.isPlayingInEditingMode = false }
   }
   
   private func resumePlayer() {
     AudioManager.shared.resume()
     startProgressTimer()
     playPauseButton.setBackgroundImage(UIImage(named: "pause"), for: .normal)
+    if isCreatingClip { progressSlider.isPlayingInEditingMode = true }
   }
   
   @IBAction func backward(_ sender: UIButton) {
@@ -116,11 +130,7 @@ class PlayerViewController: UIViewController {
   @IBAction func progressSliderValueChanged(sender: ProgressSlider) {
     AudioManager.shared.setProgress(progressSlider.progress)
     updateTimeProgress()
-    
-    let fromTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editFrom))
-    editFromTimeLabel.text = fromTime.string(ms: true)
-    let toTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editTo))
-    editToTimeLabel.text = toTime.string(ms: true)
+    updateEditInterface()
   }
   
   // TODO: While editing, play only between handles
@@ -158,8 +168,11 @@ class PlayerViewController: UIViewController {
   
   @IBAction func newClip(_ sender: UIButton) {
     pausePlayer()
-    progressSlider.editFrom = progressSlider.progress
     toggleClipEditorInterface()
+    progressSlider.isPlayingInEditingMode = false
+    progressSlider.editFrom = progressSlider.progress
+    progressSlider.editTo = min(progressSlider.progress + 0.1, 1.0)
+    updateEditInterface()
   }
   
   
