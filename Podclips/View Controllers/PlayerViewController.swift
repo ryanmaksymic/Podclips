@@ -52,7 +52,6 @@ class PlayerViewController: UIViewController {
     super.viewDidLoad()
     setupInterface()
     startProgressTimer()
-    
     AudioManager.shared.delegate = self
   }
   
@@ -62,8 +61,8 @@ class PlayerViewController: UIViewController {
   private func setupInterface() {
     artworkImageView.image = AudioManager.shared.artwork ?? UIImage(named: "artwork")
     episodeNameLabel.text = AudioManager.shared.episodeName ?? ""
-    podcastNameLabel.text = AudioManager.shared.podcastName ?? "No media selected"
-    totalTimeLabel.text = AudioManager.shared.durationString
+    podcastNameLabel.text = AudioManager.shared.podcastName ?? ""
+    totalTimeLabel.text = AudioManager.shared.durationString ?? ""  // TODO: CBB episode shows shorter than actual duration time???
     clipButton.isHidden = AudioManager.shared.trackIsClip
     bookmarkButton.isHidden = AudioManager.shared.trackIsClip
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
@@ -72,34 +71,31 @@ class PlayerViewController: UIViewController {
     artworkImageView.clipsToBounds = true
   }
   
+  private func startProgressTimer() {
+    updateTimeProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.05,
+                                                   repeats: true,
+                                                   block: { (timer) in
+                                                    self.updateTimeProgress()
+                                                    if self.isCreatingClip && AudioManager.shared.progress >= self.progressSlider.editTo {
+                                                      self.pausePlayer()
+                                                      self.progressSlider.isPlayingInEditingMode = false
+                                                      AudioManager.shared.currentTime = self.editFromTimeStepper.value
+                                                    }
+    })
+  }
+  
   private func updateTimeProgress() {
     currentTimeLabel.text = AudioManager.shared.currentTimeString
     progressSlider.progress = AudioManager.shared.progress
-  }
-  
-  private func startProgressTimer() {
-    updateTimeProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.1,
-                                                   repeats: true,
-                                                   block: { (timer) in
-                                                    self.updateTimeProgress()})
   }
   
   private func updateEditInterface() {
     let fromTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editFrom))
     editFromTimeLabel.text = fromTime.string(ms: true)
     editFromTimeStepper.value = fromTime
-    
     let toTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editTo))
     editToTimeLabel.text = toTime.string(ms: true)
     editToTimeStepper.value = toTime
-    
-    //editFromTimeStepper.maximumValue = editToTimeStepper.value
-    editFromTimeStepper.maximumValue = AudioManager.shared.duration!
-    //editFromTimeStepper.minimumValue = 0
-    // TODO: Try to sort this out
-    //editToTimeStepper.minimumValue = editFromTimeStepper.value
-    editToTimeStepper.minimumValue = 0
-    editToTimeStepper.maximumValue = AudioManager.shared.duration!
   }
   
   
@@ -113,7 +109,10 @@ class PlayerViewController: UIViewController {
     AudioManager.shared.pause()
     updateTimeProgressTimer.invalidate()
     playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
-    if isCreatingClip { progressSlider.isPlayingInEditingMode = false }
+    if isCreatingClip {
+      progressSlider.isPlayingInEditingMode = false
+      AudioManager.shared.currentTime = editFromTimeStepper.value
+    }
   }
   
   private func resumePlayer() {
@@ -138,8 +137,6 @@ class PlayerViewController: UIViewController {
     updateTimeProgress()
     updateEditInterface()
   }
-  
-  // TODO: While editing, play only between handles
   
   
   // MARK: - Bookmarks
@@ -176,8 +173,15 @@ class PlayerViewController: UIViewController {
     pausePlayer()
     toggleClipEditorInterface()
     progressSlider.isPlayingInEditingMode = false
+    
+    editFromTimeStepper.minimumValue = 0
+    editFromTimeStepper.maximumValue = AudioManager.shared.duration!
+    editToTimeStepper.minimumValue = 0
+    editToTimeStepper.maximumValue = AudioManager.shared.duration!
+    
     progressSlider.editFrom = progressSlider.progress
     progressSlider.editTo = min(progressSlider.progress + 0.1, 1.0)
+    
     updateEditInterface()
   }
   
@@ -236,9 +240,6 @@ class PlayerViewController: UIViewController {
   private func saveClip(comment: String) {
     showSaveAlert(message: "Saving clip...")
     
-    let fromTime = AudioManager.shared.duration! * Double(progressSlider.editFrom)
-    let toTime = AudioManager.shared.duration! * Double(progressSlider.editTo)
-    
     let asset = AVAsset(url: AudioManager.shared.url!)
     
     // Generate unique file name:
@@ -256,9 +257,10 @@ class PlayerViewController: UIViewController {
     let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)!
     exporter.outputFileType = AVFileType.m4a
     exporter.outputURL = trimmedSoundFileURL
-    // Times expressed in seconds/10 for precision:
-    let startTime = CMTimeMake(Int64(fromTime*10), 10)
-    let stopTime = CMTimeMake(Int64(toTime*10), 10)
+    let fromTime = AudioManager.shared.duration! * Double(progressSlider.editFrom)
+    let toTime = AudioManager.shared.duration! * Double(progressSlider.editTo)
+    let startTime = CMTimeMake(Int64(fromTime*100), 100)
+    let stopTime = CMTimeMake(Int64(toTime*100), 100)
     let exportTimeRange = CMTimeRangeFromTimeToTime(startTime, stopTime)
     exporter.timeRange = exportTimeRange
     
@@ -338,7 +340,7 @@ class PlayerViewController: UIViewController {
 extension PlayerViewController: AVAudioPlayerDelegate {
   
   func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-    AudioManager.shared.track = nil
+    AudioManager.shared.track = nil // TODO: This causes mini player problems; find a workaround
     playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
     NotificationCenter.default.post(name: Notification.Name(R.AudioManagerUpdated), object: nil)
   }
