@@ -85,10 +85,32 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="igR-rc-1YH">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="igR-rc-1YH" userLabel="Editor Control Buttons">
                                 <rect key="frame" x="16" y="541" width="343" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0v-20-WdZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelClip:" destination="J7y-nT-Cir" eventType="touchUpInside" id="geo-GN-tLO"/>
+                                        </connections>
+                                    </button>
+                                    <stepper hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" stepValue="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="q4B-GQ-3up">
+                                        <rect key="frame" x="75" y="1" width="94" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="editFromTimeStepperValueChanged:" destination="J7y-nT-Cir" eventType="valueChanged" id="jBs-xD-aOb"/>
+                                        </connections>
+                                    </stepper>
+                                    <stepper hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" stepValue="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="6x0-Yf-Tyu">
+                                        <rect key="frame" x="174" y="1" width="94" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="editToTimeStepperValueChanged:" destination="J7y-nT-Cir" eventType="valueChanged" id="1Tk-4Z-uPt"/>
+                                        </connections>
+                                    </stepper>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKp-iE-bqG">
                                         <rect key="frame" x="309" y="1" width="34" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -98,22 +120,6 @@
                                             <action selector="saveClip:" destination="J7y-nT-Cir" eventType="touchUpInside" id="TLu-fD-V8V"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0v-20-WdZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Cancel"/>
-                                        <connections>
-                                            <action selector="cancelClip:" destination="J7y-nT-Cir" eventType="touchUpInside" id="geo-GN-tLO"/>
-                                        </connections>
-                                    </button>
-                                    <stepper hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="6x0-Yf-Tyu">
-                                        <rect key="frame" x="174" y="1" width="94" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </stepper>
-                                    <stepper hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="q4B-GQ-3up">
-                                        <rect key="frame" x="75" y="1" width="94" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </stepper>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>

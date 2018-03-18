@@ -87,13 +87,19 @@ class PlayerViewController: UIViewController {
   private func updateEditInterface() {
     let fromTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editFrom))
     editFromTimeLabel.text = fromTime.string(ms: true)
-    //editFromTimeStepper.value =
-    //editFromTimeStepper.maximumValue =
+    editFromTimeStepper.value = fromTime
     
     let toTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editTo))
     editToTimeLabel.text = toTime.string(ms: true)
-    //editToTimeStepper.value =
-    //editToTimeStepper.minimumValue =
+    editToTimeStepper.value = toTime
+    
+    //editFromTimeStepper.maximumValue = editToTimeStepper.value
+    editFromTimeStepper.maximumValue = AudioManager.shared.duration!
+    //editFromTimeStepper.minimumValue = 0
+    // TODO: Try to sort this out
+    //editToTimeStepper.minimumValue = editFromTimeStepper.value
+    editToTimeStepper.minimumValue = 0
+    editToTimeStepper.maximumValue = AudioManager.shared.duration!
   }
   
   
@@ -282,6 +288,19 @@ class PlayerViewController: UIViewController {
       }
     })
     // TODO: Return success boolean to view controller
+  }
+  
+  
+  // MARK: - Editor controls
+  
+  @IBAction func editFromTimeStepperValueChanged(_ sender: UIStepper) {
+    editFromTimeLabel.text = TimeInterval(editFromTimeStepper.value).string(ms: true)
+    progressSlider.editFrom = Float(editFromTimeStepper.value/AudioManager.shared.duration!)
+  }
+  
+  @IBAction func editToTimeStepperValueChanged(_ sender: UIStepper) {
+    editToTimeLabel.text = TimeInterval(editToTimeStepper.value).string(ms: true)
+    progressSlider.editTo = Float(editToTimeStepper.value/AudioManager.shared.duration!)
   }
   
   
