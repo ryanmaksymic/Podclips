@@ -109,6 +109,8 @@ class AudioManager {
     return false
   }
   
+  var isTrackLoaded: Bool = false
+  
   
   // MARK: - Public methods
   
@@ -123,7 +125,8 @@ class AudioManager {
       let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: bookmark.episode!.fileName, ofType: "mp3")!)
       startPlaying(url: episodeURL, atTime: bookmark.timestamp)
     }
-    NotificationCenter.default.post(name: Notification.Name(R.AudioManagerUpdated), object: nil)
+    NotificationCenter.default.post(name: Notification.Name(R.NewSongLoaded), object: nil)
+    isTrackLoaded = true
   }
   
   func pause() {

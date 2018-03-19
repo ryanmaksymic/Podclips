@@ -34,7 +34,8 @@ enum R {
   static let timestampString = "timestampString"
   
   // Notification Center:
-  static let AudioManagerUpdated = "AudioManagerUpdated"
+  static let NewSongLoaded = "NewSongLoaded"
+  static let SongEnded = "SongEnded"
 }
 
 class DataManager {

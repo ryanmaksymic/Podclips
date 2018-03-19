@@ -49,7 +49,7 @@ class PlayerViewController: UIViewController {
     super.viewDidLoad()
     setupInterface()
     startProgressTimer()
-    AudioManager.shared.delegate = self
+    NotificationCenter.default.addObserver(self, selector: #selector(clearTrackInfo), name: Notification.Name(R.SongEnded), object: nil)
   }
   
   
@@ -66,6 +66,16 @@ class PlayerViewController: UIViewController {
     updateTimeProgress()
     artworkImageView.layer.cornerRadius = 4.0
     artworkImageView.clipsToBounds = true
+  }
+  
+  @objc private func clearTrackInfo() {
+    artworkImageView.image = UIImage(named: "artwork")
+    episodeNameLabel.text = ""
+    podcastNameLabel.text = ""
+    totalTimeLabel.text = ""
+    clipButton.isHidden = true
+    bookmarkButton.isHidden = true
+    playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
   }
   
   private func startProgressTimer() {
@@ -93,6 +103,7 @@ class PlayerViewController: UIViewController {
     let toTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editTo))
     editToTimeLabel.text = toTime.string(ms: true)
     editToTimeStepper.value = toTime
+    progressSlider.progress = progressSlider.editFrom
   }
   
   
@@ -109,6 +120,10 @@ class PlayerViewController: UIViewController {
     if isCreatingClip {
       progressSlider.isPlayingInEditingMode = false
       AudioManager.shared.currentTime = editFromTimeStepper.value
+      editFromTimeStepper.isEnabled = true
+      editToTimeStepper.isEnabled = true
+      clipCancelButton.isEnabled = true
+      clipSaveButton.isEnabled = true
     }
   }
   
@@ -116,7 +131,14 @@ class PlayerViewController: UIViewController {
     AudioManager.shared.resume()
     startProgressTimer()
     playPauseButton.setBackgroundImage(UIImage(named: "pause"), for: .normal)
-    if isCreatingClip { progressSlider.isPlayingInEditingMode = true }
+    if isCreatingClip {
+      progressSlider.isPlayingInEditingMode = true
+      AudioManager.shared.currentTime = editFromTimeStepper.value
+      editFromTimeStepper.isEnabled = false
+      editToTimeStepper.isEnabled = false
+      clipCancelButton.isEnabled = false
+      clipSaveButton.isEnabled = false
+    }
   }
   
   @IBAction func backward(_ sender: UIButton) {
@@ -130,9 +152,12 @@ class PlayerViewController: UIViewController {
   }
   
   @IBAction func progressSliderValueChanged(sender: ProgressSlider) {
-    AudioManager.shared.setProgress(progressSlider.progress)
-    updateTimeProgress()
-    updateEditInterface()
+    if !isCreatingClip {
+      AudioManager.shared.setProgress(progressSlider.progress)
+      updateTimeProgress()
+    } else {
+      updateEditInterface()
+    }
   }
   
   
@@ -328,17 +353,5 @@ class PlayerViewController: UIViewController {
     if !isCreatingClip{
       self.dismiss(animated: true, completion: nil)
     }
-  }
-}
-
-
-// MARK: - AVAudioPlayerDelegate
-
-extension PlayerViewController: AVAudioPlayerDelegate {
-  
-  func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-    AudioManager.shared.track = nil // TODO: This causes mini player problems; find a workaround
-    playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
-    NotificationCenter.default.post(name: Notification.Name(R.AudioManagerUpdated), object: nil)
   }
 }

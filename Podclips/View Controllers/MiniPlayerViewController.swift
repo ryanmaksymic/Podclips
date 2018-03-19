@@ -24,18 +24,16 @@ class MiniPlayerViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    updateInterface()
-    NotificationCenter.default.addObserver(self, selector: #selector(updateTrackInfo), name: Notification.Name(R.AudioManagerUpdated), object: nil)
+    artworkImageView.layer.cornerRadius = 4.0
+    artworkImageView.clipsToBounds = true
+    updateTrackInfo()
+    NotificationCenter.default.addObserver(self, selector: #selector(updateTrackInfo), name: Notification.Name(R.NewSongLoaded), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(clearTrackInfo), name: Notification.Name(R.SongEnded), object: nil)
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    updateInterface()
-  }
-  
-  private func updateInterface() {
-    updateTrackInfo()
-    artworkImageView.layer.cornerRadius = 4.0
-    artworkImageView.clipsToBounds = true
+    if AudioManager.shared.isTrackLoaded { updateTrackInfo() }
+    else { clearTrackInfo() }
   }
   
   @objc private func updateTrackInfo() {
@@ -44,6 +42,15 @@ class MiniPlayerViewController: UIViewController {
     self.podcastNameLabel.text = AudioManager.shared.podcastName ?? ""
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
     playPauseButton.isEnabled = (AudioManager.shared.track != nil)
+    AudioManager.shared.delegate = self
+  }
+  
+  @objc private func clearTrackInfo() {
+    self.artworkImageView.image = UIImage(named: "artwork")
+    self.episodeNameLabel.text = ""
+    self.podcastNameLabel.text = ""
+    playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
+    playPauseButton.isEnabled = false
   }
   
   
@@ -73,15 +80,16 @@ class MiniPlayerViewController: UIViewController {
       performSegue(withIdentifier: "PresentPlayer", sender: nil)
     }
   }
-  
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
+}
+
+
+// MARK: - AVAudioPlayerDelegate
+
+extension MiniPlayerViewController: AVAudioPlayerDelegate {
+
+  func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    NotificationCenter.default.post(name: Notification.Name(R.SongEnded), object: nil)
+    AudioManager.shared.isTrackLoaded = false
+    clearTrackInfo()
+  }
 }
