@@ -187,7 +187,7 @@ extension TimeInterval {
     result.append(hours < 10 ? "0\(hours)" : "\(hours)")
     result.append(minutes < 10 ? ":0\(minutes)" : ":\(minutes)")
     result.append(seconds < 10 ? ":0\(seconds)" : ":\(seconds)")
-    if ms { result.append(":\(milliseconds)0") }
+    if ms { result.append(".\(milliseconds)") }
     return result
   }
 }
@@ -220,7 +220,7 @@ extension NSManagedObject {
   }
   
   func details() -> String? {
-    if let episode = self as? Episode {
+    if let _ = self as? Episode {
       return "Release Date: MM/dd/yyyy"  // TODO: Fill this in
     } else if let clip = self as? Clip {
       return clip.comment

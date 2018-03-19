@@ -91,15 +91,10 @@ class FavouritesTableViewController: UITableViewController {
   }
   
   @objc private func share(sender: UIButton) {
-    if let clip = tracks[sender.tag] as? Clip {
-      
-      let activityItem = clip.url!
-      
-      let activityVC = UIActivityViewController(activityItems: [activityItem],applicationActivities: nil)
-      activityVC.title = "SHARE A CLIP!"
-      activityVC.popoverPresentationController?.sourceView = self.view
-      
-      self.present(activityVC, animated: true, completion: nil)
+    if let clip = tracks[sender.tag] as? Clip, let clipURL = clip.url {
+      let epName = "Hey, check out this clip from \(clip.podcastName()!)!\nSent from the Podclips™ app"
+      let shareActivityViewController = UIActivityViewController(activityItems: [epName, clipURL], applicationActivities: [])
+      self.present(shareActivityViewController, animated: true, completion: nil)
     }
   }
   
@@ -129,7 +124,7 @@ class FavouritesTableViewController: UITableViewController {
       cell.shareButton.isHidden = false
       cell.shareButton.tag = indexPath.row
       cell.shareButton.addTarget(self, action: #selector(share(sender:)), for: .touchUpInside)
-    }
+    } else { cell.shareButton.isHidden = true }
     
     return cell
   }

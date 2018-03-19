@@ -21,19 +21,21 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var podcastNameLabel: UILabel!
   
   @IBOutlet weak var progressSlider: ProgressSlider!
+  
+  @IBOutlet weak var controlButtonsView: UIView!
+  @IBOutlet weak var playPauseButton: UIButton!
+  @IBOutlet weak var clipButton: UIButton!
+  @IBOutlet weak var bookmarkButton: UIButton!
+  @IBOutlet weak var shareButton: UIButton!
+  
   @IBOutlet weak var currentTimeLabel: UILabel!
   @IBOutlet weak var totalTimeLabel: UILabel!
   @IBOutlet weak var editFromTimeLabel: UILabel!
   @IBOutlet weak var editToTimeLabel: UILabel!
   @IBOutlet weak var editFromTimeStepper: UIStepper!
   @IBOutlet weak var editToTimeStepper: UIStepper!
-
-  @IBOutlet weak var playPauseButton: UIButton!
-  @IBOutlet weak var bookmarkButton: UIButton!
-  @IBOutlet weak var clipButton: UIButton!
   @IBOutlet weak var clipCancelButton: UIButton!
   @IBOutlet weak var clipSaveButton: UIButton!
-  @IBOutlet weak var controlButtonsView: UIView!
   
   
   // MARK: - Properties
@@ -61,7 +63,7 @@ class PlayerViewController: UIViewController {
     totalTimeLabel.text = AudioManager.shared.durationString ?? ""  // TODO: CBB episode shows shorter than actual duration time??? Figure this out.
     clipButton.isHidden = AudioManager.shared.trackIsClip
     bookmarkButton.isHidden = AudioManager.shared.trackIsClip
-    // TODO: Add Share button if track is a clip
+    shareButton.isHidden = !AudioManager.shared.trackIsClip
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
     updateTimeProgress()
     artworkImageView.layer.cornerRadius = 4.0
@@ -151,6 +153,17 @@ class PlayerViewController: UIViewController {
   }
   
   
+  // MARK: - Sharing
+  
+  @IBAction func share(_ sender: UIButton) {
+    if let clip = AudioManager.shared.track as? Clip, let clipURL = clip.url {
+      let epName = "Hey, check out this clip from \(clip.podcastName()!)!\nSent from the Podclips™ app"
+      let shareActivityViewController = UIActivityViewController(activityItems: [epName, clipURL], applicationActivities: [])
+      self.present(shareActivityViewController, animated: true, completion: nil)
+    }
+  }
+  
+  
   // MARK: - Bookmarks
   
   @IBAction func newBookmark(_ sender: UIButton) {
@@ -214,10 +227,11 @@ class PlayerViewController: UIViewController {
       self.editFromTimeStepper.center.x += self.isCreatingClip ? -200 : 200
       self.clipSaveButton.center.x += self.isCreatingClip ? 200 : -200
       self.editToTimeStepper.center.x += self.isCreatingClip ? 200 : -200
-      self.controlButtonsView.center.y += self.isCreatingClip ? -50 : 50
+      self.controlButtonsView.center.y += self.isCreatingClip ? -40 : 40
       self.dismissButton.isHidden = !self.isCreatingClip
       self.clipButton.alpha = self.isCreatingClip ? 1 : 0
       self.bookmarkButton.alpha = self.isCreatingClip ? 1 : 0
+      self.shareButton.alpha = self.isCreatingClip ? 1 : 0
       self.editFromTimeLabel.alpha = self.isCreatingClip ? 0 : 1
       self.editToTimeLabel.alpha = self.isCreatingClip ? 0 : 1
     }) { (completed) in
@@ -255,9 +269,10 @@ class PlayerViewController: UIViewController {
     let asset = AVAsset(url: AudioManager.shared.url!)
     
     // Generate unique file name:
-    var fileName = AudioManager.shared.podcastName!.replacingOccurrences(of: " ", with: "")
+    var fileName = "Podclips_"
+    fileName.append(AudioManager.shared.podcastName!.replacingOccurrences(of: " ", with: ""))
     let uuid = UUID().uuidString
-    fileName.append("-clip-\(uuid).m4a")
+    fileName.append("_\(uuid).m4a")
     
     let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let trimmedSoundFileURL = documentsDirectory.appendingPathComponent(fileName)
