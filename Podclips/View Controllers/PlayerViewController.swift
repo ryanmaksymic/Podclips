@@ -27,10 +27,7 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var editToTimeLabel: UILabel!
   @IBOutlet weak var editFromTimeStepper: UIStepper!
   @IBOutlet weak var editToTimeStepper: UIStepper!
-  
-  
-  // TODO: Add steppers to adjust edit times by 1/10 seconds
-  
+
   @IBOutlet weak var playPauseButton: UIButton!
   @IBOutlet weak var bookmarkButton: UIButton!
   @IBOutlet weak var clipButton: UIButton!
@@ -62,7 +59,7 @@ class PlayerViewController: UIViewController {
     artworkImageView.image = AudioManager.shared.artwork ?? UIImage(named: "artwork")
     episodeNameLabel.text = AudioManager.shared.episodeName ?? ""
     podcastNameLabel.text = AudioManager.shared.podcastName ?? ""
-    totalTimeLabel.text = AudioManager.shared.durationString ?? ""  // TODO: CBB episode shows shorter than actual duration time???
+    totalTimeLabel.text = AudioManager.shared.durationString ?? ""  // TODO: CBB episode shows shorter than actual duration time??? Figure this out.
     clipButton.isHidden = AudioManager.shared.trackIsClip
     bookmarkButton.isHidden = AudioManager.shared.trackIsClip
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)

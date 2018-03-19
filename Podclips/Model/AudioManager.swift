@@ -198,7 +198,7 @@ extension NSManagedObject {
     if let episode = self as? Episode {
       return episode.episodeName
     } else if let clip = self as? Clip {
-      return clip.episode!.episodeName
+      return "Clip from \"\(clip.episode!.episodeName!)\""
     } else if let bookmark = self as? Bookmark {
       return bookmark.episode!.episodeName
     }
