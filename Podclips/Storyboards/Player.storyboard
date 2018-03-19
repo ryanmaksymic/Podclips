@@ -25,7 +25,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" alpha="0.25" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEt-e1-epn">
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEt-e1-epn">
                                 <rect key="frame" x="170" y="26" width="34" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="chevron"/>
@@ -188,6 +188,7 @@
                     </view>
                     <connections>
                         <outlet property="artworkImageView" destination="9kJ-0a-Dzf" id="wtG-8A-UyW"/>
+                        <outlet property="backwardButton" destination="EgG-00-QK3" id="WIc-Sh-TUd"/>
                         <outlet property="bookmarkButton" destination="D6f-K7-kPd" id="5dl-ue-ae9"/>
                         <outlet property="clipButton" destination="agk-fT-NPd" id="vmd-gP-gwO"/>
                         <outlet property="clipCancelButton" destination="f0v-20-WdZ" id="E2S-ha-VdG"/>
@@ -200,6 +201,7 @@
                         <outlet property="editToTimeLabel" destination="DDU-gT-m6b" id="DZ5-ul-CrU"/>
                         <outlet property="editToTimeStepper" destination="6x0-Yf-Tyu" id="TwS-96-2B3"/>
                         <outlet property="episodeNameLabel" destination="OaV-IG-f4p" id="w3S-BE-AMd"/>
+                        <outlet property="forwardButton" destination="c63-se-VCC" id="1kX-ug-G3A"/>
                         <outlet property="playPauseButton" destination="8lf-gC-Pw2" id="8OJ-Nd-nc4"/>
                         <outlet property="podcastNameLabel" destination="WPW-1c-vGQ" id="lpd-XF-Dlh"/>
                         <outlet property="progressSlider" destination="qlm-pw-5ki" id="pSs-es-dXh"/>
@@ -227,4 +229,5 @@
         <image name="scissors" width="23" height="30"/>
         <image name="share" width="22" height="30"/>
     </resources>
+    <color key="tintColor" name="pink1"/>
 </document>

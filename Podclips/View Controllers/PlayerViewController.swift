@@ -23,7 +23,9 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var progressSlider: ProgressSlider!
   
   @IBOutlet weak var controlButtonsView: UIView!
+  @IBOutlet weak var backwardButton: UIButton!
   @IBOutlet weak var playPauseButton: UIButton!
+  @IBOutlet weak var forwardButton: UIButton!
   @IBOutlet weak var clipButton: UIButton!
   @IBOutlet weak var bookmarkButton: UIButton!
   @IBOutlet weak var shareButton: UIButton!
@@ -61,13 +63,21 @@ class PlayerViewController: UIViewController {
     episodeNameLabel.text = AudioManager.shared.episodeName ?? ""
     podcastNameLabel.text = AudioManager.shared.podcastName ?? ""
     totalTimeLabel.text = AudioManager.shared.durationString ?? ""  // TODO: CBB episode shows shorter than actual duration time??? Figure this out.
+    
     clipButton.isHidden = AudioManager.shared.trackIsClip
     bookmarkButton.isHidden = AudioManager.shared.trackIsClip
     shareButton.isHidden = !AudioManager.shared.trackIsClip
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
-    updateTimeProgress()
+    
+    dismissButton.tintColor = UIColor.init(named: "darkBlue1")
+    backwardButton.tintColor = UIColor.init(named: "darkBlue1")
+    playPauseButton.tintColor = UIColor.init(named: "darkBlue1")
+    forwardButton.tintColor = UIColor.init(named: "darkBlue1")
+    
     artworkImageView.layer.cornerRadius = 4.0
     artworkImageView.clipsToBounds = true
+    
+    updateTimeProgress()
   }
   
   private func startProgressTimer() {

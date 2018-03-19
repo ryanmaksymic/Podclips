@@ -146,6 +146,7 @@ import UIKit
   func setupProgressView() {
     progressView = UIProgressView()
     addSubview(progressView)
+    progressView.progressTintColor = UIColor.init(named: "mediumBlue1")
     progressView.translatesAutoresizingMaskIntoConstraints = false
     progressView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     progressView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
