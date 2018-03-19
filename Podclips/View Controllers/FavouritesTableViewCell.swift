@@ -14,6 +14,7 @@ class FavouritesTableViewCell: UITableViewCell {
   @IBOutlet weak var podcastNameLabel: UILabel!
   @IBOutlet weak var detailsLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
+  @IBOutlet weak var shareButton: UIButton!
   
   override func awakeFromNib() {
     super.awakeFromNib()

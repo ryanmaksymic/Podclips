@@ -25,53 +25,46 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="95.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nv9-gn-th6">
-                                            <rect key="frame" x="16" y="8" width="492.5" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Episode Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nv9-gn-th6">
+                                            <rect key="frame" x="16" y="8" width="267.5" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99:99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ky3-w6-gqW">
-                                            <rect key="frame" x="517" y="8" width="75" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="75" id="gTw-03-oq9"/>
-                                            </constraints>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="99:99:99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ky3-w6-gqW">
+                                            <rect key="frame" x="292" y="8" width="75" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLu-il-XvO">
-                                            <rect key="frame" x="16" y="37" width="576" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Podcast Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLu-il-XvO">
+                                            <rect key="frame" x="16" y="37" width="313" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUj-cx-wy2">
-                                            <rect key="frame" x="16" y="66" width="576" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" fixedFrame="YES" text="Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUj-cx-wy2">
+                                            <rect key="frame" x="16" y="66" width="313" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Mr-0h-Vs1">
+                                            <rect key="frame" x="337" y="55" width="22" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" backgroundImage="share"/>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="wUj-cx-wy2" secondAttribute="bottom" constant="8" id="17p-QN-ojZ"/>
-                                        <constraint firstItem="dLu-il-XvO" firstAttribute="top" secondItem="nv9-gn-th6" secondAttribute="bottom" constant="8" id="Cde-d7-h1i"/>
-                                        <constraint firstAttribute="trailing" secondItem="dLu-il-XvO" secondAttribute="trailing" constant="8" id="GhP-Uu-BRI"/>
-                                        <constraint firstItem="nv9-gn-th6" firstAttribute="top" secondItem="32P-0w-0Wx" secondAttribute="top" constant="8" id="Qm5-Qd-sJI"/>
-                                        <constraint firstItem="wUj-cx-wy2" firstAttribute="leading" secondItem="32P-0w-0Wx" secondAttribute="leading" constant="16" id="U8C-yO-G4x"/>
-                                        <constraint firstAttribute="trailing" secondItem="Ky3-w6-gqW" secondAttribute="trailing" constant="8" id="ZER-oP-TcG"/>
-                                        <constraint firstAttribute="trailing" secondItem="wUj-cx-wy2" secondAttribute="trailing" constant="8" id="elY-WS-po3"/>
-                                        <constraint firstItem="dLu-il-XvO" firstAttribute="leading" secondItem="32P-0w-0Wx" secondAttribute="leading" constant="16" id="kCd-Up-bGX"/>
-                                        <constraint firstItem="nv9-gn-th6" firstAttribute="leading" secondItem="32P-0w-0Wx" secondAttribute="leading" constant="16" id="lPA-G5-iMo"/>
-                                        <constraint firstItem="Ky3-w6-gqW" firstAttribute="top" secondItem="32P-0w-0Wx" secondAttribute="top" constant="8" id="oez-rd-GrA"/>
-                                        <constraint firstItem="wUj-cx-wy2" firstAttribute="top" secondItem="dLu-il-XvO" secondAttribute="bottom" constant="8" id="tld-ne-Tnv"/>
-                                        <constraint firstItem="Ky3-w6-gqW" firstAttribute="leading" secondItem="nv9-gn-th6" secondAttribute="trailing" constant="8" id="zWs-wH-BNp"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="detailsLabel" destination="wUj-cx-wy2" id="j1c-wV-pix"/>
                                     <outlet property="episodeNameLabel" destination="nv9-gn-th6" id="gkg-i5-YT4"/>
                                     <outlet property="podcastNameLabel" destination="dLu-il-XvO" id="6Bm-c0-hg4"/>
+                                    <outlet property="shareButton" destination="3Mr-0h-Vs1" id="gVr-MX-gu3"/>
                                     <outlet property="timeLabel" destination="Ky3-w6-gqW" id="CdW-8y-Zp7"/>
                                 </connections>
                             </tableViewCell>
@@ -81,6 +74,7 @@
                             <outlet property="delegate" destination="3cU-Ad-s7Q" id="YrY-Wg-Ffd"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Qye-t8-qqr">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="2" id="u77-AS-rSI">
@@ -96,6 +90,7 @@
                             </connections>
                         </segmentedControl>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="segmentedControl" destination="u77-AS-rSI" id="p8e-xX-IYj"/>
                     </connections>
@@ -123,4 +118,7 @@
             <point key="canvasLocation" x="-68" y="266"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="share" width="22" height="30"/>
+    </resources>
 </document>

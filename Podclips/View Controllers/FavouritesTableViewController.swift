@@ -25,6 +25,8 @@ class FavouritesTableViewController: UITableViewController {
     super.viewDidLoad()
     loadTracks()
     self.navigationItem.rightBarButtonItem = self.editButtonItem
+    
+    tableView.rowHeight = 100  // TODO: Temporary; remove and use Auto Layout
   }
   
   
@@ -88,6 +90,19 @@ class FavouritesTableViewController: UITableViewController {
     _ = DataManager.create(entity: R.Episode, withData: episode4Data)
   }
   
+  @objc private func share(sender: UIButton) {
+    if let clip = tracks[sender.tag] as? Clip {
+      
+      let activityItem = clip.url!
+      
+      let activityVC = UIActivityViewController(activityItems: [activityItem],applicationActivities: nil)
+      activityVC.title = "SHARE A CLIP!"
+      activityVC.popoverPresentationController?.sourceView = self.view
+      
+      self.present(activityVC, animated: true, completion: nil)
+    }
+  }
+  
   
   // MARK: - UITableViewDataSource
   
@@ -109,6 +124,12 @@ class FavouritesTableViewController: UITableViewController {
     cell.podcastNameLabel.text = track.podcastName()
     cell.detailsLabel.text = track.details()
     cell.timeLabel.text = track.timeInfo()
+    
+    if let _ = track as? Clip {
+      cell.shareButton.isHidden = false
+      cell.shareButton.tag = indexPath.row
+      cell.shareButton.addTarget(self, action: #selector(share(sender:)), for: .touchUpInside)
+    }
     
     return cell
   }
@@ -132,6 +153,7 @@ class FavouritesTableViewController: UITableViewController {
       }
       tracks.remove(at: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: .fade)
+      tableView.reloadData()
     }
   }
   

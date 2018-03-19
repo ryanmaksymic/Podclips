@@ -49,7 +49,6 @@ class PlayerViewController: UIViewController {
     super.viewDidLoad()
     setupInterface()
     startProgressTimer()
-    NotificationCenter.default.addObserver(self, selector: #selector(clearTrackInfo), name: Notification.Name(R.SongEnded), object: nil)
   }
   
   
@@ -62,20 +61,11 @@ class PlayerViewController: UIViewController {
     totalTimeLabel.text = AudioManager.shared.durationString ?? ""  // TODO: CBB episode shows shorter than actual duration time??? Figure this out.
     clipButton.isHidden = AudioManager.shared.trackIsClip
     bookmarkButton.isHidden = AudioManager.shared.trackIsClip
+    // TODO: Add Share button if track is a clip
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
     updateTimeProgress()
     artworkImageView.layer.cornerRadius = 4.0
     artworkImageView.clipsToBounds = true
-  }
-  
-  @objc private func clearTrackInfo() {
-    artworkImageView.image = UIImage(named: "artwork")
-    episodeNameLabel.text = ""
-    podcastNameLabel.text = ""
-    totalTimeLabel.text = ""
-    clipButton.isHidden = true
-    bookmarkButton.isHidden = true
-    playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
   }
   
   private func startProgressTimer() {
@@ -156,7 +146,7 @@ class PlayerViewController: UIViewController {
       AudioManager.shared.setProgress(progressSlider.progress)
       updateTimeProgress()
     } else {
-      updateEditInterface()
+      updateEditInterface()  // TODO: Can drag knob while in editing mode
     }
   }
   
@@ -208,7 +198,7 @@ class PlayerViewController: UIViewController {
   }
   
   
-  func toggleClipEditorInterface() {
+  func toggleClipEditorInterface() {  // TODO: Stretch progress slider to zoom in on edit zone
     if !isCreatingClip {
       clipCancelButton.center.x -= 200
       editFromTimeStepper.center.x -= 200
@@ -336,7 +326,7 @@ class PlayerViewController: UIViewController {
       present(saveAlert, animated: true, completion: nil)
     }
     if dismiss {
-      Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (timer) in
+      Timer.scheduledTimer(withTimeInterval: 1.25, repeats: false, block: { (timer) in
         self.saveAlert.dismiss(animated: true, completion: nil)
       })
     }
