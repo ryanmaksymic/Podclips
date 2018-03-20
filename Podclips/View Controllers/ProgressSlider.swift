@@ -159,7 +159,7 @@ import UIKit
     knob = UIImageView(image: UIImage(named: "knob"))
     addSubview(knob)
     knob.translatesAutoresizingMaskIntoConstraints = false
-    knob.widthAnchor.constraint(equalToConstant: 15).isActive = true
+    knob.widthAnchor.constraint(equalToConstant: 30).isActive = true
     knob.heightAnchor.constraint(equalToConstant: 35).isActive = true
     knob.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
     knobCenterXConstraint = knob.centerXAnchor.constraint(equalTo: progressView.leftAnchor, constant: 0)
