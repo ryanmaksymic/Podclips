@@ -69,12 +69,12 @@ class PlayerViewController: UIViewController {
     shareButton.isHidden = !AudioManager.shared.trackIsClip
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
     
-    dismissButton.tintColor = UIColor.init(named: "darkBlue1")
-    backwardButton.tintColor = UIColor.init(named: "darkBlue1")
-    playPauseButton.tintColor = UIColor.init(named: "darkBlue1")
-    forwardButton.tintColor = UIColor.init(named: "darkBlue1")
+    dismissButton.tintColor = UIColor.init(named: Colors.secondary)
+    backwardButton.tintColor = UIColor.init(named: Colors.secondary)
+    playPauseButton.tintColor = UIColor.init(named: Colors.secondary)
+    forwardButton.tintColor = UIColor.init(named: Colors.secondary)
     
-    artworkImageView.layer.cornerRadius = 4.0
+    artworkImageView.layer.cornerRadius = 8.0
     artworkImageView.clipsToBounds = true
     
     updateTimeProgress()

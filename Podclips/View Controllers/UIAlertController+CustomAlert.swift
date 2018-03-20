@@ -18,6 +18,7 @@ extension UIAlertController {
       textField.placeholder = "Add a comment if you like"
       textField.textAlignment = .center
       textField.autocapitalizationType = .sentences
+      textField.returnKeyType = .done
     }
     
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in

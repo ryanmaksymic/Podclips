@@ -10,6 +10,14 @@ import UIKit
 import CoreData
 import AVFoundation
 
+enum Colors {
+  static let primary = "pink1"
+  static let secondary = "darkBlue1"
+  static let tertiary = "mediumBlue1"
+  static let quaternary = "lightBlue1"
+  static let background = "white1"
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
