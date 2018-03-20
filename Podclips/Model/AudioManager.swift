@@ -125,7 +125,7 @@ class AudioManager {
       let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: bookmark.episode!.fileName, ofType: "mp3")!)
       startPlaying(url: episodeURL, atTime: bookmark.timestamp)
     }
-    NotificationCenter.default.post(name: Notification.Name(R.NewSongLoaded), object: nil)
+    NotificationCenter.default.post(name: Notification.Name(R.SongPlaying), object: nil)
     isTrackLoaded = true
   }
   

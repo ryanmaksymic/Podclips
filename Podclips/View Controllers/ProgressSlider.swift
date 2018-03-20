@@ -44,8 +44,8 @@ import UIKit
     }
     set {
       setIsInEditingMode(newValue)
-      knob.isHidden = newValue
       UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseOut], animations: {
+        self.knob.alpha = newValue ? 0 : 1
         self.leftHandle.alpha = newValue ? 1 : 0
         self.rightHandle.alpha = newValue ? 1 : 0
         self.editZone.alpha = newValue ? 1 : 0
@@ -60,7 +60,7 @@ import UIKit
     }
     set {
       setIsPlayingInEditingMode(newValue)
-      knob.isHidden = !newValue
+      knob.alpha = newValue ? 1 : 0
       leftHandle.isHidden = newValue
       rightHandle.isHidden = newValue
     }
@@ -146,6 +146,8 @@ import UIKit
   func setupProgressView() {
     progressView = UIProgressView()
     addSubview(progressView)
+    progressView.progressTintColor = UIColor.init(named: Colors.tertiary)
+    progressView.trackTintColor = UIColor.init(named: Colors.quaternary)
     progressView.translatesAutoresizingMaskIntoConstraints = false
     progressView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     progressView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -157,7 +159,7 @@ import UIKit
     knob = UIImageView(image: UIImage(named: "knob"))
     addSubview(knob)
     knob.translatesAutoresizingMaskIntoConstraints = false
-    knob.widthAnchor.constraint(equalToConstant: 15).isActive = true
+    knob.widthAnchor.constraint(equalToConstant: 30).isActive = true
     knob.heightAnchor.constraint(equalToConstant: 35).isActive = true
     knob.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
     knobCenterXConstraint = knob.centerXAnchor.constraint(equalTo: progressView.leftAnchor, constant: 0)
@@ -166,8 +168,6 @@ import UIKit
     let knobPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
     knob.addGestureRecognizer(knobPanGestureRecognizer)
     knob.isUserInteractionEnabled = true
-    
-    knob.isHidden = false
   }
   
   func setupEditor() {

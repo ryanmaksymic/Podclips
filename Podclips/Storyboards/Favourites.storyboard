@@ -54,7 +54,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Mr-0h-Vs1">
-                                            <rect key="frame" x="337" y="55" width="22" height="30"/>
+                                            <rect key="frame" x="337" y="57" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" backgroundImage="share"/>
                                             <connections>
@@ -122,6 +122,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="share" width="22" height="30"/>
+        <image name="share" width="40" height="40"/>
     </resources>
 </document>

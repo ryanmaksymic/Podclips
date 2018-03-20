@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "scissors@1x.png",
+      "filename" : "scissors.png",
       "scale" : "1x"
     },
     {
@@ -19,5 +19,8 @@
   "info" : {
     "version" : 1,
     "author" : "xcode"
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
   }
 }
