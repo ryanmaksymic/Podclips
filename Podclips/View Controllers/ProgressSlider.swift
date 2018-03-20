@@ -221,20 +221,22 @@ import UIKit
       if touchLocation.x > handleWidth && touchLocation.x < self.frame.width - handleWidth {
         setProgress(Float((touchLocation.x - handleWidth)/progressView.frame.width))
         knobCenterXConstraint.constant = touchLocation.x - handleWidth
+        sendActions(for: .valueChanged)
       }
     }
     else if recognizer.view == leftHandle {
       if touchLocation.x >= handleWidth/2 && touchLocation.x < rightHandle.center.x - handleWidth {
         setEditFrom(Float((touchLocation.x - handleWidth/2)/progressView.frame.width))
         leftHandleCenterXConstraint.constant = touchLocation.x - handleWidth
+        sendActions(for: .editingDidEnd)
       }
     }
     else if recognizer.view == rightHandle {
       if touchLocation.x <= self.frame.width - handleWidth/2 && touchLocation.x > leftHandle.center.x + handleWidth {
         setEditTo(Float((touchLocation.x - 1.5*handleWidth)/progressView.frame.width))
         rightHandleCenterXConstraint.constant = touchLocation.x - handleWidth
+        sendActions(for: .editingDidEnd)
       }
     }
-    sendActions(for: .valueChanged)
   }
 }

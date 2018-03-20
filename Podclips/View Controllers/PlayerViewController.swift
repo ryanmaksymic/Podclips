@@ -159,12 +159,12 @@ class PlayerViewController: UIViewController {
   }
   
   @IBAction func progressSliderValueChanged(sender: ProgressSlider) {
-    if !isCreatingClip {
-      AudioManager.shared.setProgress(progressSlider.progress)  // TODO: Progress bar sometimes does not follow editFrom point
-      updateTimeProgress()
-    } else {
-      updateEditInterface()  // TODO: Can drag knob while in editing mode
-    }
+    AudioManager.shared.setProgress(progressSlider.progress)
+    updateTimeProgress()
+  }
+  
+  @IBAction func progressSliderEditingDidEnd(_ sender: ProgressSlider) {
+    updateEditInterface()
   }
   
   

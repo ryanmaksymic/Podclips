@@ -55,6 +55,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
+                                    <action selector="progressSliderEditingDidEnd:" destination="J7y-nT-Cir" eventType="editingDidEnd" id="TDE-kM-Raw"/>
                                     <action selector="progressSliderValueChangedWithSender:" destination="J7y-nT-Cir" eventType="valueChanged" id="y9z-l8-rDD"/>
                                 </connections>
                             </view>
