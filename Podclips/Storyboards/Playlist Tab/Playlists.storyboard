@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VHb-ll-Xot">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Playlists View Controller-->
+        <scene sceneID="wX0-A2-upO">
+            <objects>
+                <viewController id="VHb-ll-Xot" customClass="PlaylistsViewController" customModule="Podclips" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7yt-BM-ejN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="udy-XQ-GSt">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="episodeCell" id="WiR-su-aAK" customClass="EpisodeTableViewCell" customModule="Podclips" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WiR-su-aAK" id="bcs-mG-d81">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="VHb-ll-Xot" id="tVQ-qF-tvs"/>
+                                    <outlet property="delegate" destination="VHb-ll-Xot" id="IWO-Ai-ExJ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="g9w-8b-Jcg" firstAttribute="trailing" secondItem="udy-XQ-GSt" secondAttribute="trailing" id="BAz-nW-kHd"/>
+                            <constraint firstItem="g9w-8b-Jcg" firstAttribute="bottom" secondItem="udy-XQ-GSt" secondAttribute="bottom" id="DJH-w1-Cny"/>
+                            <constraint firstItem="udy-XQ-GSt" firstAttribute="leading" secondItem="g9w-8b-Jcg" secondAttribute="leading" id="Iqm-bg-nOz"/>
+                            <constraint firstItem="udy-XQ-GSt" firstAttribute="top" secondItem="g9w-8b-Jcg" secondAttribute="top" id="uQs-2o-hm7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="g9w-8b-Jcg"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="udy-XQ-GSt" id="oIX-cx-mll"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Llu-Bi-XOH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="163" y="34"/>
+        </scene>
+    </scenes>
+</document>

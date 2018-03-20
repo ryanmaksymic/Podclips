@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Episodes-->
+        <!--Playlists-->
         <scene sceneID="RAk-YI-PL7">
             <objects>
-                <viewControllerPlaceholder storyboardName="Episodes" id="u8z-Nr-25h" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Playlists" id="u8z-Nr-25h" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="6Go-eo-gWZ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awp-Ns-1FD" userLabel="First Responder" sceneMemberID="firstResponder"/>
