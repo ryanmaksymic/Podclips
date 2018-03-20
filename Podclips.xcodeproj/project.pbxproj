@@ -159,7 +159,8 @@
 				FE3EC0082059EFC5004842DF /* utu2tm.jpg */,
 				FE3EC0052059EFC3004842DF /* UTU2TM.mp3 */,
 			);
-			path = "Dummy Data";
+			name = "Dummy Data";
+			path = "../Dummy Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
