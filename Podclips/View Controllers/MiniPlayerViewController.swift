@@ -27,8 +27,7 @@ class MiniPlayerViewController: UIViewController {
     artworkImageView.layer.cornerRadius = 4.0
     artworkImageView.clipsToBounds = true
     updateTrackInfo()
-    NotificationCenter.default.addObserver(self, selector: #selector(updateTrackInfo), name: Notification.Name(R.NewSongLoaded), object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(clearTrackInfo), name: Notification.Name(R.SongEnded), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(updateTrackInfo), name: Notification.Name(R.SongPlaying), object: nil)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -76,7 +75,7 @@ class MiniPlayerViewController: UIViewController {
   // MARK: - Touches
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    if AudioManager.shared.track != nil {
+    if AudioManager.shared.isTrackLoaded {
       performSegue(withIdentifier: "PresentPlayer", sender: nil)
     }
   }

@@ -53,12 +53,13 @@ class PlayerViewController: UIViewController {
     super.viewDidLoad()
     setupInterface()
     startProgressTimer()
+    NotificationCenter.default.addObserver(self, selector: #selector(dismiss(_:)), name: Notification.Name(R.SongEnded), object: nil)
   }
   
   
   // MARK: - Interface
   
-  private func setupInterface() {
+  @objc private func setupInterface() {
     artworkImageView.image = AudioManager.shared.artwork ?? UIImage(named: "artwork")
     episodeNameLabel.text = AudioManager.shared.episodeName ?? ""
     podcastNameLabel.text = AudioManager.shared.podcastName ?? ""
