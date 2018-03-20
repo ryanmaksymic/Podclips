@@ -120,10 +120,13 @@ class FavouritesTableViewController: UITableViewController {
     cell.detailsLabel.text = track.details()
     cell.timeLabel.text = track.timeInfo()
     
-    if let _ = track as? Clip {
+    if let clip = track as? Clip {
       cell.shareButton.isHidden = false
-      cell.shareButton.tag = indexPath.row
-      cell.shareButton.addTarget(self, action: #selector(share(sender:)), for: .touchUpInside)
+      cell.onButtonTouched = { (cell) in
+        let shareMessage = "Hey, check out this clip from \(clip.podcastName()!)!\nSent from the Podclips™ app"
+        let shareActivityViewController = UIActivityViewController(activityItems: [shareMessage, clip.url!], applicationActivities: [])
+        self.present(shareActivityViewController, animated: true, completion: nil)
+      }
     } else { cell.shareButton.isHidden = true }
     
     return cell
@@ -148,7 +151,6 @@ class FavouritesTableViewController: UITableViewController {
       }
       tracks.remove(at: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: .fade)
-      tableView.reloadData()
     }
   }
   

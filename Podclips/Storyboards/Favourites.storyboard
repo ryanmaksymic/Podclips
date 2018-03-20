@@ -57,6 +57,9 @@
                                             <rect key="frame" x="337" y="55" width="22" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" backgroundImage="share"/>
+                                            <connections>
+                                                <action selector="share:" destination="Mg0-g4-5RT" eventType="touchUpInside" id="sh5-Sf-LwD"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>

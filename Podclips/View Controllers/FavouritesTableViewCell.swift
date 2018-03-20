@@ -16,11 +16,17 @@ class FavouritesTableViewCell: UITableViewCell {
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var shareButton: UIButton!
   
+  var onButtonTouched: ((UITableViewCell) -> Void)? = nil
+  
   override func awakeFromNib() {
     super.awakeFromNib()
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
+  }
+  
+  @IBAction func share(_ sender: UIButton) {
+    onButtonTouched?(self)
   }
 }
