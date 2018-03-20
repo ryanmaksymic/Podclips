@@ -55,17 +55,55 @@ class PodcastsViewController: UIViewController {
                 
                 guard let feed = senderVC.rssURL else { return }
                 rssParser = RssfeedParser(feed: feed)
-                let podcastTuple = rssParser.getPodcast()
+                guard let podcastTuple = rssParser.getPodcast() else { return }
                 let newPodcast = Podcast(context: managedContext)
-                newPodcast.title = podcastTuple?.0
-                newPodcast.rssfeed = URL(string: (podcastTuple?.1)!)
-//                newPodcast.artwork = UIImagePNGRepresentation((podcastTuple?.2)!)
-//                rssParser.getEpisodes()
-                podcasts.append(newPodcast)
-                tableView.reloadData()
-                print("\(podcasts)")
+                newPodcast.title = podcastTuple.0
+                newPodcast.rssfeed = URL(string: podcastTuple.1)
+               
+                // get podcast artwork
+                let imageURL = podcastTuple.2
+                getPodcastImage(imageURL: imageURL, completion: { (image) in
+                    newPodcast.artwork = UIImagePNGRepresentation(image)
+                    self.podcasts.append(newPodcast)
+                })
             }
         }
+    }
+    
+    private func getPodcastImage(imageURL: URL, completion: @escaping (UIImage) -> Void) {
+        let request = URLRequest(url: imageURL)
+        let defaultSession = URLSession(configuration: .default)
+        let task = defaultSession.downloadTask(with: request) { (url, response, error) in
+            guard error == nil else {
+                print("Error with download task")
+                return
+            }
+            guard let url = url else {
+                print("Could not get image URL")
+                return
+            }
+            let statusCode = (response as! HTTPURLResponse).statusCode
+            guard statusCode == 200 else {
+                print(#line, statusCode)
+                return
+            }
+            
+            do {
+                let data = try Data(contentsOf: url)
+                guard let image = UIImage(data: data) else {
+                    return
+                }
+                completion(image)
+            }
+            catch {
+                print(#line, error.localizedDescription)
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        task.resume()
     }
 
 }
@@ -86,7 +124,10 @@ extension PodcastsViewController: UITableViewDataSource {
         
         // configure cell
         cell.titleLabel.text = podcast.title
-        cell.artworkImageView.image = UIImage(data: podcast.artwork!)
+        
+        if let data = podcast.artwork {
+            cell.artworkImageView.image = UIImage(data: data)
+        }
         
         return cell
     }

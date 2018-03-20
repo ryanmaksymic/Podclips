@@ -17,7 +17,7 @@ class RssfeedParser {
         self.podcastFeed = feed
     }
     
-    func getPodcast() -> (title: String, feed: String, artwork: UIImage)? {
+    func getPodcast() -> (title: String, feed: String, imageURL: URL)? {
         guard let feedURL = URL(string: podcastFeed), let parser = FeedParser(URL: feedURL) else {
             print("could not change string to URL")
             return nil
@@ -32,14 +32,12 @@ class RssfeedParser {
         guard let itunes = feed.iTunes, let image = itunes.iTunesImage, let imageAtt = image.attributes,
             let podImageURLString = imageAtt.href,
             let podImageURL = URL(string: podImageURLString) else { return nil }
-        var podcastImage = UIImage()
+//        var podcastImage = UIImage()
 //        getPodcastImage(imageURL: podImageURL, completion: { (image) in
 //            podcastImage = image
 //        })
         
-        // Make Podcast with self.feed, podcastTitle, podcastImage
-        return (podcastTitle, podcastFeed, podcastImage)
-
+        return (podcastTitle, podcastFeed, podImageURL)
     }
     
     func getEpisodes() {
