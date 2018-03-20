@@ -25,8 +25,6 @@ class FavouritesTableViewController: UITableViewController {
     super.viewDidLoad()
     loadTracks()
     self.navigationItem.rightBarButtonItem = self.editButtonItem
-    
-    tableView.rowHeight = 100  // TODO: Temporary; remove and use Auto Layout
   }
   
   
