@@ -106,7 +106,7 @@ class PlayerViewController: UIViewController {
     let toTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editTo))
     editToTimeLabel.text = toTime.string(ms: true)
     editToTimeStepper.value = toTime
-    progressSlider.progress = progressSlider.editFrom
+    //progressSlider.progress = progressSlider.editFrom
   }
   
   
@@ -272,6 +272,7 @@ class PlayerViewController: UIViewController {
   
   @IBAction func cancelClip(_ sender: UIButton) {
     toggleClipEditorInterface()
+    updateTimeProgress()
   }
   
   @IBAction func saveClip(_ sender: UIButton) {
