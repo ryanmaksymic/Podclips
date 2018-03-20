@@ -26,6 +26,7 @@ class MiniPlayerViewController: UIViewController {
     super.viewDidLoad()
     artworkImageView.layer.cornerRadius = 4.0
     artworkImageView.clipsToBounds = true
+    playPauseButton.tintColor = UIColor.init(named: Colors.secondary)
     updateTrackInfo()
     NotificationCenter.default.addObserver(self, selector: #selector(updateTrackInfo), name: Notification.Name(R.SongPlaying), object: nil)
   }

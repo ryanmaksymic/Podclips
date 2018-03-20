@@ -127,6 +127,8 @@ class PlayerViewController: UIViewController {
       editToTimeStepper.isEnabled = true
       clipCancelButton.isEnabled = true
       clipSaveButton.isEnabled = true
+      backwardButton.isEnabled = false
+      forwardButton.isEnabled = false
     }
   }
   
@@ -141,6 +143,8 @@ class PlayerViewController: UIViewController {
       editToTimeStepper.isEnabled = false
       clipCancelButton.isEnabled = false
       clipSaveButton.isEnabled = false
+      backwardButton.isEnabled = true
+      forwardButton.isEnabled = true
     }
   }
   
@@ -156,7 +160,7 @@ class PlayerViewController: UIViewController {
   
   @IBAction func progressSliderValueChanged(sender: ProgressSlider) {
     if !isCreatingClip {
-      AudioManager.shared.setProgress(progressSlider.progress)
+      AudioManager.shared.setProgress(progressSlider.progress)  // TODO: Progress bar sometimes does not follow editFrom point
       updateTimeProgress()
     } else {
       updateEditInterface()  // TODO: Can drag knob while in editing mode
@@ -167,6 +171,7 @@ class PlayerViewController: UIViewController {
   // MARK: - Sharing
   
   @IBAction func share(_ sender: UIButton) {
+    if AudioManager.shared.isPlaying { pausePlayer() }
     if let clip = AudioManager.shared.track as? Clip, let clipURL = clip.url {
       let epName = "Hey, check out this clip from \(clip.podcastName()!)!\nSent from the Podclips™ app"
       let shareActivityViewController = UIActivityViewController(activityItems: [epName, clipURL], applicationActivities: [])
@@ -206,7 +211,7 @@ class PlayerViewController: UIViewController {
   // MARK: - Clips
   
   @IBAction func newClip(_ sender: UIButton) {
-    pausePlayer()
+    if AudioManager.shared.isPlaying { pausePlayer() }
     toggleClipEditorInterface()
     progressSlider.isPlayingInEditingMode = false
     
@@ -232,13 +237,15 @@ class PlayerViewController: UIViewController {
       clipSaveButton.isHidden = false
       editFromTimeStepper.isHidden = false
       editToTimeStepper.isHidden = false
+      backwardButton.isEnabled = false
+      forwardButton.isEnabled = false
     }
     UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseOut], animations: {
       self.clipCancelButton.center.x += self.isCreatingClip ? -200 : 200
       self.editFromTimeStepper.center.x += self.isCreatingClip ? -200 : 200
       self.clipSaveButton.center.x += self.isCreatingClip ? 200 : -200
       self.editToTimeStepper.center.x += self.isCreatingClip ? 200 : -200
-      self.controlButtonsView.center.y += self.isCreatingClip ? -40 : 40
+      self.controlButtonsView.center.y += self.isCreatingClip ? -50 : 50
       self.dismissButton.isHidden = !self.isCreatingClip
       self.clipButton.alpha = self.isCreatingClip ? 1 : 0
       self.bookmarkButton.alpha = self.isCreatingClip ? 1 : 0
@@ -255,6 +262,8 @@ class PlayerViewController: UIViewController {
         self.clipSaveButton.isHidden = true
         self.editFromTimeStepper.isHidden = true
         self.editToTimeStepper.isHidden = true
+        self.backwardButton.isEnabled = true
+        self.forwardButton.isEnabled = true
       }
     }
     isCreatingClip = !isCreatingClip
