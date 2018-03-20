@@ -232,15 +232,15 @@ extension NSManagedObject {
   
   func artwork() -> UIImage? {
     if let episode = self as? Episode {
-      return UIImage(data: episode.artwork!)
+      return UIImage()
     } else if let clip = self as? Clip {
-      return UIImage(data: clip.episode!.artwork!)
+      return UIImage()
     } else if let bookmark = self as? Bookmark {
-      return UIImage(data: bookmark.episode!.artwork!)
+      return UIImage()
     }
     return nil
   }
-  
+ 
   func timeInfo() -> String? {
     if let episode = self as? Episode {
       return episode.durationString

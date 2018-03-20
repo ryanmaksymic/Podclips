@@ -9,7 +9,9 @@
 import UIKit
 
 class PodcastTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var artworkImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

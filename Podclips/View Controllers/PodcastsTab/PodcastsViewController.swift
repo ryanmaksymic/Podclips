@@ -7,13 +7,18 @@
 //
 
 import UIKit
+import CoreData
+import FeedKit
 
 class PodcastsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+    var rssParser: RssfeedParser!
+    var podcasts = [Podcast]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -22,15 +27,46 @@ class PodcastsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showEpisodes" {
+            
+            guard let dvc = segue.destination as? EpisodesViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedEpisodeCell = sender as? UITableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedEpisodeCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+        }
     }
-    */
+    
+    @IBAction func unwindFromAddPodcastVC(_ sender: UIStoryboardSegue) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        if sender.source is AddPodcastViewController {
+            if let senderVC = sender.source as? AddPodcastViewController {
+                
+                guard let feed = senderVC.rssURL else { return }
+                rssParser = RssfeedParser(feed: feed)
+                let podcastTuple = rssParser.getPodcast()
+                let newPodcast = Podcast(context: managedContext)
+                newPodcast.title = podcastTuple?.0
+                newPodcast.rssfeed = URL(string: (podcastTuple?.1)!)
+//                newPodcast.artwork = UIImagePNGRepresentation((podcastTuple?.2)!)
+//                rssParser.getEpisodes()
+                podcasts.append(newPodcast)
+                tableView.reloadData()
+                print("\(podcasts)")
+            }
+        }
+    }
 
 }
 
@@ -40,13 +76,17 @@ extension PodcastsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return podcasts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "podcastCell", for: indexPath) as! PodcastTableViewCell
         
+        let podcast = podcasts[indexPath.row]
+        
         // configure cell
+        cell.titleLabel.text = podcast.title
+        cell.artworkImageView.image = UIImage(data: podcast.artwork!)
         
         return cell
     }

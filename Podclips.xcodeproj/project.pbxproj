@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		91419DEE20618EF20093104E /* RssfeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91419DED20618EF20093104E /* RssfeedParser.swift */; };
-		914B52BB20617FE800E659CB /* FeedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914B52BA20617FE700E659CB /* FeedKit.framework */; };
-		914B52BC20617FE800E659CB /* FeedKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 914B52BA20617FE700E659CB /* FeedKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		91419E1420619C7A0093104E /* FeedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91419E1320619C7A0093104E /* FeedKit.framework */; };
+		91419E1520619C7A0093104E /* FeedKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91419E1320619C7A0093104E /* FeedKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		914B52C3206185AC00E659CB /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 914B52C2206185AC00E659CB /* Playlists.storyboard */; };
 		914B52C52061866400E659CB /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914B52C42061866400E659CB /* PlaylistsViewController.swift */; };
 		914B52C8206186A300E659CB /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914B52C7206186A300E659CB /* EpisodesViewController.swift */; };
@@ -40,13 +40,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		914B52BD20617FE800E659CB /* Embed Frameworks */ = {
+		91419E1220619A5A0093104E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				914B52BC20617FE800E659CB /* FeedKit.framework in Embed Frameworks */,
+				91419E1520619C7A0093104E /* FeedKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,7 +55,7 @@
 
 /* Begin PBXFileReference section */
 		91419DED20618EF20093104E /* RssfeedParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssfeedParser.swift; sourceTree = "<group>"; };
-		914B52BA20617FE700E659CB /* FeedKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FeedKit.framework; path = Carthage/Build/iOS/FeedKit.framework; sourceTree = "<group>"; };
+		91419E1320619C7A0093104E /* FeedKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FeedKit.framework; path = Carthage/Build/iOS/FeedKit.framework; sourceTree = "<group>"; };
 		914B52C2206185AC00E659CB /* Playlists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
 		914B52C42061866400E659CB /* PlaylistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
 		914B52C7206186A300E659CB /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				914B52BB20617FE800E659CB /* FeedKit.framework in Frameworks */,
+				91419E1420619C7A0093104E /* FeedKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +155,7 @@
 		FE3EBFC420599E77004842DF = {
 			isa = PBXGroup;
 			children = (
-				914B52BA20617FE700E659CB /* FeedKit.framework */,
+				91419E1320619C7A0093104E /* FeedKit.framework */,
 				FE3EBFCF20599E77004842DF /* Podclips */,
 				FE3EBFCE20599E77004842DF /* Products */,
 			);
@@ -234,7 +234,7 @@
 				FE3EBFC920599E77004842DF /* Sources */,
 				FE3EBFCA20599E77004842DF /* Frameworks */,
 				FE3EBFCB20599E77004842DF /* Resources */,
-				914B52BD20617FE800E659CB /* Embed Frameworks */,
+				91419E1220619A5A0093104E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

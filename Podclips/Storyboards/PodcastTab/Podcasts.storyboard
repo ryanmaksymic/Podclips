@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,14 +25,41 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="podcastCell" id="GPA-9T-zww" customClass="PodcastTableViewCell" customModule="Podclips" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="podcastCell" rowHeight="60" id="GPA-9T-zww" customClass="PodcastTableViewCell" customModule="Podclips" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GPA-9T-zww" id="RCt-Er-mGc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yp-y7-H8E">
+                                                    <rect key="frame" x="73" y="18" width="287" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZkF-j2-MH8">
+                                                    <rect key="frame" x="15" y="4" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="LHU-l0-qW1"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="VdK-sy-2dl"/>
+                                                        <constraint firstAttribute="height" constant="50" id="hcS-Ex-7Uz"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2yp-y7-H8E" firstAttribute="leading" secondItem="ZkF-j2-MH8" secondAttribute="trailing" constant="8" id="7jR-ZH-WJv"/>
+                                                <constraint firstItem="ZkF-j2-MH8" firstAttribute="leading" secondItem="RCt-Er-mGc" secondAttribute="leading" constant="15" id="A0x-fN-HrB"/>
+                                                <constraint firstItem="2yp-y7-H8E" firstAttribute="centerY" secondItem="ZkF-j2-MH8" secondAttribute="centerY" id="J62-mX-3Fq"/>
+                                                <constraint firstItem="ZkF-j2-MH8" firstAttribute="centerY" secondItem="RCt-Er-mGc" secondAttribute="centerY" id="Z3G-Bg-g3H"/>
+                                                <constraint firstItem="2yp-y7-H8E" firstAttribute="trailing" secondItem="RCt-Er-mGc" secondAttribute="trailingMargin" id="oFE-Hb-kQ5"/>
+                                                <constraint firstItem="ZkF-j2-MH8" firstAttribute="width" secondItem="RCt-Er-mGc" secondAttribute="height" multiplier="50:59" id="qfc-80-1rU"/>
+                                                <constraint firstItem="2yp-y7-H8E" firstAttribute="leading" secondItem="ZkF-j2-MH8" secondAttribute="trailing" constant="8" symbolic="YES" id="uCA-nc-5l6"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="artworkImageView" destination="ZkF-j2-MH8" id="XQe-UM-eqo"/>
+                                            <outlet property="titleLabel" destination="2yp-y7-H8E" id="NQ3-fd-4pl"/>
                                             <segue destination="MUg-7y-4VG" kind="show" identifier="listEpisodes" id="gAK-Xb-Fki"/>
                                         </connections>
                                     </tableViewCell>
@@ -81,13 +110,20 @@
                                 <rect key="frame" x="319" y="112" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save"/>
+                                <connections>
+                                    <segue destination="oad-aU-jsZ" kind="unwind" unwindAction="unwindFromAddPodcastVC:" id="wwA-jl-SOu"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="KcE-RF-yRY"/>
                     </view>
+                    <connections>
+                        <outlet property="urlTextField" destination="eh1-D4-zlV" id="tAs-pQ-BiL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0KQ-O3-2OO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="oad-aU-jsZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1453.5999999999999" y="98.50074962518741"/>
         </scene>
