@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91419DEE20618EF20093104E /* RssfeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91419DED20618EF20093104E /* RssfeedParser.swift */; };
 		914B52BB20617FE800E659CB /* FeedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914B52BA20617FE700E659CB /* FeedKit.framework */; };
 		914B52BC20617FE800E659CB /* FeedKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 914B52BA20617FE700E659CB /* FeedKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		914B52C3206185AC00E659CB /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 914B52C2206185AC00E659CB /* Playlists.storyboard */; };
@@ -53,6 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		91419DED20618EF20093104E /* RssfeedParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssfeedParser.swift; sourceTree = "<group>"; };
 		914B52BA20617FE700E659CB /* FeedKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FeedKit.framework; path = Carthage/Build/iOS/FeedKit.framework; sourceTree = "<group>"; };
 		914B52C2206185AC00E659CB /* Playlists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
 		914B52C42061866400E659CB /* PlaylistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		91419DEC20618ED50093104E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				91419DED20618EF20093104E /* RssfeedParser.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		914B52BE2061821B00E659CB /* PlaylistsTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +118,7 @@
 		914B52BF2061822A00E659CB /* PodcastsTab */ = {
 			isa = PBXGroup;
 			children = (
+				91419DEC20618ED50093104E /* Networking */,
 				914B52D72061892200E659CB /* PodcastsViewController.swift */,
 				914B52C9206186B000E659CB /* AddPodcastViewController.swift */,
 				914B52C7206186A300E659CB /* EpisodesViewController.swift */,
@@ -309,6 +320,7 @@
 				FE3EBFD320599E77004842DF /* ViewController.swift in Sources */,
 				FE3EBFD120599E77004842DF /* AppDelegate.swift in Sources */,
 				FE44F850205ADB1F00D988FD /* UIAlertController+CustomAlert.swift in Sources */,
+				91419DEE20618EF20093104E /* RssfeedParser.swift in Sources */,
 				FE3EBFF42059B36A004842DF /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
