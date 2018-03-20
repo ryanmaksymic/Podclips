@@ -38,7 +38,7 @@
             </objects>
             <point key="canvasLocation" x="536" y="872"/>
         </scene>
-        <!--Podcasts-->
+        <!--Playlists-->
         <scene sceneID="Nou-ae-F8j">
             <objects>
                 <viewController id="JtA-bK-idW" sceneMemberID="viewController">
@@ -64,7 +64,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Xcc-xr-1Kn"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Podcasts" id="eg8-6X-8Sf"/>
+                    <tabBarItem key="tabBarItem" title="Playlists" image="playlists" selectedImage="playlists_selected" id="eg8-6X-8Sf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KYE-XI-Nqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -96,13 +96,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="5D0-yH-WPk"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favourites" id="aY8-MM-g9A"/>
+                    <tabBarItem key="tabBarItem" title="Favourites" image="star" selectedImage="star_selected" id="aY8-MM-g9A"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gmm-IP-jFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-130.40000000000001" y="849.62518740629696"/>
         </scene>
-        <!--Episodes-->
+        <!--Podcasts-->
         <scene sceneID="HPU-mO-8R7">
             <objects>
                 <viewController id="UnV-cc-c2k" sceneMemberID="viewController">
@@ -128,7 +128,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fa7-ok-lXl"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Episodes" id="eQP-DO-XIS"/>
+                    <tabBarItem key="tabBarItem" title="Podcasts" image="podcasts" selectedImage="podcasts_selected" id="eQP-DO-XIS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgd-Lw-Of3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -164,8 +164,16 @@
             <point key="canvasLocation" x="-1000" y="-83"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="playlists" width="36" height="32"/>
+        <image name="playlists_selected" width="35" height="30"/>
+        <image name="podcasts" width="36" height="30"/>
+        <image name="podcasts_selected" width="36" height="30"/>
+        <image name="star" width="31" height="30"/>
+        <image name="star_selected" width="31" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="T9J-8z-OrT"/>
+        <segue reference="ie7-jU-dBv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="pink1"/>
 </document>
