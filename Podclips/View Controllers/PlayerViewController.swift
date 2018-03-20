@@ -245,7 +245,7 @@ class PlayerViewController: UIViewController {
       self.editFromTimeStepper.center.x += self.isCreatingClip ? -200 : 200
       self.clipSaveButton.center.x += self.isCreatingClip ? 200 : -200
       self.editToTimeStepper.center.x += self.isCreatingClip ? 200 : -200
-      self.controlButtonsView.center.y += self.isCreatingClip ? -50 : 50
+      self.controlButtonsView.center.y += self.isCreatingClip ? -40 : 40
       self.dismissButton.isHidden = !self.isCreatingClip
       self.clipButton.alpha = self.isCreatingClip ? 1 : 0
       self.bookmarkButton.alpha = self.isCreatingClip ? 1 : 0
