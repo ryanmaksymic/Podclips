@@ -14,25 +14,49 @@ class PodcastsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var rssParser: RssfeedParser!
-    var podcasts = [Podcast]()
+    
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    var managedObjectContext: NSManagedObjectContext!
+    
+    private lazy var fetchedResultsController: NSFetchedResultsController<Podcast> = {
+        // Create Fetch Request
+        let fetchRequest: NSFetchRequest<Podcast> = Podcast.fetchRequest()
+        
+        // Configure Fetch Request
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Podcast.title), ascending: true)]
+        
+        // Create Fetched Results Controller
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                                  managedObjectContext: self.managedObjectContext,
+                                                                  sectionNameKeyPath: nil,
+                                                                  cacheName: nil)
+        // Configure Fetched Results Controller
+        fetchedResultsController.delegate = self
+        return fetchedResultsController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        managedObjectContext = appDelegate?.persistentContainer.viewContext
+        managedObjectContext.automaticallyMergesChangesFromParent = true
+        
+        fetchPodcasts()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showEpisodes" {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "listEpisodes" {
             
-            guard let dvc = segue.destination as? EpisodesViewController else {
+            guard let destination = segue.destination as? EpisodesViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
@@ -44,29 +68,45 @@ class PodcastsViewController: UIViewController {
                 fatalError("The selected cell is not being displayed by the table")
             }
             
+            // Fetch Podcast
+            let podcast = fetchedResultsController.object(at: indexPath)
+            
+            destination.podcast = podcast
         }
     }
     
+    // MARK: - IBActions
     @IBAction func unwindFromAddPodcastVC(_ sender: UIStoryboardSegue) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        if sender.source is AddPodcastViewController {
-            if let senderVC = sender.source as? AddPodcastViewController {
+        
+        if sender.source is AddPodcastViewController, let senderVC = sender.source as? AddPodcastViewController {
+            
+            guard let feed = senderVC.rssURL else { return }
+            rssParser = RssfeedParser(feed: feed)
+            guard let podcastTuple = rssParser.getPodcast() else { return }
+            let newPodcast = Podcast(context: managedObjectContext)
+            newPodcast.title = podcastTuple.0
+            newPodcast.rssfeed = URL(string: podcastTuple.1)
+            
+            // get podcast artwork
+            let imageURL = podcastTuple.2
+            getPodcastImage(imageURL: imageURL, completion: { (image) in
+                newPodcast.artwork = UIImagePNGRepresentation(image)
                 
-                guard let feed = senderVC.rssURL else { return }
-                rssParser = RssfeedParser(feed: feed)
-                guard let podcastTuple = rssParser.getPodcast() else { return }
-                let newPodcast = Podcast(context: managedContext)
-                newPodcast.title = podcastTuple.0
-                newPodcast.rssfeed = URL(string: podcastTuple.1)
-               
-                // get podcast artwork
-                let imageURL = podcastTuple.2
-                getPodcastImage(imageURL: imageURL, completion: { (image) in
-                    newPodcast.artwork = UIImagePNGRepresentation(image)
-                    self.podcasts.append(newPodcast)
-                })
-            }
+            })
+            rssParser.getEpisodes(podcast: newPodcast, context: managedObjectContext)
+            appDelegate?.saveContext()
+        }
+    }
+    
+    // MARK: - Private Methods
+    private func fetchPodcasts() {
+        // Peform Fetch Request
+        do {
+            try fetchedResultsController.performFetch()
+            
+        } catch {
+            print("Unable to Perform Fetch Request")
+            print("\(error), \(error.localizedDescription)")
         }
     }
     
@@ -105,30 +145,80 @@ class PodcastsViewController: UIViewController {
         }
         task.resume()
     }
-
+    
 }
 
+// MARK: - TableView Data source
 extension PodcastsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        guard let sections = fetchedResultsController.sections else { return 0 }
+        return sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return podcasts.count
+        guard let section = fetchedResultsController.sections?[section] else { return 0 }
+        return section.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "podcastCell", for: indexPath) as! PodcastTableViewCell
         
-        let podcast = podcasts[indexPath.row]
+        // Fetch Podcast
+        let podcast = fetchedResultsController.object(at: indexPath)
         
         // configure cell
-        cell.titleLabel.text = podcast.title
-        
-        if let data = podcast.artwork {
-            cell.artworkImageView.image = UIImage(data: data)
+        if let title = podcast.title, let artworkData = podcast.artwork {
+            cell.titleLabel.text = title
+            cell.artworkImageView.image = UIImage(data: artworkData)
         }
-        
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        
+        // Fetch Podcast
+        let podcast = fetchedResultsController.object(at: indexPath)
+        
+        // Delete Note
+        managedObjectContext.delete(podcast)
+        appDelegate?.saveContext()
+    }
+}
+
+extension PodcastsViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch (type) {
+        case .insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .fade)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        case .update:
+            if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) as? PodcastTableViewCell {
+                // configure cell
+            }
+        case .move:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .fade)
+            }
+        }
+    }
+    
 }

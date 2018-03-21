@@ -18,6 +18,7 @@
         <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="podcastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="progress" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pubDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="bookmark" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Bookmark" inverseName="episode" inverseEntity="Bookmark" syncable="YES"/>
         <relationship name="clip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Clip" inverseName="episode" inverseEntity="Clip" syncable="YES"/>
         <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Playlist" inverseName="episodes" inverseEntity="Playlist" syncable="YES"/>
@@ -31,12 +32,12 @@
         <attribute name="artwork" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="rssfeed" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="episodes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Episode" inverseName="podcast" inverseEntity="Episode" syncable="YES"/>
+        <relationship name="episodes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Episode" inverseName="podcast" inverseEntity="Episode" syncable="YES"/>
     </entity>
     <elements>
         <element name="Bookmark" positionX="-272" positionY="-180" width="128" height="105"/>
         <element name="Clip" positionX="-270" positionY="-54" width="128" height="105"/>
-        <element name="Episode" positionX="-461" positionY="-159" width="128" height="180"/>
+        <element name="Episode" positionX="-461" positionY="-159" width="128" height="195"/>
         <element name="Podcast" positionX="-369" positionY="-81" width="128" height="105"/>
         <element name="Playlist" positionX="-369" positionY="-81" width="128" height="75"/>
     </elements>

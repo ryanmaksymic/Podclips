@@ -9,16 +9,14 @@
 import UIKit
 
 class EpisodeTableViewCell: UITableViewCell {
+    
+    var onButtonTapped: ((UITableViewCell) -> Void)? = nil
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var pubDateLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
+    
+    @IBAction func downloadTapped(_ sender: UIButton) {
+        onButtonTapped?(self)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
