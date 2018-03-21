@@ -50,10 +50,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qlm-pw-5ki" userLabel="Progress Slider" customClass="ProgressSlider" customModule="Podclips" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlm-pw-5ki" userLabel="Progress Slider" customClass="ProgressSlider" customModule="Podclips" customModuleProvider="target">
                                 <rect key="frame" x="16" y="479" width="343" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="j68-KY-pRj"/>
+                                </constraints>
                                 <connections>
                                     <action selector="progressSliderEditingDidEnd:" destination="J7y-nT-Cir" eventType="editingDidEnd" id="TDE-kM-Raw"/>
                                     <action selector="progressSliderValueChangedWithSender:" destination="J7y-nT-Cir" eventType="valueChanged" id="y9z-l8-rDD"/>
@@ -183,6 +185,11 @@
                         </subviews>
                         <color key="backgroundColor" name="white1"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="qlm-pw-5ki" firstAttribute="top" secondItem="CEq-8G-oij" secondAttribute="top" constant="459" id="3cE-xA-80j"/>
+                            <constraint firstItem="qlm-pw-5ki" firstAttribute="leading" secondItem="CEq-8G-oij" secondAttribute="leading" constant="16" id="I4z-xE-zqS"/>
+                            <constraint firstItem="CEq-8G-oij" firstAttribute="trailing" secondItem="qlm-pw-5ki" secondAttribute="trailing" constant="16" id="VOT-BZ-Tvf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="CEq-8G-oij"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="f8z-sH-JnK" appends="YES" id="GjX-GU-1DU"/>
@@ -207,6 +214,8 @@
                         <outlet property="playPauseButton" destination="8lf-gC-Pw2" id="8OJ-Nd-nc4"/>
                         <outlet property="podcastNameLabel" destination="WPW-1c-vGQ" id="lpd-XF-Dlh"/>
                         <outlet property="progressSlider" destination="qlm-pw-5ki" id="pSs-es-dXh"/>
+                        <outlet property="progressSliderLeadingConstraint" destination="I4z-xE-zqS" id="kgt-Cb-iVu"/>
+                        <outlet property="progressSliderTrailingConstraint" destination="VOT-BZ-Tvf" id="SWQ-Fl-EXH"/>
                         <outlet property="shareButton" destination="lPT-pj-Sgn" id="pto-Fs-YXE"/>
                         <outlet property="totalTimeLabel" destination="hZR-ra-tzC" id="sjF-17-A6E"/>
                     </connections>
