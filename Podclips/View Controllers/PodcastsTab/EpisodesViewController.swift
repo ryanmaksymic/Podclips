@@ -41,7 +41,6 @@ class EpisodesViewController: UIViewController {
         
         fetchEpisodes()
         setupPlaylist()
-        
     }
 
     /*

@@ -176,9 +176,9 @@
                                                         <constraint firstAttribute="width" constant="250" id="EdJ-ax-d4H"/>
                                                     </constraints>
                                                 </stackView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvO-dk-Dcj">
-                                                    <rect key="frame" x="266" y="9" width="94" height="30"/>
-                                                    <state key="normal" title="Download"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvO-dk-Dcj">
+                                                    <rect key="frame" x="251" y="9" width="109" height="30"/>
+                                                    <state key="normal" title="Add to Playlist"/>
                                                     <connections>
                                                         <action selector="downloadTapped:" destination="0As-xA-Jjl" eventType="touchUpInside" id="FDx-ct-mZ0"/>
                                                     </connections>
