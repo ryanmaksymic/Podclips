@@ -189,6 +189,12 @@ extension PodcastsViewController: UITableViewDataSource {
     }
 }
 
+extension PodcastsViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+  }
+}
+
 extension PodcastsViewController: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

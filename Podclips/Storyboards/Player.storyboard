@@ -34,7 +34,7 @@
                                     <action selector="dismiss:" destination="J7y-nT-Cir" eventType="touchUpInside" id="wVZ-8t-DHV"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="artwork" translatesAutoresizingMaskIntoConstraints="NO" id="9kJ-0a-Dzf">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="artwork" translatesAutoresizingMaskIntoConstraints="NO" id="9kJ-0a-Dzf">
                                 <rect key="frame" x="16" y="52" width="343" height="343"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>

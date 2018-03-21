@@ -152,12 +152,26 @@ extension PlaylistsViewController: UITableViewDataSource {
         cell.titleLabel.text = episode.episodeName
       
         cell.artworkImageView.layer.cornerRadius = 4.0
-        //cell.artworkImageView.clipsToBounds = true
         cell.artworkImageView.image = UIImage(data: episode.podcast!.artwork!) ?? UIImage(named: "artwork")
-        
+      
+        cell.podcastNameLabel.text = episode.podcast?.title
+      
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        cell.pubDateLabel.text = dateFormatter.string(from: episode.pubDate!)
+      
         return cell
     }
 
+}
+
+extension PlaylistsViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let track = fetchedResultsController.object(at: indexPath)
+    print("URL: \(track.fileURL!)")
+    AudioManager.shared.load(track: track)
+    tableView.deselectRow(at: indexPath, animated: true)
+  }
 }
 
 

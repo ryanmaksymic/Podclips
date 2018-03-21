@@ -14,6 +14,8 @@ protocol PlaylistTableViewCellDelegate {
 
 class PlaylistTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var podcastNameLabel: UILabel!
+    @IBOutlet weak var pubDateLabel: UILabel!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var artworkImageView: UIImageView!

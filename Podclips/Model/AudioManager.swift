@@ -117,8 +117,9 @@ class AudioManager {
   func load(track: NSManagedObject) {
     self.track = track
     if let episode = track as? Episode {
-      let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: episode.fileName, ofType: "mp3")!)
-      startPlaying(url: episodeURL, atTime: 0)
+      //let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: episode.fileName, ofType: "mp3")!)
+      //startPlaying(url: episodeURL, atTime: 0)
+      startPlaying(url: episode.fileURL!, atTime: 0)
     } else if let clip = track as? Clip {
       startPlaying(url: clip.url!, atTime: 0)
     } else if let bookmark = track as? Bookmark {
@@ -232,11 +233,11 @@ extension NSManagedObject {
   
   func artwork() -> UIImage? {
     if let episode = self as? Episode {
-      //return UIImage(data: episode.podcast!.artwork!)
+      return UIImage(data: episode.podcast!.artwork!)
     } else if let clip = self as? Clip {
-      //return UIImage(data: clip.episode!.podcast!.artwork!)
+      return UIImage(data: clip.episode!.podcast!.artwork!)
     } else if let bookmark = self as? Bookmark {
-      //return UIImage(data: bookmark.episode!.podcast!.artwork!)
+      return UIImage(data: bookmark.episode!.podcast!.artwork!)
     }
     return UIImage(named: "artwork")
   }

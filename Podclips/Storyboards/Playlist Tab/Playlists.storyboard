@@ -75,7 +75,9 @@
                                         <connections>
                                             <outlet property="artworkImageView" destination="xxG-n5-vqg" id="x5Z-Xh-USz"/>
                                             <outlet property="downloadButton" destination="5CB-6e-O33" id="2S2-FF-j7m"/>
+                                            <outlet property="podcastNameLabel" destination="K0R-GE-NTr" id="vqY-pG-cja"/>
                                             <outlet property="progressLabel" destination="b3N-aX-2m0" id="DWD-8G-fw2"/>
+                                            <outlet property="pubDateLabel" destination="XEZ-bO-rRr" id="Otv-x8-M0v"/>
                                             <outlet property="titleLabel" destination="mhk-cb-I2s" id="AfL-yx-MjT"/>
                                         </connections>
                                     </tableViewCell>

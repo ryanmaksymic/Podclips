@@ -78,7 +78,6 @@ class PlayerViewController: UIViewController {
     forwardButton.tintColor = UIColor.init(named: Colors.secondary)
     
     artworkImageView.layer.cornerRadius = 8.0
-    artworkImageView.clipsToBounds = true
     
     updateTimeProgress()
   }

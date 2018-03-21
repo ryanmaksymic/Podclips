@@ -124,7 +124,11 @@ extension EpisodesViewController: UITableViewDataSource {
         
         // configure cell
         cell.titleLabel.text = episode.episodeName
-        cell.pubDateLabel.text = episode.pubDate?.description
+      
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        cell.pubDateLabel.text = dateFormatter.string(from: episode.pubDate!)
+      
         cell.durationLabel.text = episode.durationString
         
         return cell

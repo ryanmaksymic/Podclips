@@ -71,7 +71,7 @@
                         <viewLayoutGuide key="safeArea" id="dwo-Mu-Avc"/>
                     </view>
                     <navigationItem key="navigationItem" id="nfP-oY-NPG">
-                        <barButtonItem key="rightBarButtonItem" title="Add URL" id="9cB-aU-6m8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9cB-aU-6m8">
                             <connections>
                                 <segue destination="tZX-76-rBv" kind="show" identifier="addPodcast" id="3sv-kX-fFd"/>
                             </connections>
@@ -93,7 +93,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eh1-D4-zlV">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. http://feeds.gimletmedia.com/hearreplyall" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eh1-D4-zlV">
                                 <rect key="frame" x="16" y="112" width="305" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
