@@ -148,6 +148,10 @@ extension PlaylistsViewController: UITableViewDataSource {
         
         // configure cell
         cell.titleLabel.text = episode.episodeName
+      
+        cell.artworkImageView.layer.cornerRadius = 4.0
+        //cell.artworkImageView.clipsToBounds = true
+        cell.artworkImageView.image = UIImage(data: episode.podcast!.artwork!) ?? UIImage(named: "artwork")
         
         return cell
     }

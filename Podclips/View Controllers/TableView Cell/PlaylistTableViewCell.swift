@@ -16,7 +16,8 @@ class PlaylistTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var downloadButton: UIButton!
-    
+    @IBOutlet weak var artworkImageView: UIImageView!
+  
     var onDownloadTapped: ((UITableViewCell) -> Void)? = nil
     
     var delegate: PlaylistTableViewCellDelegate?

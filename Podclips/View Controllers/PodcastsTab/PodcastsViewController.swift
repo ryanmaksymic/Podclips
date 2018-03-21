@@ -169,6 +169,7 @@ extension PodcastsViewController: UITableViewDataSource {
         // configure cell
         if let title = podcast.title, let artworkData = podcast.artwork {
             cell.titleLabel.text = title
+            cell.artworkImageView.layer.cornerRadius = 4.0
             cell.artworkImageView.image = UIImage(data: artworkData)
         }
         return cell
