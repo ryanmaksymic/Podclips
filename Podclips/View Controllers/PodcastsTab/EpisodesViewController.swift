@@ -42,16 +42,16 @@ class EpisodesViewController: UIViewController {
         fetchEpisodes()
         setupPlaylist()
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     // MARK: - Private Methods
     private func fetchEpisodes() {
@@ -111,14 +111,14 @@ extension EpisodesViewController: UITableViewDataSource {
         
         let episode = fetchedResultsController.object(at: indexPath)
         
-                cell.onButtonTapped = { (cell) in
-                    guard let indexPath = tableView.indexPath(for: cell) else { return }
-                    print("download button tapped on \(indexPath)")
-
-                    // add to playlist
-                    self.playlist?.addToEpisodes(episode)
-                    self.appDelegate?.saveContext()
-                }
+        cell.onButtonTapped = { (cell) in
+            guard let indexPath = tableView.indexPath(for: cell) else { return }
+            print("download button tapped on \(indexPath)")
+            
+            // add to playlist
+            self.playlist?.addToEpisodes(episode)
+            self.appDelegate?.saveContext()
+        }
         
         // configure cell
         cell.titleLabel.text = episode.episodeName

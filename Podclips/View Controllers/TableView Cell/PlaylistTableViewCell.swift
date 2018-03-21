@@ -11,6 +11,8 @@ import UIKit
 class PlaylistTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
+    var onDownloadTapped: ((UITableViewCell) -> Void)? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,5 +23,8 @@ class PlaylistTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    @IBAction func downloadTapped(_ sender: UIButton) {
+        onDownloadTapped?(self)
+    }
+    
 }

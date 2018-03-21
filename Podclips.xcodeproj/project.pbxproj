@@ -11,6 +11,9 @@
 		91419E1420619C7A0093104E /* FeedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91419E1320619C7A0093104E /* FeedKit.framework */; };
 		91419E1520619C7A0093104E /* FeedKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91419E1320619C7A0093104E /* FeedKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9148C233206290FB00E0E433 /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9148C232206290FB00E0E433 /* PlaylistTableViewCell.swift */; };
+		9148C23620629B2F00E0E433 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9148C23520629B2F00E0E433 /* Download.swift */; };
+		9148C23820629B7000E0E433 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9148C23720629B7000E0E433 /* DownloadService.swift */; };
+		9148C23A20629C4100E0E433 /* PlaylistVc+URLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9148C23920629C4100E0E433 /* PlaylistVc+URLSessionDelegate.swift */; };
 		914B52C3206185AC00E659CB /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 914B52C2206185AC00E659CB /* Playlists.storyboard */; };
 		914B52C52061866400E659CB /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914B52C42061866400E659CB /* PlaylistsViewController.swift */; };
 		914B52C8206186A300E659CB /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914B52C7206186A300E659CB /* EpisodesViewController.swift */; };
@@ -57,6 +60,9 @@
 		91419DED20618EF20093104E /* RssfeedParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssfeedParser.swift; sourceTree = "<group>"; };
 		91419E1320619C7A0093104E /* FeedKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FeedKit.framework; path = Carthage/Build/iOS/FeedKit.framework; sourceTree = "<group>"; };
 		9148C232206290FB00E0E433 /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewCell.swift; sourceTree = "<group>"; };
+		9148C23520629B2F00E0E433 /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
+		9148C23720629B7000E0E433 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
+		9148C23920629C4100E0E433 /* PlaylistVc+URLSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistVc+URLSessionDelegate.swift"; sourceTree = "<group>"; };
 		914B52C2206185AC00E659CB /* Playlists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
 		914B52C42061866400E659CB /* PlaylistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
 		914B52C7206186A300E659CB /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
@@ -99,12 +105,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		91419DEC20618ED50093104E /* Networking */ = {
+		91419DEC20618ED50093104E /* feed Parsing */ = {
 			isa = PBXGroup;
 			children = (
 				91419DED20618EF20093104E /* RssfeedParser.swift */,
 			);
-			path = Networking;
+			path = "feed Parsing";
+			sourceTree = "<group>";
+		};
+		9148C2342062993B00E0E433 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				9148C23520629B2F00E0E433 /* Download.swift */,
+				9148C23720629B7000E0E433 /* DownloadService.swift */,
+				9148C23920629C4100E0E433 /* PlaylistVc+URLSessionDelegate.swift */,
+			);
+			path = Download;
 			sourceTree = "<group>";
 		};
 		914B52BE2061821B00E659CB /* PlaylistsTab */ = {
@@ -118,7 +134,7 @@
 		914B52BF2061822A00E659CB /* PodcastsTab */ = {
 			isa = PBXGroup;
 			children = (
-				91419DEC20618ED50093104E /* Networking */,
+				91419DEC20618ED50093104E /* feed Parsing */,
 				914B52D72061892200E659CB /* PodcastsViewController.swift */,
 				914B52C9206186B000E659CB /* AddPodcastViewController.swift */,
 				914B52C7206186A300E659CB /* EpisodesViewController.swift */,
@@ -217,6 +233,7 @@
 		FE3EBFF92059D410004842DF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9148C2342062993B00E0E433 /* Download */,
 				FE3EC0002059EDA7004842DF /* DataManager.swift */,
 				FE3EBFFA2059D425004842DF /* AudioManager.swift */,
 				FE3EBFD720599E77004842DF /* Podclips.xcdatamodeld */,
@@ -314,14 +331,17 @@
 				914B52C52061866400E659CB /* PlaylistsViewController.swift in Sources */,
 				914B52D42061879D00E659CB /* EpisodeTableViewCell.swift in Sources */,
 				914B52D22061878E00E659CB /* PodcastTableViewCell.swift in Sources */,
+				9148C23620629B2F00E0E433 /* Download.swift in Sources */,
 				FE3EBFF62059C460004842DF /* MiniPlayerViewController.swift in Sources */,
 				FE00524B205AF07800F223BD /* FavouritesTableViewCell.swift in Sources */,
 				FE3EBFD320599E77004842DF /* ViewController.swift in Sources */,
 				9148C233206290FB00E0E433 /* PlaylistTableViewCell.swift in Sources */,
 				FE3EBFD120599E77004842DF /* AppDelegate.swift in Sources */,
 				FE44F850205ADB1F00D988FD /* UIAlertController+CustomAlert.swift in Sources */,
+				9148C23A20629C4100E0E433 /* PlaylistVc+URLSessionDelegate.swift in Sources */,
 				91419DEE20618EF20093104E /* RssfeedParser.swift in Sources */,
 				FE3EBFF42059B36A004842DF /* PlayerViewController.swift in Sources */,
+				9148C23820629B7000E0E433 /* DownloadService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,18 +14,42 @@ class PlaylistsViewController: UIViewController {
     
     var playlist: Playlist?
     
+    // Core Data
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     private var managedObjectContext: NSManagedObjectContext!
     private var fetchedResultsController: NSFetchedResultsController<Episode>!
+    
+    // Download
+    let downloadService = DownloadService()
+    // Create downloadsSession here, to set self as delegate
+    lazy var downloadsSession: URLSession = {
+        //    let configuration = URLSessionConfiguration.default
+        let configuration = URLSessionConfiguration.background(withIdentifier: "bgSessionConfiguration")
+        return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+    }()
+    
+    // Get local file path: download task stores tune here; AV player plays it.
+    let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    func localFilePath(for url: URL) -> URL {
+        return documentsPath.appendingPathComponent(url.lastPathComponent)
+    }
    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Core Data
         managedObjectContext = appDelegate?.persistentContainer.viewContext
         managedObjectContext.automaticallyMergesChangesFromParent = true
-
-        fetchPlaylist()
+        setupPlaylist()
         fetchEpisodes()
+        
+        // download
+        downloadService.downloadsSession = downloadsSession
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchEpisodes()
+        tableView.reloadData()
     }
 
     /*
@@ -39,17 +63,29 @@ class PlaylistsViewController: UIViewController {
     */
     
     // MARK: - Private Methods
-    private func fetchPlaylist() {
+    private func setupPlaylist() {
         // fetch playlist
+        if !fetchPlaylist() {
+            playlist = Playlist(context: managedObjectContext)
+            playlist?.name = "All Episodes"
+            appDelegate?.saveContext()
+        }
+    }
+    
+    private func fetchPlaylist() -> Bool {
+        // fetch playlist
+        let managedObjectContext = self.managedObjectContext
         let fetchRequest: NSFetchRequest<Playlist> = Playlist.fetchRequest()
         do {
-            let playlists = try managedObjectContext.fetch(fetchRequest)
-            playlist = playlists.first
+            let playlists = try managedObjectContext?.fetch(fetchRequest)
+            playlist = playlists?.first
             //            print("\(String(describing: playlist.name))")
         } catch {
             print("Unable to Perform Fetch Request")
             print("\(error), \(error.localizedDescription)")
         }
+        
+        return (playlist != nil)
     }
     
     private func fetchEpisodes() {
@@ -97,18 +133,30 @@ extension PlaylistsViewController: UITableViewDataSource {
         return section.numberOfObjects
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath) as! PlaylistTableViewCell
         
         let episode = fetchedResultsController.object(at: indexPath)
         
+        cell.onDownloadTapped = { (cell) in
+            guard let indexPath = tableView.indexPath(for: cell) else { return }
+            
+            // start download
+            self.downloadService.startDownload(episode)
+            self.reload(indexPath.row)
+        }
+        
         // configure cell
         cell.titleLabel.text = episode.episodeName
         
         return cell
     }
+    
+    func reload(_ row: Int) {
+        tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+    }
+
 }
 
 

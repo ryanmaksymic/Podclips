@@ -72,6 +72,7 @@ class RssfeedParser {
                 episode.pubDate = pubDate
                 episode.durationString = secToString(duration)
                 episode.fileName = mp3URLString
+                episode.fileURL = URL(string: mp3URLString)
                 episode.progress = 0.0
                 episode.podcastName = podcast.title
                 
