@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Episodes-->
+        <!--Playlists-->
         <scene sceneID="RAk-YI-PL7">
             <objects>
-                <viewControllerPlaceholder storyboardName="Episodes" id="u8z-Nr-25h" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Playlists" id="u8z-Nr-25h" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="6Go-eo-gWZ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awp-Ns-1FD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -46,9 +46,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kg7-Bz-rJ2">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kg7-Bz-rJ2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="550"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="550" id="cmI-1r-UP7"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="jfS-oZ-LFw" kind="embed" id="wOP-Py-QFn"/>
                                 </connections>
@@ -62,6 +64,11 @@
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Kg7-Bz-rJ2" firstAttribute="trailing" secondItem="Xcc-xr-1Kn" secondAttribute="trailing" id="I0F-Fp-n9C"/>
+                            <constraint firstItem="Kg7-Bz-rJ2" firstAttribute="leading" secondItem="Xcc-xr-1Kn" secondAttribute="leading" id="KD3-tf-ZPb"/>
+                            <constraint firstItem="Kg7-Bz-rJ2" firstAttribute="top" secondItem="Sef-4g-zXJ" secondAttribute="top" id="yUg-kb-jCg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Xcc-xr-1Kn"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Podcasts" image="podcasts" selectedImage="podcasts_selected" id="eg8-6X-8Sf"/>

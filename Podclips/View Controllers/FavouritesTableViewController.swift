@@ -42,8 +42,8 @@ class FavouritesTableViewController: UITableViewController {
       }
     case 2:
       guard let episodes = DataManager.load(entities: R.Episode) as? [Episode], episodes != [] else {
-        print("No episodes found. Creating dummy data.")
-        generateDummyData()
+//        print("No episodes found. Creating dummy data.")
+//        generateDummyData()
         loadTracks()
         return
       }
@@ -95,7 +95,6 @@ class FavouritesTableViewController: UITableViewController {
       self.present(shareActivityViewController, animated: true, completion: nil)
     }
   }
-  
   
   // MARK: - UITableViewDataSource
   
@@ -151,7 +150,6 @@ class FavouritesTableViewController: UITableViewController {
       tableView.deleteRows(at: [indexPath], with: .fade)
     }
   }
-  
   
   // MARK: - Segmented control
   
