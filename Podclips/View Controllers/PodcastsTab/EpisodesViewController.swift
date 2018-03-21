@@ -41,6 +41,8 @@ class EpisodesViewController: UIViewController {
         
         fetchEpisodes()
         setupPlaylist()
+      
+        self.navigationController?.topViewController?.title = podcast?.title
     }
     
     /*
