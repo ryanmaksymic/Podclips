@@ -25,13 +25,33 @@ extension PlaylistsViewController: URLSessionDownloadDelegate {
         do {
             try fileManager.copyItem(at: location, to: destinationURL)
             download?.episode.downloaded = true
-            download?.episode.fileURL = destinationURL
-            appDelegate?.saveContext()
         } catch let error {
             print("Could not copy file to disk: \(error.localizedDescription)")
         }
+        // 4
+        if let index = download?.episode.index {
+//            DispatchQueue.main.async {
+//                self.tableView.reloadRows(at: [IndexPath(row: Int(index), section: 0)], with: .none)
+//            }
+        }
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
+                    didWriteData bytesWritten: Int64, totalBytesWritten: Int64,
+                    totalBytesExpectedToWrite: Int64) {
+        // 1
+        guard let url = downloadTask.originalRequest?.url,
+            let download = downloadService.activeDownloads[url]  else { return }
+        // 2
+        download.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        // 3
+        let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: .file)
+        // 4
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            if let trackCell = self.tableView.cellForRow(at: IndexPath(row: Int(download.episode.index),
+                                                                       section: 0)) as? PlaylistTableViewCell {
+                trackCell.updateDisplay(progress: download.progress, totalSize: totalSize)
+            }
         }
     }
 }

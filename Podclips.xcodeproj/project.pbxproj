@@ -134,7 +134,6 @@
 		914B52BF2061822A00E659CB /* PodcastsTab */ = {
 			isa = PBXGroup;
 			children = (
-				91419DEC20618ED50093104E /* feed Parsing */,
 				914B52D72061892200E659CB /* PodcastsViewController.swift */,
 				914B52C9206186B000E659CB /* AddPodcastViewController.swift */,
 				914B52C7206186A300E659CB /* EpisodesViewController.swift */,
@@ -216,6 +215,7 @@
 		FE3EBFEE2059A8C6004842DF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				91419DEC20618ED50093104E /* feed Parsing */,
 				914B52C62061867400E659CB /* TableView Cell */,
 				914B52BE2061821B00E659CB /* PlaylistsTab */,
 				914B52BF2061822A00E659CB /* PodcastsTab */,

@@ -8,10 +8,18 @@
 
 import UIKit
 
+protocol PlaylistTableViewCellDelegate {
+
+}
+
 class PlaylistTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var downloadButton: UIButton!
     
     var onDownloadTapped: ((UITableViewCell) -> Void)? = nil
+    
+    var delegate: PlaylistTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,7 +32,12 @@ class PlaylistTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func downloadTapped(_ sender: UIButton) {
+        progressLabel.isHidden = false
         onDownloadTapped?(self)
+    }
+    
+    func updateDisplay(progress: Float, totalSize : String) {
+        progressLabel.text = String(format: "%.1f %%", progress * 100)
     }
     
 }

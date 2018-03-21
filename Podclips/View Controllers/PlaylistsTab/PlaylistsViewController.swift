@@ -79,7 +79,6 @@ class PlaylistsViewController: UIViewController {
         do {
             let playlists = try managedObjectContext?.fetch(fetchRequest)
             playlist = playlists?.first
-            //            print("\(String(describing: playlist.name))")
         } catch {
             print("Unable to Perform Fetch Request")
             print("\(error), \(error.localizedDescription)")
@@ -152,48 +151,18 @@ extension PlaylistsViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    func reload(_ row: Int) {
-        tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
-    }
 
 }
 
 
 extension PlaylistsViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch (type) {
-        case .insert:
-            if let indexPath = newIndexPath {
-                tableView.insertRows(at: [indexPath], with: .fade)
-            }
-        case .delete:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-        case .update:
-            if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) as? EpisodeTableViewCell {
-                // configure cell
-                tableView.reloadData()
-            }
-        case .move:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            
-            if let newIndexPath = newIndexPath {
-                tableView.insertRows(at: [newIndexPath], with: .fade)
-            }
-        }
-    }
+ 
+}
+
+extension PlaylistsViewController: PlaylistTableViewCellDelegate {
+
+    func reload(_ row: Int) {
+        tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+    }    
     
 }

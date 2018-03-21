@@ -15,8 +15,10 @@ class EpisodeTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var pubDateLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var addToPlaylistButton: UIButton!
     
     @IBAction func downloadTapped(_ sender: UIButton) {
         onButtonTapped?(self)
+        addToPlaylistButton.setTitle("Added to Playlist", for: .normal)
     }
 }

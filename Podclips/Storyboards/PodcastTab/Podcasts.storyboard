@@ -193,6 +193,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="addToPlaylistButton" destination="WvO-dk-Dcj" id="94p-ab-YD8"/>
                                             <outlet property="durationLabel" destination="V5H-fo-V4t" id="9g9-Wd-Iu0"/>
                                             <outlet property="pubDateLabel" destination="hQd-ci-0xj" id="eOG-us-MUu"/>
                                             <outlet property="titleLabel" destination="ZKA-24-bAI" id="0rc-IJ-vGk"/>
