@@ -27,6 +27,11 @@ class FavouritesTableViewController: UITableViewController {
     self.navigationItem.rightBarButtonItem = self.editButtonItem
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    loadTracks()
+    tableView.reloadData()
+  }
+  
   
   // MARK: - Private methods
   

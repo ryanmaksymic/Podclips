@@ -160,6 +160,10 @@ extension PlaylistsViewController: UITableViewDataSource {
         dateFormatter.dateStyle = .medium
         cell.pubDateLabel.text = dateFormatter.string(from: episode.pubDate!)
       
+      if cell.podcastNameLabel.text?.range(of:"Tim Ferriss") != nil {
+            cell.downloadButton.isHidden = true
+      } else { cell.downloadButton.isHidden = false }
+      
         return cell
     }
 

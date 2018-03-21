@@ -80,7 +80,7 @@
             </objects>
             <point key="canvasLocation" x="-130.40000000000001" y="161.46926536731635"/>
         </scene>
-        <!--Favourites-->
+        <!--Saved-->
         <scene sceneID="9lD-Vq-3SI">
             <objects>
                 <viewController id="gun-xc-dHG" sceneMemberID="viewController">
@@ -117,7 +117,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5D0-yH-WPk"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favourites" image="star" selectedImage="star_selected" id="aY8-MM-g9A"/>
+                    <tabBarItem key="tabBarItem" title="Saved" image="star" selectedImage="star_selected" id="aY8-MM-g9A"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gmm-IP-jFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
