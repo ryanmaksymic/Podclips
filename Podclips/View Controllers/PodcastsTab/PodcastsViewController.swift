@@ -43,6 +43,7 @@ class PodcastsViewController: UIViewController {
         
         fetchPodcasts()
       
+        self.tableView.rowHeight = 96
         self.navigationItem.titleView = UIImageView.init(image: UIImage(named: "logo"))
     }
     

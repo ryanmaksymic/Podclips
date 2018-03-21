@@ -135,6 +135,12 @@ extension EpisodesViewController: UITableViewDataSource {
     }
 }
 
+extension EpisodesViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+  }
+}
+
 // MARK: - NSFetchedResultsControllerDelegate
 extension EpisodesViewController: NSFetchedResultsControllerDelegate {
     
