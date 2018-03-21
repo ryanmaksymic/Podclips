@@ -40,10 +40,8 @@ class EpisodesViewController: UIViewController {
         super.viewDidLoad()
         
         fetchEpisodes()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
+        setupPlaylist()
+        
     }
 
     /*
@@ -58,13 +56,42 @@ class EpisodesViewController: UIViewController {
     
     // MARK: - Private Methods
     private func fetchEpisodes() {
+        let predicate = NSPredicate(format: "podcastName == %@", (podcast?.title)! )
+        fetchedResultsController.fetchRequest.predicate = predicate
         do {
+            
             try fetchedResultsController.performFetch()
         } catch {
             print("Unable to Perform Fetch Request")
             print("\(error), \(error.localizedDescription)")
         }
     }
+    
+    private func setupPlaylist() {
+        // fetch playlist
+        if !fetchPlaylist() {
+            playlist = Playlist(context: (podcast?.managedObjectContext)!)
+            playlist?.name = "All Episodes"
+            appDelegate?.saveContext()
+        }
+    }
+    
+    private func fetchPlaylist() -> Bool {
+        // fetch playlist
+        let managedObjectContext = podcast?.managedObjectContext
+        let fetchRequest: NSFetchRequest<Playlist> = Playlist.fetchRequest()
+        do {
+            let playlists = try managedObjectContext?.fetch(fetchRequest)
+            playlist = playlists?.first
+            //            print("\(String(describing: playlist.name))")
+        } catch {
+            print("Unable to Perform Fetch Request")
+            print("\(error), \(error.localizedDescription)")
+        }
+        
+        return (playlist != nil)
+    }
+    
 }
 
 // MARK: - TableView Data Source
@@ -103,6 +130,7 @@ extension EpisodesViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - NSFetchedResultsControllerDelegate
 extension EpisodesViewController: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -126,6 +154,7 @@ extension EpisodesViewController: NSFetchedResultsControllerDelegate {
         case .update:
             if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) as? EpisodeTableViewCell {
                 // configure cell
+                tableView.reloadData()
             }
         case .move:
             if let indexPath = indexPath {

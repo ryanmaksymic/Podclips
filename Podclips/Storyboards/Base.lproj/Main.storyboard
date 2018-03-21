@@ -109,7 +109,7 @@
             </objects>
             <point key="canvasLocation" x="-130.40000000000001" y="849.62518740629696"/>
         </scene>
-        <!--Episodes-->
+        <!--Playlist-->
         <scene sceneID="HPU-mO-8R7">
             <objects>
                 <viewController id="UnV-cc-c2k" sceneMemberID="viewController">
@@ -135,7 +135,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fa7-ok-lXl"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Episodes" id="eQP-DO-XIS"/>
+                    <tabBarItem key="tabBarItem" title="Playlist" id="eQP-DO-XIS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgd-Lw-Of3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -172,6 +172,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="T9J-8z-OrT"/>
+        <segue reference="2zr-HZ-WcI"/>
     </inferredMetricsTieBreakers>
 </document>

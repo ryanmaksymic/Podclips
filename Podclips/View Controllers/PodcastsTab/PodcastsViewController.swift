@@ -208,7 +208,7 @@ extension PodcastsViewController: NSFetchedResultsControllerDelegate {
             }
         case .update:
             if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) as? PodcastTableViewCell {
-                // configure cell
+                appDelegate?.saveContext()
             }
         case .move:
             if let indexPath = indexPath {
