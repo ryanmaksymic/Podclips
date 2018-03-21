@@ -24,34 +24,34 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="podcastCell" rowHeight="87" id="GPA-9T-zww" customClass="PodcastTableViewCell" customModule="Podclips" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="87"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="podcastCell" rowHeight="96" id="GPA-9T-zww" customClass="PodcastTableViewCell" customModule="Podclips" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GPA-9T-zww" id="RCt-Er-mGc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="95.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="artwork" translatesAutoresizingMaskIntoConstraints="NO" id="ZkF-j2-MH8">
-                                                    <rect key="frame" x="8" y="8" width="70" height="70"/>
+                                                    <rect key="frame" x="8" y="8" width="79" height="79"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="ZkF-j2-MH8" secondAttribute="height" multiplier="1:1" id="mmP-gU-6Xj"/>
-                                                        <constraint firstAttribute="width" constant="70" id="vAe-NC-0mP"/>
+                                                        <constraint firstAttribute="width" secondItem="ZkF-j2-MH8" secondAttribute="height" multiplier="1:1" id="vCo-Io-yME"/>
+                                                        <constraint firstAttribute="width" constant="79" id="zTC-TY-1Ts"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yp-y7-H8E">
-                                                    <rect key="frame" x="86" y="31.5" width="281" height="24"/>
+                                                    <rect key="frame" x="95" y="35" width="272" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ZkF-j2-MH8" firstAttribute="leading" secondItem="RCt-Er-mGc" secondAttribute="leading" constant="8" id="Djm-EB-19W"/>
-                                                <constraint firstItem="2yp-y7-H8E" firstAttribute="centerY" secondItem="RCt-Er-mGc" secondAttribute="centerY" id="TVq-7O-6CL"/>
-                                                <constraint firstAttribute="trailing" secondItem="2yp-y7-H8E" secondAttribute="trailing" constant="8" id="Te3-E4-adV"/>
-                                                <constraint firstItem="2yp-y7-H8E" firstAttribute="leading" secondItem="ZkF-j2-MH8" secondAttribute="trailing" constant="8" id="V1u-z2-a3m"/>
-                                                <constraint firstAttribute="bottom" secondItem="ZkF-j2-MH8" secondAttribute="bottom" constant="8" id="pjr-5Q-FKB"/>
-                                                <constraint firstItem="ZkF-j2-MH8" firstAttribute="top" secondItem="RCt-Er-mGc" secondAttribute="top" constant="8" id="w4i-C6-Miu"/>
+                                                <constraint firstItem="2yp-y7-H8E" firstAttribute="centerY" secondItem="RCt-Er-mGc" secondAttribute="centerY" id="0d8-qK-40d"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZkF-j2-MH8" secondAttribute="bottom" constant="8" id="6c0-PT-fGh"/>
+                                                <constraint firstItem="ZkF-j2-MH8" firstAttribute="leading" secondItem="RCt-Er-mGc" secondAttribute="leading" constant="8" id="I6l-lW-acr"/>
+                                                <constraint firstItem="ZkF-j2-MH8" firstAttribute="top" secondItem="RCt-Er-mGc" secondAttribute="top" constant="8" id="Lsx-fx-jY4"/>
+                                                <constraint firstItem="2yp-y7-H8E" firstAttribute="leading" secondItem="ZkF-j2-MH8" secondAttribute="trailing" constant="8" id="N2L-I1-KKG"/>
+                                                <constraint firstAttribute="trailing" secondItem="2yp-y7-H8E" secondAttribute="trailing" constant="8" id="tUW-E0-iRq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

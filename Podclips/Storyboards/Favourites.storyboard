@@ -98,13 +98,12 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Qye-t8-qqr">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="2" id="u77-AS-rSI">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="u77-AS-rSI">
                             <rect key="frame" x="63.5" y="7" width="248" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Bookmarks"/>
                                 <segment title="Clips"/>
-                                <segment title="Episodes"/>
                             </segments>
                             <connections>
                                 <action selector="segmentedControl:" destination="3cU-Ad-s7Q" eventType="valueChanged" id="5h3-bx-waQ"/>

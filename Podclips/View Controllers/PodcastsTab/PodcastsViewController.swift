@@ -42,6 +42,8 @@ class PodcastsViewController: UIViewController {
         managedObjectContext.automaticallyMergesChangesFromParent = true
         
         fetchPodcasts()
+      
+        self.navigationItem.titleView = UIImageView.init(image: UIImage(named: "logo"))
     }
     
     override func didReceiveMemoryWarning() {

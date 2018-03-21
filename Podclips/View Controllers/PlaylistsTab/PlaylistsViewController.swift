@@ -45,6 +45,8 @@ class PlaylistsViewController: UIViewController {
         
         // download
         downloadService.downloadsSession = downloadsSession
+      
+        self.navigationItem.titleView = UIImageView.init(image: UIImage(named: "logo"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
