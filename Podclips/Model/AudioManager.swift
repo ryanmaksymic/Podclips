@@ -117,13 +117,14 @@ class AudioManager {
   func load(track: NSManagedObject) {
     self.track = track
     if let episode = track as? Episode {
-      //let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: episode.fileName, ofType: "mp3")!)
-      //startPlaying(url: episodeURL, atTime: 0)
-      startPlaying(url: episode.fileURL!, atTime: 0)
+      let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: "pod", ofType: "mp3")!)
+      startPlaying(url: episodeURL, atTime: 0)
+      //startPlaying(url: episode.fileURL!, atTime: 0)
     } else if let clip = track as? Clip {
       startPlaying(url: clip.url!, atTime: 0)
     } else if let bookmark = track as? Bookmark {
-      let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: bookmark.episode!.fileName, ofType: "mp3")!)
+      //let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: bookmark.episode!.fileName, ofType: "mp3")!)
+      let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: "pod", ofType: "mp3")!)
       startPlaying(url: episodeURL, atTime: bookmark.timestamp)
     }
     NotificationCenter.default.post(name: Notification.Name(R.SongPlaying), object: nil)

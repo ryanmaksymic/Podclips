@@ -23,6 +23,7 @@
 		914B52D42061879D00E659CB /* EpisodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914B52D32061879D00E659CB /* EpisodeTableViewCell.swift */; };
 		914B52D82061892200E659CB /* PodcastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914B52D72061892200E659CB /* PodcastsViewController.swift */; };
 		FE00524B205AF07800F223BD /* FavouritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE00524A205AF07800F223BD /* FavouritesTableViewCell.swift */; };
+		FE0A4E7A2062F3DA006B12A6 /* pod.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE0A4E792062F3DA006B12A6 /* pod.mp3 */; };
 		FE3EBFD120599E77004842DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFD020599E77004842DF /* AppDelegate.swift */; };
 		FE3EBFD320599E77004842DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3EBFD220599E77004842DF /* ViewController.swift */; };
 		FE3EBFD620599E77004842DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3EBFD420599E77004842DF /* Main.storyboard */; };
@@ -72,6 +73,7 @@
 		914B52D32061879D00E659CB /* EpisodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTableViewCell.swift; sourceTree = "<group>"; };
 		914B52D72061892200E659CB /* PodcastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsViewController.swift; sourceTree = "<group>"; };
 		FE00524A205AF07800F223BD /* FavouritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewCell.swift; sourceTree = "<group>"; };
+		FE0A4E792062F3DA006B12A6 /* pod.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pod.mp3; sourceTree = SOURCE_ROOT; };
 		FE3EBFCD20599E77004842DF /* Podclips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podclips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE3EBFD020599E77004842DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE3EBFD220599E77004842DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				FE3EBFEE2059A8C6004842DF /* View Controllers */,
 				FE3EBFED2059A8AD004842DF /* Storyboards */,
 				FE3EBFDA20599E77004842DF /* Assets.xcassets */,
+				FE0A4E792062F3DA006B12A6 /* pod.mp3 */,
 				FE3EBFDF20599E77004842DF /* Info.plist */,
 			);
 			path = Podclips;
@@ -309,6 +312,7 @@
 				FE3EBFE82059A80E004842DF /* Podcasts.storyboard in Resources */,
 				FE3EBFEC2059A81A004842DF /* Player.storyboard in Resources */,
 				FE3EBFDE20599E77004842DF /* LaunchScreen.storyboard in Resources */,
+				FE0A4E7A2062F3DA006B12A6 /* pod.mp3 in Resources */,
 				FE3EBFEA2059A815004842DF /* Favourites.storyboard in Resources */,
 				FE3EBFDB20599E77004842DF /* Assets.xcassets in Resources */,
 				914B52C3206185AC00E659CB /* Playlists.storyboard in Resources */,
