@@ -117,12 +117,14 @@ class AudioManager {
   func load(track: NSManagedObject) {
     self.track = track
     if let episode = track as? Episode {
-      let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: episode.fileName, ofType: "mp3")!)
+      let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: "pod", ofType: "mp3")!)
       startPlaying(url: episodeURL, atTime: 0)
+      //startPlaying(url: episode.fileURL!, atTime: 0)
     } else if let clip = track as? Clip {
       startPlaying(url: clip.url!, atTime: 0)
     } else if let bookmark = track as? Bookmark {
-      let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: bookmark.episode!.fileName, ofType: "mp3")!)
+      //let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: bookmark.episode!.fileName, ofType: "mp3")!)
+      let episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: "pod", ofType: "mp3")!)
       startPlaying(url: episodeURL, atTime: bookmark.timestamp)
     }
     NotificationCenter.default.post(name: Notification.Name(R.SongPlaying), object: nil)
@@ -232,15 +234,15 @@ extension NSManagedObject {
   
   func artwork() -> UIImage? {
     if let episode = self as? Episode {
-      return UIImage(data: episode.artwork!)
+      return UIImage(data: episode.podcast!.artwork!)
     } else if let clip = self as? Clip {
-      return UIImage(data: clip.episode!.artwork!)
+      return UIImage(data: clip.episode!.podcast!.artwork!)
     } else if let bookmark = self as? Bookmark {
-      return UIImage(data: bookmark.episode!.artwork!)
+      return UIImage(data: bookmark.episode!.podcast!.artwork!)
     }
-    return nil
+    return UIImage(named: "artwork")
   }
-  
+ 
   func timeInfo() -> String? {
     if let episode = self as? Episode {
       return episode.durationString

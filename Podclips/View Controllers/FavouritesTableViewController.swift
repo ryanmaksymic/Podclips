@@ -25,8 +25,11 @@ class FavouritesTableViewController: UITableViewController {
     super.viewDidLoad()
     loadTracks()
     self.navigationItem.rightBarButtonItem = self.editButtonItem
-    
-    tableView.rowHeight = 100  // TODO: Temporary; remove and use Auto Layout
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    loadTracks()
+    tableView.reloadData()
   }
   
   
@@ -98,7 +101,6 @@ class FavouritesTableViewController: UITableViewController {
     }
   }
   
-  
   // MARK: - UITableViewDataSource
   
   // TODO: Organize into sections by podcast name (?)
@@ -153,7 +155,6 @@ class FavouritesTableViewController: UITableViewController {
       tableView.deleteRows(at: [indexPath], with: .fade)
     }
   }
-  
   
   // MARK: - Segmented control
   

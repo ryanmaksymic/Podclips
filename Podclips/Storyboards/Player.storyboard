@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Podcast Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPW-1c-vGQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Podcast Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WPW-1c-vGQ">
                                 <rect key="frame" x="16" y="442" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -34,7 +34,7 @@
                                     <action selector="dismiss:" destination="J7y-nT-Cir" eventType="touchUpInside" id="wVZ-8t-DHV"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="artwork" translatesAutoresizingMaskIntoConstraints="NO" id="9kJ-0a-Dzf">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="artwork" translatesAutoresizingMaskIntoConstraints="NO" id="9kJ-0a-Dzf">
                                 <rect key="frame" x="16" y="52" width="343" height="343"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
@@ -43,18 +43,21 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Episode Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaV-IG-f4p">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Episode Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OaV-IG-f4p">
                                 <rect key="frame" x="16" y="405" width="343" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qlm-pw-5ki" userLabel="Progress Slider" customClass="ProgressSlider" customModule="Podclips" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlm-pw-5ki" userLabel="Progress Slider" customClass="ProgressSlider" customModule="Podclips" customModuleProvider="target">
                                 <rect key="frame" x="16" y="479" width="343" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="j68-KY-pRj"/>
+                                </constraints>
                                 <connections>
+                                    <action selector="progressSliderEditingDidEnd:" destination="J7y-nT-Cir" eventType="editingDidEnd" id="TDE-kM-Raw"/>
                                     <action selector="progressSliderValueChangedWithSender:" destination="J7y-nT-Cir" eventType="valueChanged" id="y9z-l8-rDD"/>
                                 </connections>
                             </view>
@@ -156,7 +159,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agk-fT-NPd">
-                                <rect key="frame" x="36" y="617" width="30" height="30"/>
+                                <rect key="frame" x="34" y="612" width="35" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="scissors"/>
                                 <connections>
@@ -164,7 +167,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPT-pj-Sgn">
-                                <rect key="frame" x="309" y="617" width="30" height="30"/>
+                                <rect key="frame" x="307" y="612" width="35" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="share"/>
                                 <connections>
@@ -172,7 +175,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D6f-K7-kPd">
-                                <rect key="frame" x="309" y="617" width="30" height="30"/>
+                                <rect key="frame" x="307" y="612" width="35" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="bookmark"/>
                                 <connections>
@@ -182,6 +185,11 @@
                         </subviews>
                         <color key="backgroundColor" name="white1"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="qlm-pw-5ki" firstAttribute="top" secondItem="CEq-8G-oij" secondAttribute="top" constant="459" id="3cE-xA-80j"/>
+                            <constraint firstItem="qlm-pw-5ki" firstAttribute="leading" secondItem="CEq-8G-oij" secondAttribute="leading" constant="16" id="I4z-xE-zqS"/>
+                            <constraint firstItem="CEq-8G-oij" firstAttribute="trailing" secondItem="qlm-pw-5ki" secondAttribute="trailing" constant="16" id="VOT-BZ-Tvf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="CEq-8G-oij"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="f8z-sH-JnK" appends="YES" id="GjX-GU-1DU"/>
@@ -206,6 +214,8 @@
                         <outlet property="playPauseButton" destination="8lf-gC-Pw2" id="8OJ-Nd-nc4"/>
                         <outlet property="podcastNameLabel" destination="WPW-1c-vGQ" id="lpd-XF-Dlh"/>
                         <outlet property="progressSlider" destination="qlm-pw-5ki" id="pSs-es-dXh"/>
+                        <outlet property="progressSliderLeadingConstraint" destination="I4z-xE-zqS" id="kgt-Cb-iVu"/>
+                        <outlet property="progressSliderTrailingConstraint" destination="VOT-BZ-Tvf" id="SWQ-Fl-EXH"/>
                         <outlet property="shareButton" destination="lPT-pj-Sgn" id="pto-Fs-YXE"/>
                         <outlet property="totalTimeLabel" destination="hZR-ra-tzC" id="sjF-17-A6E"/>
                     </connections>
@@ -228,7 +238,7 @@
         <image name="forward" width="40" height="40"/>
         <image name="play" width="50" height="50"/>
         <image name="scissors" width="40" height="40"/>
-        <image name="share" width="40" height="40"/>
+        <image name="share" width="30" height="30"/>
         <namedColor name="white1">
             <color red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

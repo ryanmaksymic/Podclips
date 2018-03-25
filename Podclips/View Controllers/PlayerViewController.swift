@@ -39,6 +39,8 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var clipCancelButton: UIButton!
   @IBOutlet weak var clipSaveButton: UIButton!
   
+  @IBOutlet weak var progressSliderLeadingConstraint: NSLayoutConstraint!
+  @IBOutlet weak var progressSliderTrailingConstraint: NSLayoutConstraint!
   
   // MARK: - Properties
   
@@ -76,7 +78,6 @@ class PlayerViewController: UIViewController {
     forwardButton.tintColor = UIColor.init(named: Colors.secondary)
     
     artworkImageView.layer.cornerRadius = 8.0
-    artworkImageView.clipsToBounds = true
     
     updateTimeProgress()
   }
@@ -106,7 +107,6 @@ class PlayerViewController: UIViewController {
     let toTime = TimeInterval(AudioManager.shared.duration! * Double(progressSlider.editTo))
     editToTimeLabel.text = toTime.string(ms: true)
     editToTimeStepper.value = toTime
-    progressSlider.progress = progressSlider.editFrom
   }
   
   
@@ -159,12 +159,12 @@ class PlayerViewController: UIViewController {
   }
   
   @IBAction func progressSliderValueChanged(sender: ProgressSlider) {
-    if !isCreatingClip {
-      AudioManager.shared.setProgress(progressSlider.progress)  // TODO: Progress bar sometimes does not follow editFrom point
-      updateTimeProgress()
-    } else {
-      updateEditInterface()  // TODO: Can drag knob while in editing mode
-    }
+    AudioManager.shared.setProgress(progressSlider.progress)
+    updateTimeProgress()
+  }
+  
+  @IBAction func progressSliderEditingDidEnd(_ sender: ProgressSlider) {
+    updateEditInterface()
   }
   
   
@@ -227,7 +227,7 @@ class PlayerViewController: UIViewController {
   }
   
   
-  func toggleClipEditorInterface() {  // TODO: Stretch progress slider to zoom in on edit zone
+  func toggleClipEditorInterface() {
     if !isCreatingClip {
       clipCancelButton.center.x -= 200
       editFromTimeStepper.center.x -= 200
@@ -239,6 +239,19 @@ class PlayerViewController: UIViewController {
       editToTimeStepper.isHidden = false
       backwardButton.isEnabled = false
       forwardButton.isEnabled = false
+    }
+    self.view.layoutIfNeeded()
+    UIView.animate(withDuration: 0.25) {
+      if !self.isCreatingClip {
+        let leadingConstant: CGFloat = CGFloat(self.progressSlider.progress * 700)
+        let trailingConstant: CGFloat = CGFloat(400 - self.progressSlider.progress * 400)
+        self.progressSliderLeadingConstraint.constant -= leadingConstant
+        self.progressSliderTrailingConstraint.constant -= trailingConstant
+      } else {
+        self.progressSliderLeadingConstraint.constant = 16
+        self.progressSliderTrailingConstraint.constant = 16
+      }
+      self.view.layoutIfNeeded()
     }
     UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseOut], animations: {
       self.clipCancelButton.center.x += self.isCreatingClip ? -200 : 200
@@ -272,6 +285,7 @@ class PlayerViewController: UIViewController {
   
   @IBAction func cancelClip(_ sender: UIButton) {
     toggleClipEditorInterface()
+    updateTimeProgress()
   }
   
   @IBAction func saveClip(_ sender: UIButton) {

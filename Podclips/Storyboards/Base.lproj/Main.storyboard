@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Episodes-->
+        <!--Playlists-->
         <scene sceneID="RAk-YI-PL7">
             <objects>
-                <viewControllerPlaceholder storyboardName="Episodes" id="u8z-Nr-25h" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Playlists" id="u8z-Nr-25h" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="6Go-eo-gWZ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awp-Ns-1FD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -46,22 +46,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kg7-Bz-rJ2">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kg7-Bz-rJ2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="550"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="jfS-oZ-LFw" kind="embed" id="wOP-Py-QFn"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eaS-aK-MGp">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaS-aK-MGp">
                                 <rect key="frame" x="0.0" y="550" width="375" height="68"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="VB9-1y-ccs"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="9Al-5J-zs0" kind="embed" id="T9J-8z-OrT"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eaS-aK-MGp" firstAttribute="leading" secondItem="Xcc-xr-1Kn" secondAttribute="leading" id="HRP-2e-5Il"/>
+                            <constraint firstItem="Kg7-Bz-rJ2" firstAttribute="trailing" secondItem="Xcc-xr-1Kn" secondAttribute="trailing" id="I0F-Fp-n9C"/>
+                            <constraint firstItem="Kg7-Bz-rJ2" firstAttribute="leading" secondItem="Xcc-xr-1Kn" secondAttribute="leading" id="KD3-tf-ZPb"/>
+                            <constraint firstItem="eaS-aK-MGp" firstAttribute="bottom" secondItem="Xcc-xr-1Kn" secondAttribute="bottom" id="gfJ-8m-gZb"/>
+                            <constraint firstItem="eaS-aK-MGp" firstAttribute="trailing" secondItem="Xcc-xr-1Kn" secondAttribute="trailing" id="h7V-rh-Ana"/>
+                            <constraint firstItem="eaS-aK-MGp" firstAttribute="top" secondItem="Kg7-Bz-rJ2" secondAttribute="bottom" id="w6D-fa-kfT"/>
+                            <constraint firstItem="Kg7-Bz-rJ2" firstAttribute="top" secondItem="Sef-4g-zXJ" secondAttribute="top" id="yUg-kb-jCg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Xcc-xr-1Kn"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Podcasts" image="podcasts" selectedImage="podcasts_selected" id="eg8-6X-8Sf"/>
@@ -70,7 +80,7 @@
             </objects>
             <point key="canvasLocation" x="-130.40000000000001" y="161.46926536731635"/>
         </scene>
-        <!--Favourites-->
+        <!--Saved-->
         <scene sceneID="9lD-Vq-3SI">
             <objects>
                 <viewController id="gun-xc-dHG" sceneMemberID="viewController">
@@ -78,25 +88,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gle-x9-hFz">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gle-x9-hFz">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="550"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="XGB-cm-ccE" kind="embed" id="ddO-RC-GMS"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G40-hc-0uf">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G40-hc-0uf">
                                 <rect key="frame" x="0.0" y="550" width="375" height="68"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="U5o-zo-qh2"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="9Al-5J-zs0" kind="embed" id="ie7-jU-dBv"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="G40-hc-0uf" firstAttribute="leading" secondItem="5D0-yH-WPk" secondAttribute="leading" id="4tx-Gk-4Pt"/>
+                            <constraint firstItem="G40-hc-0uf" firstAttribute="top" secondItem="gle-x9-hFz" secondAttribute="bottom" id="RoW-6U-EF9"/>
+                            <constraint firstItem="gle-x9-hFz" firstAttribute="leading" secondItem="5D0-yH-WPk" secondAttribute="leading" id="dW9-BQ-i9k"/>
+                            <constraint firstItem="gle-x9-hFz" firstAttribute="trailing" secondItem="5D0-yH-WPk" secondAttribute="trailing" id="lZz-GR-SrF"/>
+                            <constraint firstItem="G40-hc-0uf" firstAttribute="top" secondItem="gle-x9-hFz" secondAttribute="bottom" id="nDo-0J-D00"/>
+                            <constraint firstItem="gle-x9-hFz" firstAttribute="top" secondItem="S3g-GP-dwM" secondAttribute="top" id="pyB-mF-ILt"/>
+                            <constraint firstItem="G40-hc-0uf" firstAttribute="trailing" secondItem="5D0-yH-WPk" secondAttribute="trailing" id="yY7-e9-9US"/>
+                            <constraint firstItem="G40-hc-0uf" firstAttribute="bottom" secondItem="5D0-yH-WPk" secondAttribute="bottom" id="zSj-WU-AQn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="5D0-yH-WPk"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favourites" image="star" selectedImage="star_selected" id="aY8-MM-g9A"/>
+                    <tabBarItem key="tabBarItem" title="Saved" image="star" selectedImage="star_selected" id="aY8-MM-g9A"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gmm-IP-jFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -110,22 +131,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XCb-CS-c6H">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCb-CS-c6H">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="550"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="u8z-Nr-25h" kind="embed" id="8pH-nd-vew"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uBM-Ha-0GR">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBM-Ha-0GR">
                                 <rect key="frame" x="0.0" y="550" width="375" height="68"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="JMg-4z-bT7"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="9Al-5J-zs0" kind="embed" id="2zr-HZ-WcI"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uBM-Ha-0GR" firstAttribute="bottom" secondItem="fa7-ok-lXl" secondAttribute="bottom" id="6DX-BA-1p3"/>
+                            <constraint firstItem="XCb-CS-c6H" firstAttribute="top" secondItem="FTg-cE-uwf" secondAttribute="top" id="HLV-DL-a6O"/>
+                            <constraint firstItem="XCb-CS-c6H" firstAttribute="leading" secondItem="fa7-ok-lXl" secondAttribute="leading" id="MNT-B6-JL5"/>
+                            <constraint firstItem="uBM-Ha-0GR" firstAttribute="trailing" secondItem="fa7-ok-lXl" secondAttribute="trailing" id="Onq-ra-EN8"/>
+                            <constraint firstItem="uBM-Ha-0GR" firstAttribute="top" secondItem="XCb-CS-c6H" secondAttribute="bottom" id="ioz-Ki-Eos"/>
+                            <constraint firstItem="XCb-CS-c6H" firstAttribute="trailing" secondItem="fa7-ok-lXl" secondAttribute="trailing" id="r47-z6-rsD"/>
+                            <constraint firstItem="uBM-Ha-0GR" firstAttribute="top" secondItem="XCb-CS-c6H" secondAttribute="bottom" id="rjP-9Z-qLU"/>
+                            <constraint firstItem="uBM-Ha-0GR" firstAttribute="leading" secondItem="fa7-ok-lXl" secondAttribute="leading" id="yj2-xb-hUi"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fa7-ok-lXl"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Playlist" image="playlists" selectedImage="playlists_selected" id="eQP-DO-XIS"/>
@@ -173,7 +205,7 @@
         <image name="star_selected" width="31" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="T9J-8z-OrT"/>
+        <segue reference="ie7-jU-dBv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="pink1"/>
 </document>
