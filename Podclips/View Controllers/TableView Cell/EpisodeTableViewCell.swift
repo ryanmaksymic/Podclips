@@ -20,6 +20,6 @@ class EpisodeTableViewCell: UITableViewCell {
     @IBAction func downloadTapped(_ sender: UIButton) {
         onButtonTapped?(self)
         //addToPlaylistButton.setTitle("Added to Playlist", for: .normal)
-      addToPlaylistButton.setBackgroundImage(nil, for: .normal)
+        //addToPlaylistButton.setBackgroundImage(nil, for: .normal)
     }
 }

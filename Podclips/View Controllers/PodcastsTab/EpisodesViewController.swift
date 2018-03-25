@@ -118,9 +118,14 @@ extension EpisodesViewController: UITableViewDataSource {
             print("download button tapped on \(indexPath)")
             
             // add to playlist
+            episode.added = true
             self.playlist?.addToEpisodes(episode)
             self.appDelegate?.saveContext()
         }
+      
+        if episode.added {
+          cell.addToPlaylistButton.isHidden = true
+        } else { cell.addToPlaylistButton.isHidden = false }
         
         // configure cell
         cell.titleLabel.text = episode.episodeName

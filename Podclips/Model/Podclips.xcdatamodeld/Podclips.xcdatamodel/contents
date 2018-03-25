@@ -13,6 +13,7 @@
         <relationship name="episode" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Episode" inverseName="clip" inverseEntity="Episode" syncable="YES"/>
     </entity>
     <entity name="Episode" representedClassName="Episode" syncable="YES" codeGenerationType="class">
+        <attribute name="added" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="downloaded" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="durationString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="episodeName" optional="YES" attributeType="String" syncable="YES"/>
@@ -40,7 +41,7 @@
     <elements>
         <element name="Bookmark" positionX="-272" positionY="-180" width="128" height="105"/>
         <element name="Clip" positionX="-270" positionY="-54" width="128" height="105"/>
-        <element name="Episode" positionX="-461" positionY="-159" width="128" height="240"/>
+        <element name="Episode" positionX="-461" positionY="-159" width="128" height="255"/>
         <element name="Playlist" positionX="-369" positionY="-81" width="128" height="75"/>
         <element name="Podcast" positionX="-369" positionY="-81" width="128" height="105"/>
     </elements>

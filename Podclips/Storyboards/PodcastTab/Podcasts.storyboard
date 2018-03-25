@@ -135,7 +135,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="episodeCell" rowHeight="67" id="0As-xA-Jjl" customClass="EpisodeTableViewCell" customModule="Podclips" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="episodeCell" rowHeight="67" id="0As-xA-Jjl" customClass="EpisodeTableViewCell" customModule="Podclips" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0As-xA-Jjl" id="32I-Fm-OB4">
@@ -178,7 +178,6 @@
                                             <outlet property="durationLabel" destination="V5H-fo-V4t" id="9g9-Wd-Iu0"/>
                                             <outlet property="pubDateLabel" destination="hQd-ci-0xj" id="eOG-us-MUu"/>
                                             <outlet property="titleLabel" destination="ZKA-24-bAI" id="0rc-IJ-vGk"/>
-                                            <segue destination="J2w-Gh-PCq" kind="show" identifier="showEpisode" id="XME-h3-D6L"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
